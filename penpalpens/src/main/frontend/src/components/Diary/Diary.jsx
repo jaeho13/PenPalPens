@@ -1,11 +1,20 @@
 import React from "react";
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
-// import CustomDate from "../Date/CustomDate ";
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { BiSolidLockOpenAlt } from "react-icons/bi";
 
 const Diary = () => {
 
     const navigate = useNavigate();
+
+    const goLogin = () => {
+        navigate("/");
+    };
+
+    const goDiary = () => {
+        navigate("/diary");
+    };
 
     const goChoose = () => {
         navigate("/choose");
@@ -44,11 +53,19 @@ const Diary = () => {
         <>
             <Header>
                 <HeaderBind>
-                    <Back onClick={goChoose}>뒤로가기</Back>
+                    <Back>
+                        <BackImage onClick={goChoose}>
+                            <MdKeyboardDoubleArrowLeft />
+                        </BackImage>
+                    </Back>
                     <Logo>
                         <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
                     </Logo>
-                    <LogOut>로그아웃</LogOut>
+                    <LogOut>
+                        <LogOutImage onClick={goLogin}>
+                            <BiSolidLockOpenAlt />
+                        </LogOutImage>
+                    </LogOut>
                 </HeaderBind>
             </Header>
 
@@ -83,7 +100,7 @@ export default Diary;
 const Header = styled.div`
     width: 100%;
     height: 4rem;
-    border: 3px solid black;
+    /* border: 3px solid black; */
 `
 
 const HeaderBind = styled.div`
@@ -93,21 +110,28 @@ const HeaderBind = styled.div`
 `
 
 const Back = styled.div`
-    width: 10%;
-    height: 4rem;
-    border: 2px solid red;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  width: 5%;
+  height: 4rem;
+  font-size: 6rem;
+  /* border: 2px solid red;
+  border-radius: 2rem; */
+  margin-top: 1.5rem;
+  color: #FE7D37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const BackImage = styled.div`
+  cursor: pointer;
 `
 
 const Logo = styled.div`
   width: 30%;
   height: 4rem;
-  /* border: 2px solid red; */
-  border-radius: 2rem;
+  margin-top: 1rem;
+  /* border: 2px solid red;
+  border-radius: 2rem; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,16 +144,21 @@ const LogoImage = styled.img`
     padding-top: 2rem;
 `
 
-
 const LogOut = styled.div`
-    width: 10%;
-    height: 4rem;
-    border: 2px solid red;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  width: 5%;
+  height: 4rem;
+  font-size: 4rem;
+  /* border: 2px solid red;
+  border-radius: 2rem; */
+  margin-top: 1.5rem;
+  color: #FE7D37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const LogOutImage = styled.div`
+  cursor: pointer;
 `
 
 const Background = styled.div`
@@ -138,7 +167,7 @@ const Background = styled.div`
     border: 2px solid red;
     border-radius: 2rem;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 5rem;
     background-color: #d4d4d4;
 `
 

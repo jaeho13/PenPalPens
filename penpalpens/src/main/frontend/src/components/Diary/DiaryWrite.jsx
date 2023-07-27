@@ -1,17 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { BiSolidLockOpenAlt } from "react-icons/bi";
 
 const DiaryWrite = () => {
 
     const navigate = useNavigate();
 
-    const goChoose = () => {
-        navigate("/choose");
+    const goLogin = () => {
+        navigate("/");
     };
 
     const goDiary = () => {
         navigate("/diary");
+    };
+
+    const goChoose = () => {
+        navigate("/choose");
     };
 
     const today = new Date();
@@ -26,9 +32,19 @@ const DiaryWrite = () => {
         <>
             <Header>
                 <HeaderBind>
-                    <Back onClick={goDiary}>뒤로가기</Back>
-                    <Logo>로고 글씨</Logo>
-                    <LogOut>로그아웃</LogOut>
+                    <Back>
+                        <BackImage onClick={goDiary}>
+                            <MdKeyboardDoubleArrowLeft />
+                        </BackImage>
+                    </Back>
+                    <Logo>
+                        <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
+                    </Logo>
+                    <LogOut>
+                        <LogOutImage onClick={goLogin}>
+                            <BiSolidLockOpenAlt />
+                        </LogOutImage>
+                    </LogOut>
                 </HeaderBind>
 
                 <Background>
@@ -54,7 +70,7 @@ export default DiaryWrite;
 const Header = styled.div`
     width: 100%;
     height: 4rem;
-    border: 3px solid black;
+    /* border: 3px solid black; */
 `
 
 const HeaderBind = styled.div`
@@ -63,45 +79,65 @@ const HeaderBind = styled.div`
     justify-content: space-between;
 `
 
+
 const Back = styled.div`
-    width: 10%;
-    height: 4rem;
-    border: 2px solid red;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  width: 5%;
+  height: 4rem;
+  font-size: 6rem;
+  /* border: 2px solid red;
+  border-radius: 2rem; */
+  margin-top: 1.5rem;
+  color: #FE7D37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const BackImage = styled.div`
+  cursor: pointer;
 `
 
 const Logo = styled.div`
-    width: 30%;
-    height: 4rem;
-    border: 2px solid red;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 30%;
+  height: 4rem;
+  margin-top: 1rem;
+  /* border: 2px solid red;
+  border-radius: 2rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`
+
+const LogoImage = styled.img`
+    width: 100%;
+    height: 20rem;
+    padding-top: 2rem;
 `
 
 const LogOut = styled.div`
-    width: 10%;
-    height: 4rem;
-    border: 2px solid red;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  width: 5%;
+  height: 4rem;
+  font-size: 4rem;
+  /* border: 2px solid red;
+  border-radius: 2rem; */
+  margin-top: 1.5rem;
+  color: #FE7D37;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
+const LogOutImage = styled.div`
+  cursor: pointer;
+`
 const Background = styled.div`
     width: 65%;
     height: 50rem;
     border: 2px solid red;
     border-radius: 2rem;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 3.5rem;
     background-color: #d4d4d4;
 `
 
@@ -182,4 +218,5 @@ const Cancle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `
