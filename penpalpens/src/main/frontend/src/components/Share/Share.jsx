@@ -35,7 +35,9 @@ const Share = () => {
             <Header>
                 <HeaderBind>
                     <Back onClick={goChoose}>뒤로가기</Back>
-                    <Logo>로고 글씨</Logo>
+                    <Logo>
+                        <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
+                    </Logo>
                     <LogOut>로그아웃</LogOut>
                 </HeaderBind>
             </Header>
@@ -90,14 +92,22 @@ const Back = styled.div`
 `
 
 const Logo = styled.div`
-    width: 30%;
-    height: 4rem;
-    border: 2px solid red;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 30%;
+  height: 4rem;
+  /* border: 2px solid red; */
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `
+
+const LogoImage = styled.img`
+    width: 100%;
+    height: 20rem;
+    padding-top: 2rem;
+`
+
 
 const LogOut = styled.div`
     width: 10%;
