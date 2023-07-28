@@ -24,6 +24,7 @@ const Join = () => {
                 </Write2>
                 <Comments>비밀번호</Comments>
                 <Write2>
+
                     <Write placeholder="********" type="password" />
                 </Write2>
                 <Comments>닉네임</Comments>
