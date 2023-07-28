@@ -61,6 +61,7 @@ const Diary = () => {
                     <Logo>
                         <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
                     </Logo>
+
                     <LogOut>
                         <LogOutImage onClick={goLogin}>
                             <BiSolidLockOpenAlt />
