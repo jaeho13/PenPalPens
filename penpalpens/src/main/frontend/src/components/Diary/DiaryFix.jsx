@@ -81,32 +81,32 @@ const HeaderBind = styled.div`
 `
 
 const Back = styled.div`
-  width: 5%;
-  height: 4rem;
-  font-size: 6rem;
-  /* border: 2px solid red;
-  border-radius: 2rem; */
-  margin-top: 1.5rem;
-  color: #FE7D37;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 5%;
+    height: 4rem;
+    font-size: 4rem;
+    /* border: 2px solid red;
+    border-radius: 2rem; */
+    margin-top: 1.5rem;
+    color: #FE7D37;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const BackImage = styled.div`
-  cursor: pointer;
+    cursor: pointer;
 `
 
 const Logo = styled.div`
-  width: 30%;
-  height: 4rem;
-  margin-top: 1rem;
-  /* border: 2px solid red;
-  border-radius: 2rem; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+    width: 30%;
+    height: 4rem;
+    margin-top: 1rem;
+    /* border: 2px solid red;
+    border-radius: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 `
 
 const LogoImage = styled.img`
@@ -116,20 +116,20 @@ const LogoImage = styled.img`
 `
 
 const LogOut = styled.div`
-  width: 5%;
-  height: 4rem;
-  font-size: 4rem;
-  /* border: 2px solid red;
-  border-radius: 2rem; */
-  margin-top: 1.5rem;
-  color: #FE7D37;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 5%;
+    height: 4rem;
+    font-size: 4rem;
+    /* border: 2px solid red;
+    border-radius: 2rem; */
+    margin-top: 1.5rem;
+    color: #FE7D37;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const LogOutImage = styled.div`
-  cursor: pointer;
+    cursor: pointer;
 `
 
 const Background = styled.div`
