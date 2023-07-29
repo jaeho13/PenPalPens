@@ -18,7 +18,7 @@ const Login = () => {
     return (
         <>
             <Background>
-                <BackgroundImg src="/images/exam.png" alt="배경" />
+                <BackgroundImg src="/images/login.png" alt="배경" />
                 <Main>
                     <Bind2>
                         <Bind>
@@ -48,7 +48,6 @@ const Background = styled.div`
 `
 
 const BackgroundImg = styled.img`
-    background-image: url(/images/exam.png);
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -68,7 +67,7 @@ const Main = styled.div`
     border-radius: 1rem;
     margin: 0 auto;
     margin-top: 19rem;
-    background-color: #595959;
+    background-color: rgba(100, 100, 100, 0.5);
 `
 
 const Bind = styled.div`
@@ -129,7 +128,6 @@ const Enter = styled.div`
     cursor: pointer;
 `
 
-
 const Join = styled.div`
     width: 50%;
     height: 2rem;
@@ -150,7 +148,7 @@ const Ment = styled.div`
     width: 70%;
     height: 2rem;
     color: #fdf6e4;
-    border: 5px solid #595959;
+    /* border: 5px solid #595959; */
     text-decoration: underline;
     display: flex;
     margin: 0 auto;

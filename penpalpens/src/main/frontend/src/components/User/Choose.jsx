@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
-import Login from "./Login";
 
 const Choose = () => {
     const navigate = useNavigate();
