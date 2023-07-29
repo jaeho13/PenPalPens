@@ -70,26 +70,28 @@ const Diary = () => {
                 </HeaderBind>
             </Header>
 
-            <Background>
-                <DateBind>
-                    <Box></Box>
-                    <Day>
-                        {formattedFull}
-                    </Day>
-                    <Write onClick={goWrite}>글쓰기</Write>
-                </DateBind>
+            <Peel>
+                <Background>
+                    <DateBind>
+                        <Box></Box>
+                        <Day>
+                            {formattedFull}
+                        </Day>
+                        <Write onClick={goWrite}>글쓰기</Write>
+                    </DateBind>
 
-                <DiaryList>
-                    <DailyDate>
-                        {formattedDate}
-                    </DailyDate>
-                    <DailyTitle onClick={goRead}>제목</DailyTitle>
-                    <DailyChange>
-                        <Fix onClick={goFix}>수정</Fix>
-                        <Delete onClick={onDelete}>삭제</Delete>
-                    </DailyChange>
-                </DiaryList>
-            </Background>
+                    <DiaryList>
+                        <DailyDate>
+                            {formattedDate}
+                        </DailyDate>
+                        <DailyTitle onClick={goRead}>제목</DailyTitle>
+                        <DailyChange>
+                            <Fix onClick={goFix}>수정</Fix>
+                            <Delete onClick={onDelete}>삭제</Delete>
+                        </DailyChange>
+                    </DiaryList>
+                </Background>
+            </Peel>
         </>
     );
 }
@@ -162,9 +164,20 @@ const LogOutImage = styled.div`
     cursor: pointer;
 `
 
+const Peel = styled.div`
+    width: 80%;
+    height: 67rem;
+    border: 2px solid black;
+    border-radius: 2rem;
+    background-color: blue;
+    margin: 0 auto;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+`
+
 const Background = styled.div`
-    width: 65%;
-    height: 50rem;
+    width: 80%;
+    height: 57rem;
     border: 2px solid red;
     border-radius: 2rem;
     margin: 0 auto;

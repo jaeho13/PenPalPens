@@ -48,38 +48,53 @@ const ShareWrite = () => {
                 </HeaderBind>
             </Header>
 
-            <Day>
-                {formattedFull}
-            </Day>
+            <Peel>
+                <Day>
+                    {formattedFull}
+                </Day>
 
-            <BackgroundBind>
+                <BackgroundBind>
 
-                <Background>
+                    {/* <Background>
                     <Topic>오늘의 질문</Topic>
                     <TopicAnswer placeholder="*오늘의 대답" />
-                </Background>
+                </Background> */}
 
-                <StickBind>
-                    <Stick></Stick>
-                    <Stick></Stick>
-                    <Stick></Stick>
-                    <Stick></Stick>
-                    <Stick></Stick>
-                    <Stick></Stick>
-                    <Stick></Stick>
-                </StickBind>
+                    <Background>
+                        <Topic></Topic>
+                        <TopicAnswer></TopicAnswer>
+                    </Background>
 
-                <Background>
+                    {/* <Leg /> */}
+                    <Leg1 />
+                    <Leg2 />
+                    <Leg3 />
+                    <Leg4 />
+                    <Leg5 />
+
+                    <Background>
+                        <Topic></Topic>
+                        <TopicAnswer></TopicAnswer>
+                    </Background>
+
+
+                    {/* <StickBind>
+                    <Stick></Stick>
+                </StickBind> */}
+
+                    {/* <Background>
                     <Topic>오늘의 한마디</Topic>
                     <TopicAnswer placeholder="*하고 싶은 말" />
-                </Background>
+                </Background> */}
 
-            </BackgroundBind>
+                </BackgroundBind>
 
-            <ButtonBind>
-                <Upload onClick={goshare} >글올리기</Upload>
-                <Cancle onClick={goshare} >취소하기</Cancle>
-            </ButtonBind>
+                <ButtonBind>
+                    <Upload onClick={goshare} >글올리기</Upload>
+                    <Cancle onClick={goshare} >취소하기</Cancle>
+                </ButtonBind>
+            </Peel>
+
         </>
     );
 }
@@ -151,16 +166,17 @@ const LogOutImage = styled.div`
 `
 
 const Day = styled.div`
-    width: 70%;
+    width: 80%;
     height: 5rem;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     border-radius: 2rem;
     font-size: 2rem;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: skyblue;
 `
 
 const BackgroundBind = styled.div`
@@ -171,7 +187,7 @@ const BackgroundBind = styled.div`
 `
 
 const Background = styled.div`
-    width: 32.5%;
+    width: 40%;
     height: 50rem;
     border: 2px solid red;
     border-radius: 2rem;
@@ -179,21 +195,21 @@ const Background = styled.div`
     background-color: #d4d4d4;
 `
 
-const StickBind = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 3%;
-    /* background-color: yellow; */
-`
+// const StickBind = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     width: 3%;
+//     /* background-color: yellow; */
+// `
 
-const Stick = styled.div`
-    width: 100%;
-    height: 2rem;
-    border: 2px solid black;
-    border-radius: 2rem;
-    background-color: white;
-    margin-top: 4rem;
-`
+// const Stick = styled.div`
+//     width: 100%;
+//     height: 2rem;
+//     border: 2px solid black;
+//     border-radius: 2rem;
+//     background-color: white;
+//     margin-top: 4rem;
+// `
 
 const Topic = styled.div`
     width: 100%;
@@ -207,7 +223,7 @@ const Topic = styled.div`
 `
 
 const TopicAnswer = styled.textarea`
-    width: 100%;
+    width: 99%;
     height: 44rem;
     border: 2px solid green;
     border-radius: 2rem;
@@ -239,6 +255,7 @@ const Upload = styled.div`
     justify-content: center;
     align-items: center;
     margin-right: 1rem;
+    background-color: red;
 `
 
 const Cancle = styled.div`
@@ -251,4 +268,76 @@ const Cancle = styled.div`
     justify-content: center;
     align-items: center;
     margin-right: 3rem;
+    background-color: red;
+`
+
+const Leg = styled.div`
+    position: absolute;
+    top: 35%;
+    left: 49%; /* 변경: 선의 시작 위치를 왼쪽에서 25% 위치로 이동 */
+    right: 49%; /* 변경: 선의 끝 위치를 오른쪽에서 25% 위치로 이동 */
+    height: 1rem;
+    background-color: red;
+    /* transform: translateY(-50%); */
+`
+
+const Leg1 = styled.div`
+    position: absolute;
+    top: 55%;
+    left: 49%; /* 변경: 선의 시작 위치를 왼쪽에서 25% 위치로 이동 */
+    right: 49%; /* 변경: 선의 끝 위치를 오른쪽에서 25% 위치로 이동 */
+    height: 1rem;
+    background-color: red;
+    /* transform: translateY(-50%); */
+`
+
+const Leg2 = styled.div`
+    position: absolute;
+    top: 68%;
+    left: 49%; /* 변경: 선의 시작 위치를 왼쪽에서 25% 위치로 이동 */
+    right: 49%; /* 변경: 선의 끝 위치를 오른쪽에서 25% 위치로 이동 */
+    height: 1rem;
+    background-color: red;
+    /* transform: translateY(-50%); */
+`
+
+const Leg3 = styled.div`
+    position: absolute;
+    top: 81%;
+    left: 49%; /* 변경: 선의 시작 위치를 왼쪽에서 25% 위치로 이동 */
+    right: 49%; /* 변경: 선의 끝 위치를 오른쪽에서 25% 위치로 이동 */
+    height: 1rem;
+    background-color: red;
+    /* transform: translateY(-50%); */
+`
+
+const Leg4 = styled.div`
+    position: absolute;
+    top: 94%;
+    left: 49%; /* 변경: 선의 시작 위치를 왼쪽에서 25% 위치로 이동 */
+    right: 49%; /* 변경: 선의 끝 위치를 오른쪽에서 25% 위치로 이동 */
+    height: 1rem;
+    background-color: red;
+    /* transform: translateY(-50%); */
+`
+
+const Leg5 = styled.div`
+    position: absolute;
+    top: 107%;
+    left: 49%; /* 변경: 선의 시작 위치를 왼쪽에서 25% 위치로 이동 */
+    right: 49%; /* 변경: 선의 끝 위치를 오른쪽에서 25% 위치로 이동 */
+    height: 1rem;
+    background-color: red;
+    /* transform: translateY(-50%); */
+`
+
+const Peel = styled.div`
+    width: 80%;
+    height: 73rem;
+    border: 2px solid black;
+    border-radius: 2rem;
+    background-color: blue;
+    margin: 0 auto;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
 `
