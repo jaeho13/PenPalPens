@@ -160,7 +160,7 @@ const Day = styled.div`
     border-radius: 2rem;
     font-size: 2rem;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
