@@ -51,59 +51,99 @@ const Diary = () => {
 
     return (
         <>
-            <Header>
-                <HeaderBind>
-                    <Back>
-                        <BackImage onClick={goChoose}>
-                            <MdKeyboardDoubleArrowLeft />
-                        </BackImage>
-                    </Back>
-                    <Logo>
-                        <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
-                    </Logo>
+            <Background>
+                <BackgroundImg src="/images/space.png" alt="배경" />
 
-                    <LogOut>
-                        <LogOutImage onClick={goLogin}>
-                            <BiSolidLockOpenAlt />
-                        </LogOutImage>
-                    </LogOut>
-                </HeaderBind>
-            </Header>
+                <Header>
+                    <HeaderBind>
+                        <Back>
+                            <BackImage onClick={goChoose}>
+                                <MdKeyboardDoubleArrowLeft />
+                            </BackImage>
+                        </Back>
 
-            <Peel>
-                <Background>
-                    <DateBind>
-                        <Box></Box>
-                        <Day>
-                            {formattedFull}
-                        </Day>
-                        <Write onClick={goWrite}>글쓰기</Write>
-                    </DateBind>
+                        <Logo>
+                            <LogoImage src="/images/Logo.png" alt="로고" />
+                        </Logo>
 
-                    <DiaryList>
-                        <DailyDate>
-                            {formattedDate}
-                        </DailyDate>
-                        <DailyTitle onClick={goRead}>제목</DailyTitle>
-                        <DailyChange>
-                            <Fix onClick={goFix}>수정</Fix>
-                            <Delete onClick={onDelete}>삭제</Delete>
-                        </DailyChange>
-                    </DiaryList>
-                </Background>
-            </Peel>
+                        <LogOut>
+                            <LogOutImage onClick={goLogin}>
+                                <BiSolidLockOpenAlt />
+                            </LogOutImage>
+                        </LogOut>
+                    </HeaderBind>
+                </Header>
+
+                <RabbitImage src="/images/rabbit.png" alt="토끼" />
+                <DogImage src="/images/dog.png" alt="토끼" />
+
+                <Peel>
+                    <Main>
+                        <DateBind>
+                            <Box></Box>
+                            <Day>
+                                {formattedFull}
+                            </Day>
+                            <Write onClick={goWrite}>글쓰기</Write>
+                        </DateBind>
+
+                        <DiaryList>
+                            <DailyDate>
+                                {formattedDate}
+                            </DailyDate>
+                            <DailyTitle onClick={goRead}>제목</DailyTitle>
+                            <DailyChange>
+                                <Fix onClick={goFix}>수정</Fix>
+                                <Delete onClick={onDelete}>삭제</Delete>
+                            </DailyChange>
+                        </DiaryList>
+                    </Main>
+                </Peel>
+
+            </Background>
         </>
     );
 }
 
 export default Diary;
 
-// const Background
+const Background = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+`
 
+const BackgroundImg = styled.img`
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+`
 const Header = styled.div`
     width: 100%;
     height: 4rem;
     /* border: 3px solid black; */
+`
+
+const DogImage = styled.img`
+    width: 25%;
+    height: 35rem;
+    position: absolute;
+    top: 40%;
+`
+
+const RabbitImage = styled.img`
+    width: 25%;
+    height: 35rem;
+    position: absolute;
+    top: 15%; left: 74%;
 `
 
 const HeaderBind = styled.div`
@@ -115,11 +155,11 @@ const HeaderBind = styled.div`
 const Back = styled.div`
     width: 5%;
     height: 4rem;
-    font-size: 4rem;
+    font-size: 6rem;
     /* border: 2px solid red;
     border-radius: 2rem; */
     margin-top: 1.5rem;
-    color: #FE7D37;
+    color: #3e5af5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,13 +172,12 @@ const BackImage = styled.div`
 const Logo = styled.div`
     width: 30%;
     height: 4rem;
-    margin-top: 1rem;
+    margin-top: 3rem;
     /* border: 2px solid red;
     border-radius: 2rem; */
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 `
 
 const LogoImage = styled.img`
@@ -154,7 +193,7 @@ const LogOut = styled.div`
     /* border: 2px solid red;
     border-radius: 2rem; */
     margin-top: 1.5rem;
-    color: #FE7D37;
+    color: #3e5af5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,52 +204,46 @@ const LogOutImage = styled.div`
 `
 
 const Peel = styled.div`
-    width: 80%;
-    height: 67rem;
-    border: 2px solid black;
+    width: 70%;
+    height: 44rem;
+    border: 2px solid #fdf6e4;
     border-radius: 2rem;
-    background-color: blue;
+    background-color: rgba(59, 59, 59, 0.4);
     margin: 0 auto;
-    margin-top: 5rem;
-    margin-bottom: 3rem;
+    margin-top: 10rem;
 `
 
-const Background = styled.div`
+const Main = styled.div`
     width: 80%;
-    height: 57rem;
-    border: 2px solid red;
+    height: 40rem;
+    /* border: 2px solid red; */
     border-radius: 2rem;
     margin: 0 auto;
-    margin-top: 5rem;
-    background-color: #d4d4d4;
+    margin-top: 2rem;
+    background-color: #fdf6e4;
 `
 
 const DateBind = styled.div`
     display: flex;
     flex-direction: row;
-    /* margin-top: 2rem; */
     justify-content: space-between;
     align-items: center;
-    border: 2px solid purple;
+    /* border: 2px solid purple; */
     border-radius: 2rem;
-    
 `
 
 const Box = styled.div`
     width: 20%;
     height: 5rem;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     border-radius: 2rem;
 `
 
 const Day = styled.div`
     width: 20%;
     height: 5rem;
-    border: 2px solid blue;
     border-radius: 2rem;
     font-size: 2rem;
-    /* margin: 0 auto; */
-    /* margin-left: 50rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -219,9 +252,9 @@ const Day = styled.div`
 const Write = styled.div`
     width: 20%;
     height: 5rem;
-    border: 2px solid green;
+    /* border: 2px solid green; */
     border-radius: 2rem;
-    font-size: 3rem;
+    font-size: 2rem;
     /* margin: 0 auto; */
     /* margin-left: 10rem; */
     display: flex;
@@ -231,32 +264,38 @@ const Write = styled.div`
 `
 
 const DiaryList = styled.div`
-    width: 70%;
-    height: 6rem;
-    border: 2px solid black;
-    border-radius: 3rem;
+    width: 90%;
+    height: 3rem;
+    border: 2px solid #595959;
+    border-radius: 1rem;
     margin: 0 auto;
-    margin-top: 3rem;
+    /* margin-top: 1rem; */
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
 `
+
 const DailyDate = styled.div`
     width: 20%;
-    height: 6rem;
-    border: 2px solid blue;
-    border-radius: 3rem;
+    height: 3rem;
+    /* border: 2px solid blue; */
+    border-radius: 1rem;
     font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: #595959; */
 `
 
 const DailyTitle = styled.div`
     width: 60%;
-    height: 6rem;
-    border: 2px solid green;
-    border-radius: 3rem;
+    height: 3rem;
+    border: 2px dashed black;
+    border-top: 0;
+    border-bottom: 0;
+    /* border-right: 0; */
+    padding-left: 1rem;
     font-size: 2rem;
     display: flex;
     align-items: center;
@@ -265,8 +304,8 @@ const DailyTitle = styled.div`
 
 const DailyChange = styled.div`
     width: 20%;
-    height: 6rem;
-    border: 2px solid red;
+    height: 3rem;
+    /* border: 2px solid red; */
     border-radius: 3rem;
     display: flex;
     flex-direction: row;
@@ -276,25 +315,27 @@ const DailyChange = styled.div`
 
 const Fix = styled.div`
     width: 40%;
-    height: 4rem;
-    border: 2px solid blue;
-    border-radius: 2rem;
+    height: 2rem;
+    border: 2px solid #3e5af5;
+    border-radius: 1rem;
     font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #3e5af5;
     cursor: pointer;
 `
 
 const Delete = styled.div`
     width: 40%;
-    height: 4rem;
-    border: 2px solid blue;
-    border-radius: 2rem;
+    height: 2rem;
+    border: 2px solid #3e5af5;
+    border-radius: 1rem;
     margin-left: 1rem;
     font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #3e5af5;
     cursor: pointer;
 `
