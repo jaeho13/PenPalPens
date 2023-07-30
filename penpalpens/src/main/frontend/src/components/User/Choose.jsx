@@ -6,7 +6,10 @@ import { BiSolidLockOpenAlt } from "react-icons/bi";
 
 const Choose = () => {
     const navigate = useNavigate();
-    const [showModal, setShowModal] = useState(false);
+
+    const [makeModal, setMakeModal] = useState(false);
+
+    const [enterModal, setEnterModal] = useState(false);
 
     const goLogin = () => {
         navigate("/");
@@ -21,7 +24,11 @@ const Choose = () => {
     };
 
     const modal = () => {
-        setShowModal(!showModal);
+        setMakeModal(!makeModal);
+    };
+
+    const modal3 = () => {
+        setEnterModal(!enterModal);
     };
 
     return (
@@ -36,7 +43,7 @@ const Choose = () => {
                             </BackImage>
                         </Back>
                         <Logo>
-                            <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
+                            <LogoImage src="/images/Logo.png" alt="로고" />
                         </Logo>
                         <LogOut>
                             <LogOutImage onClick={goLogin}>
@@ -48,24 +55,38 @@ const Choose = () => {
                 <Total>
                     <Left>
                         <Title>일기장</Title>
-                        {/* <Write onClick={goDiary}> */}
                         <FolderImage src="/images/folder.png" />
-                        {/* </Write> */}
+                        <Write onClick={goDiary} >들어가기</Write>
                     </Left>
                     <Right>
                         <Title>교환 일기</Title>
-                        <Make onClick={modal}>일기 만들기</Make>
-                        <Enter>일기 들어가기</Enter>
+                        <FolderImage src="/images/folder.png" />
+                        <ShareBind>
+                            <Make onClick={modal}>만들기</Make>
+                            <Enter onClick={modal3} >들어가기</Enter>
+                        </ShareBind>
                     </Right>
                 </Total>
 
-                {showModal && (
+                {makeModal && (
                     <ModalWrapper>
                         <Modal>
-                            <ModalContent>초대코드</ModalContent>
+                            <ModalTitle>초대코드</ModalTitle>
                             <ModalTip>*초대코드를 공유하여 친구와 교환일기를 시작해보세요.</ModalTip>
                             <ModalCode>123456</ModalCode>
-                            <ModalClose onClick={modal}>확인</ModalClose>
+                            <ModalButton onClick={modal}>확인</ModalButton>
+                        </Modal>
+                    </ModalWrapper >
+                )}
+
+
+                {enterModal && (
+                    <ModalWrapper>
+                        <Modal>
+                            <ModalTitle>초대코드 입력</ModalTitle>
+                            <ModalTip>*초대코드를 공유하여 친구와 교환일기를 시작해보세요.</ModalTip>
+                            <ModalEnter type="text" placeholder="*초대 코드 입력" />
+                            <ModalButton onClick={modal3}>확인</ModalButton>
                         </Modal>
                     </ModalWrapper >
                 )}
@@ -95,44 +116,43 @@ const BackgroundImg = styled.img`
 `
 
 const Header = styled.div`
-  width: 100%;
-  height: 4rem;
-  /* border: 3px solid black; */
+    width: 100%;
+    height: 4rem;
+    /* border: 3px solid black; */
 `
 
 const HeaderBind = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 `
 
 const Back = styled.div`
-  width: 5%;
-  height: 4rem;
-  font-size: 6rem;
-  /* border: 2px solid red;
-  border-radius: 2rem; */
-  margin-top: 1.5rem;
-  color: #3e5af5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 5%;
+    height: 4rem;
+    font-size: 6rem;
+    /* border: 2px solid red;
+    border-radius: 2rem; */
+    margin-top: 1.5rem;
+    color: #3e5af5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const BackImage = styled.div`
-  cursor: pointer;
+    cursor: pointer;
 `
 
 const Logo = styled.div`
-  width: 30%;
-  height: 4rem;
-  margin-top: 1rem;
-  /* border: 2px solid red;
-  border-radius: 2rem; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+    width: 30%;
+    height: 4rem;
+    margin-top: 3rem;
+    /* border: 2px solid red;
+    border-radius: 2rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const LogoImage = styled.img`
@@ -142,61 +162,61 @@ const LogoImage = styled.img`
 `
 
 const LogOut = styled.div`
-  width: 5%;
-  height: 4rem;
-  font-size: 4rem;
-  /* border: 2px solid red;
-  border-radius: 2rem; */
-  margin-top: 1.5rem;
-  color: #3e5af5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 5%;
+    height: 4rem;
+    font-size: 4rem;
+    /* border: 2px solid red;
+    border-radius: 2rem; */
+    margin-top: 1.5rem;
+    color: #3e5af5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const LogOutImage = styled.div`
-  cursor: pointer;
+    cursor: pointer;
 `
 
 const Total = styled.div`
-  width: 70%;
-  height: 30rem;
-  display: flex;
-  flex-direction: row;
-  margin: 0 auto;
-  margin-top: 10rem;
+    width: 70%;
+    height: 30rem;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    margin-top: 13rem;
 `
 
 const Left = styled.div`
-  width: 45%;
-  height: 30rem;
-  border: 5px solid blue;
-  border-radius: 2rem;
-  margin: 0 auto;
-  background-color: rgba(59, 59, 59, 0.5);
+    width: 45%;
+    height: 30rem;
+    border: 5px solid #fdf6e4;
+    border-radius: 2rem;
+    margin: 0 auto;
+    background-color: rgba(59, 59, 59, 0.5);
 `
 
 const Right = styled.div`
-  width: 45%;
-  height: 30rem;
-  border: 5px solid red;
-  border-radius: 2rem;
-  margin: 0 auto;
+    width: 45%;
+    height: 30rem;
+    border: 5px solid #fdf6e4;
+    border-radius: 2rem;
+    margin: 0 auto;
+    background-color: rgba(59, 59, 59, 0.5);
 `
 
 const Title = styled.div`
-  width: 80%;
-  height: 3rem;
-  border: 2px solid blue;
-  color: blue;
-  border-radius: 2rem;
-  margin: 0 auto;
-  margin-top: 2rem;
-  font-size: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
+    width: 50%;
+    height: 3rem;
+    color: #fdf6e4;
+    border-radius: 2rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgba(59, 59, 59, 0.5); */
 `
 
 const FolderImage = styled.img`
@@ -207,44 +227,52 @@ const FolderImage = styled.img`
 `
 
 const Write = styled.div`
-  width: 30%;
-  height: 11rem;
-  border: 2px solid black;
-  border-radius: 2rem;
-  margin: 0 auto;
-  margin-top: 4rem;
-  font-size: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`
-
-const Make = styled.div`
-    width: 60%;
-    height: 5rem;
-    border: 2px solid black;
+    width: 50%;
+    height: 3rem;
+    /* border: 2px solid black; */
     border-radius: 2rem;
+    color: #fdf6e4;
     margin: 0 auto;
-    margin-top: 4rem;
     font-size: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #3e5af5;
+    cursor: pointer;
+`
+
+const ShareBind = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+`
+
+const Make = styled.div`
+    width: 35%;
+    height: 3rem;
+    /* border: 2px solid black; */
+    border-radius: 2rem;
+    color: #fdf6e4;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3e5af5;
     cursor: pointer;
 `
 
 const Enter = styled.div`
-    width: 60%;
-    height: 5rem;
-    border: 2px solid black;
+    width: 35%;
+    height: 3rem;
+    /* border: 2px solid black; */
     border-radius: 2rem;
-    margin: 0 auto;
-    margin-top: 1rem;
+    color: #fdf6e4;
     font-size: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #3e5af5;
     cursor: pointer;
 `
 
@@ -261,8 +289,9 @@ const ModalWrapper = styled.div`
 `
 
 const Modal = styled.div`
-    width: 20%;
-    height: 25rem;
+    width: 40%;
+    height: 30rem;
+    /* background-color: #fdf6e4; */
     background-color: white;
     border-radius: 2rem;
     display: flex;
@@ -271,11 +300,11 @@ const Modal = styled.div`
     flex-direction: column;
 `
 
-const ModalContent = styled.div`
+const ModalTitle = styled.div`
     width: 80%;
     height: 3rem;
     /* border: 2px solid black; */
-    font-size: 1.5rem;
+    font-size: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -286,7 +315,8 @@ const ModalTip = styled.div`
     height: 3rem;
     /* border: 2px solid black; */
     /* font-size: 1.5rem; */
-    margin-top: 1rem;
+    font-size: 1.5rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -294,23 +324,39 @@ const ModalTip = styled.div`
 `
 
 const ModalCode = styled.div`
-    width: 80%;
+    width: 40%;
     height: 3rem;
-    border: 2px solid purple;
+    border: 2px solid #595959;
     border-radius: 2rem;
     font-size: 1.5rem;
     margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 `
 
-const ModalClose = styled.button`
+const ModalEnter = styled.input`
+    width: 40%;
+    height: 3rem;
+    border: 2px solid #595959;
+    border-radius: 2rem;
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+`
+
+const ModalButton = styled.button`
     width: 25%;
     height: 3rem;
+    border: 2px solid #3e5af5;
     margin-top: 3rem;
     font-size: 2rem;
-    background-color: skyblue;
+    color: #fdf6e4;
+    background-color: #3e5af5;
     border-radius: 1rem;
     cursor: pointer;
 `
