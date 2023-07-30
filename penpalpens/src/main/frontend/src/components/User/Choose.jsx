@@ -26,49 +26,73 @@ const Choose = () => {
 
     return (
         <>
-            <Header>
-                <HeaderBind>
-                    <Back>
-                        <BackImage onClick={goLogin}>
-                            <MdKeyboardDoubleArrowLeft />
-                        </BackImage>
-                    </Back>
-                    <Logo>
-                        <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
-                    </Logo>
-                    <LogOut>
-                        <LogOutImage onClick={goLogin}>
-                            <BiSolidLockOpenAlt />
-                        </LogOutImage>
-                    </LogOut>
-                </HeaderBind>
-            </Header>
-            <Total>
-                <Left>
-                    <Title>일기장</Title>
-                    <Write onClick={goDiary}>이모티콘</Write>
-                </Left>
-                <Right>
-                    <Title>교환 일기</Title>
-                    <Make onClick={modal}>일기 만들기</Make>
-                    <Enter>일기 들어가기</Enter>
-                </Right>
-            </Total>
+            <Background>
+                <BackgroundImg src="/images/space.png" alt="배경" />
+                <Header>
+                    <HeaderBind>
+                        <Back>
+                            <BackImage onClick={goLogin}>
+                                <MdKeyboardDoubleArrowLeft />
+                            </BackImage>
+                        </Back>
+                        <Logo>
+                            <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
+                        </Logo>
+                        <LogOut>
+                            <LogOutImage onClick={goLogin}>
+                                <BiSolidLockOpenAlt />
+                            </LogOutImage>
+                        </LogOut>
+                    </HeaderBind>
+                </Header>
+                <Total>
+                    <Left>
+                        <Title>일기장</Title>
+                        {/* <Write onClick={goDiary}> */}
+                        <FolderImage src="/images/folder.png" />
+                        {/* </Write> */}
+                    </Left>
+                    <Right>
+                        <Title>교환 일기</Title>
+                        <Make onClick={modal}>일기 만들기</Make>
+                        <Enter>일기 들어가기</Enter>
+                    </Right>
+                </Total>
 
-            {showModal && (
-                <ModalWrapper>
-                    <Modal>
-                        <ModalContent>초대코드</ModalContent>
-                        <ModalTip>*초대코드를 공유하여 친구와 교환일기를 시작해보세요.</ModalTip>
-                        <ModalCode>123456</ModalCode>
-                        <ModalClose onClick={modal}>확인</ModalClose>
-                    </Modal>
-                </ModalWrapper >
-            )}
-
+                {showModal && (
+                    <ModalWrapper>
+                        <Modal>
+                            <ModalContent>초대코드</ModalContent>
+                            <ModalTip>*초대코드를 공유하여 친구와 교환일기를 시작해보세요.</ModalTip>
+                            <ModalCode>123456</ModalCode>
+                            <ModalClose onClick={modal}>확인</ModalClose>
+                        </Modal>
+                    </ModalWrapper >
+                )}
+            </Background>
         </>
     );
 };
+
+const Background = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+`
+
+const BackgroundImg = styled.img`
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+`
 
 const Header = styled.div`
   width: 100%;
@@ -89,7 +113,7 @@ const Back = styled.div`
   /* border: 2px solid red;
   border-radius: 2rem; */
   margin-top: 1.5rem;
-  color: #FE7D37;
+  color: #3e5af5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,7 +148,7 @@ const LogOut = styled.div`
   /* border: 2px solid red;
   border-radius: 2rem; */
   margin-top: 1.5rem;
-  color: #FE7D37;
+  color: #3e5af5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,6 +173,7 @@ const Left = styled.div`
   border: 5px solid blue;
   border-radius: 2rem;
   margin: 0 auto;
+  background-color: rgba(59, 59, 59, 0.5);
 `
 
 const Right = styled.div`
@@ -160,9 +185,10 @@ const Right = styled.div`
 `
 
 const Title = styled.div`
-  width: 60%;
-  height: 5rem;
-  border: 2px solid black;
+  width: 80%;
+  height: 3rem;
+  border: 2px solid blue;
+  color: blue;
   border-radius: 2rem;
   margin: 0 auto;
   margin-top: 2rem;
@@ -170,6 +196,14 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
+`
+
+const FolderImage = styled.img`
+    width: 60%;
+    height: 20rem;
+    display: flex;
+    margin: 0 auto;
 `
 
 const Write = styled.div`

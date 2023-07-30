@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
-import { BiSolidLockOpenAlt } from "react-icons/bi";
 
 const Join = () => {
 
@@ -24,12 +23,11 @@ const Join = () => {
                                 <MdKeyboardDoubleArrowLeft />
                             </BackImage>
                         </Back>
-                        {/* <Logo>
+                        <Logo>
                             <LogoImage src="/images/Logo.png" alt="로고" />
-                        </Logo> */}
+                        </Logo>
                         <LogOut>
                             <LogOutImage onClick={goLogin}>
-                                {/* <BiSolidLockOpenAlt /> */}
                             </LogOutImage>
                         </LogOut>
                     </HeaderBind>
@@ -76,7 +74,6 @@ const BackgroundImg = styled.img`
 const Header = styled.div`
     width: 100%;
     height: 4rem;
-    /* border: 3px solid black; */
 `
 
 const HeaderBind = styled.div`
@@ -89,10 +86,8 @@ const Back = styled.div`
   width: 5%;
   height: 4rem;
   font-size: 6rem;
-  /* border: 2px solid red;
-  border-radius: 2rem; */
   margin-top: 1.5rem;
-  color: #FE7D37;
+  color: #3e5af5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,7 +100,7 @@ const BackImage = styled.div`
 const Logo = styled.div`
   width: 30%;
   height: 4rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
   /* border: 2px solid red;
   border-radius: 2rem; */
   display: flex;
@@ -126,7 +121,7 @@ const LogOut = styled.div`
   /* border: 2px solid red;
   border-radius: 2rem; */
   margin-top: 1.5rem;
-  color: #FE7D37;
+  color: #3e5af5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,34 +148,10 @@ const Title = styled.div`
     font-size: 2rem;
     color: #fdf6e4;
     margin: 0 auto;
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-`
-
-const All = styled.div`
-    /* width: 60%;
-    height: 38rem;
-    border: 2px solid rgba(45, 45, 45, 0.5);
-    border-radius: 2rem;
-    margin: 0 auto;
-    margin-top: 7rem; */
-`
-
-const Comments = styled.div`
-    width: 30%;
-    height: 3rem;
-    font-size: 2rem;
-    border: 2px solid skyblue;
-    border-radius: 2rem;
-    /* margin: 0 auto; */
-    margin-top: 2rem;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-`
-
-const Write2 = styled.div`
 `
 
 const Write = styled.input`
@@ -200,7 +171,7 @@ const Write = styled.input`
 const Bind = styled.div`
     display: flex;
     flex-direction: row;
-    margin-top: 5rem;
+    margin-top: 4rem;
     justify-content: center;
 `
 
