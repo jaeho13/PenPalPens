@@ -41,7 +41,7 @@ const DiaryRead = () => {
                             </BackImage>
                         </Back>
                         <Logo>
-                            <LogoImage onClick={goChoose} src="/images/Logo.png" alt="로고" />
+                            <LogoImage src="/images/Logo.png" alt="로고" />
                         </Logo>
                         <LogOut>
                             <LogOutImage onClick={goLogin}>
@@ -52,7 +52,7 @@ const DiaryRead = () => {
                 </Header>
 
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
-                <DogImage src="/images/dog.png" alt="토끼" />
+                <DogImage src="/images/dog.png" alt="곰" />
 
                 <Peel>
                     <Main>
