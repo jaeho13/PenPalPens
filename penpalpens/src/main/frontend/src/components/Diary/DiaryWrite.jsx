@@ -64,8 +64,8 @@ const DiaryWrite = () => {
                         <Title type="text" placeholder="*제목" />
                         <Board type="text" placeholder="*내용" />
                         <ButtonBind>
-                            <Upload>글올리기</Upload>
-                            <Cancle onClick={goDiary}>취소하기</Cancle>
+                            <Upload onClick={goDiary} >글올리기</Upload>
+                            <Cancle onClick={goDiary} >취소하기</Cancle>
                         </ButtonBind>
                     </Main>
                 </Peel>
