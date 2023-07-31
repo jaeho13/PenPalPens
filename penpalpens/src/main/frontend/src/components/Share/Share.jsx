@@ -34,44 +34,54 @@ const Share = () => {
 
     return (
         <>
-            <Header>
-                <HeaderBind>
-                    <Back>
-                        <BackImage>
-                            <MdKeyboardDoubleArrowLeft onClick={goChoose} />
-                        </BackImage>
-                    </Back>
-                    <Logo onClick={goChoose} >
-                        <LogoImage src="/images/Logo.png" alt="로고" />
-                    </Logo>
-
-                    <LogOut>
-                        <LogOutImage>
-                            <BiSolidLockOpenAlt onClick={goLogin} />
-                        </LogOutImage>
-                    </LogOut>
-                </HeaderBind>
-            </Header>
-
-            <Question>오늘의 질문</Question>
             <Background>
-                <DateBind>
-                    <Box></Box>
-                    <Day>
-                        {formattedFull}
-                    </Day>
-                    <Write onClick={goWrite}>글쓰기</Write>
-                </DateBind>
+                <BackgroundImg src="/images/space.png" alt="배경" />
+                <Header>
+                    <HeaderBind>
+                        <Back>
+                            <BackImage>
+                                <MdKeyboardDoubleArrowLeft onClick={goChoose} />
+                            </BackImage>
+                        </Back>
+                        <Logo>
+                            <LogoImage src="/images/Logo.png" alt="로고" />
+                        </Logo>
 
-                <DiaryList>
-                    <DailyDate>
-                        {formattedDate}
-                    </DailyDate>
-                    <DailyTitle onClick={goRead}>제목</DailyTitle>
-                    <DailyChange>
-                        작성자 이름
-                    </DailyChange>
-                </DiaryList>
+                        <LogOut>
+                            <LogOutImage>
+                                <BiSolidLockOpenAlt onClick={goLogin} />
+                            </LogOutImage>
+                        </LogOut>
+                    </HeaderBind>
+                </Header>
+
+                <Question>오늘의 질문 : </Question>
+
+                <RabbitImage src="/images/rabbit.png" alt="토끼" />
+                <DogImage src="/images/dog.png" alt="곰" />
+
+                <Peel>
+                    <Main>
+                        <DateBind>
+                            <Box></Box>
+                            <Day>
+                                {formattedFull}
+                            </Day>
+                            <Write onClick={goWrite}>글쓰기</Write>
+                        </DateBind>
+
+                        <DiaryList>
+                            <DailyDate>
+                                {formattedDate}
+                            </DailyDate>
+                            <DailyTitle onClick={goRead}>제목</DailyTitle>
+                            <DailyChange>
+                                작성자 이름
+                            </DailyChange>
+                        </DiaryList>
+
+                    </Main>
+                </Peel>
             </Background>
         </>
     );
@@ -79,10 +89,29 @@ const Share = () => {
 
 export default Share;
 
+const Background = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+`
+
+const BackgroundImg = styled.img`
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+`
+
 const Header = styled.div`
     width: 100%;
     height: 4rem;
-    /* border: 3px solid black; */
 `
 
 const HeaderBind = styled.div`
@@ -94,11 +123,9 @@ const HeaderBind = styled.div`
 const Back = styled.div`
     width: 5%;
     height: 4rem;
-    font-size: 4rem;
-    /* border: 2px solid red;
-    border-radius: 2rem; */
+    font-size: 6rem;
     margin-top: 1.5rem;
-    color: #FE7D37;
+    color: #3e5af5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,13 +138,10 @@ const BackImage = styled.div`
 const Logo = styled.div`
     width: 30%;
     height: 4rem;
-    margin-top: 1rem;
-    /* border: 2px solid red;
-    border-radius: 2rem; */
+    margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
 `
 
 const LogoImage = styled.img`
@@ -130,10 +154,8 @@ const LogOut = styled.div`
     width: 5%;
     height: 4rem;
     font-size: 4rem;
-    /* border: 2px solid red;
-    border-radius: 2rem; */
     margin-top: 1.5rem;
-    color: #FE7D37;
+    color: #3e5af5;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,103 +165,125 @@ const LogOutImage = styled.div`
     cursor: pointer;
 `
 
+const DogImage = styled.img`
+    width: 25%;
+    height: 35rem;
+    position: absolute;
+    top: 40%;
+`
 
-const Background = styled.div`
-    width: 65%;
-    height: 50rem;
-    border: 2px solid red;
-    border-radius: 2rem;
-    margin: 0 auto; 
-    margin-top: 3rem;
-    /* margin-bottom: 30rem; */
-    background-color: #d4d4d4;
+const RabbitImage = styled.img`
+    width: 25%;
+    height: 35rem;
+    position: absolute;
+    top: 15%; left: 74%;
 `
 
 const Question = styled.div`
-    width: 65%;
-    height: 5rem;
-    border: 2px solid purple;
+    width: 70%;
+    height: 3rem;
+    border: 2px solid #fdf6e4;
     border-radius: 2rem;
     font-size: 2rem;
     margin: 0 auto;
-    margin-top: 4rem;
+    margin-top: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fdf6e4;
+`
+
+const Peel = styled.div`
+    width: 70%;
+    height: 38rem;
+    border: 2px solid #fdf6e4;
+    border-radius: 2rem;
+    background-color: rgba(59, 59, 59, 0.4);
+    margin: 0 auto;
+    margin-top: 2rem;
+`
+
+const Main = styled.div`
+    width: 80%;
+    height: 36rem;
+    border-radius: 2rem;
+    margin: 0 auto;
+    margin-top: 1rem;
+    background-color: #fdf6e4;
 `
 
 const DateBind = styled.div`
     display: flex;
     flex-direction: row;
-    /* margin-top: 2rem; */
     justify-content: space-between;
     align-items: center;
-    border: 2px solid purple;
     border-radius: 2rem;
-    
 `
 
 const Box = styled.div`
     width: 20%;
     height: 5rem;
-    border: 2px solid blue;
     border-radius: 2rem;
 `
 
 const Day = styled.div`
     width: 20%;
-    height: 5rem;
-    border: 2px solid blue;
-    border-radius: 2rem;
+    height: 3rem;
+    border-radius: 1rem;
     font-size: 2rem;
-    /* margin: 0 auto; */
-    /* margin-left: 50rem; */
+    color: #fdf6e4;
+    margin-right: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 `
 
 const Write = styled.div`
-    width: 20%;
-    height: 5rem;
-    border: 2px solid green;
-    border-radius: 2rem;
-    font-size: 3rem;
-    /* margin: 0 auto; */
-    /* margin-left: 10rem; */
+    width: 10%;
+    height: 3rem;
+    border-radius: 1rem;
+    font-size: 2rem;
+    color: #fdf6e4;
+    margin-right: 3.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
     cursor: pointer;
 `
 
 const DiaryList = styled.div`
-    width: 70%;
-    height: 6rem;
-    border: 2px solid black;
-    border-radius: 3rem;
+    width: 90%;
+    height: 3rem;
+    border: 2px solid #3e5af5;
+    border-radius: 1rem;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
 `
+
 const DailyDate = styled.div`
     width: 20%;
-    height: 6rem;
-    border: 2px solid blue;
-    border-radius: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
     font-size: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: #595959; */
 `
 
 const DailyTitle = styled.div`
     width: 60%;
-    height: 6rem;
-    border: 2px solid green;
-    border-radius: 3rem;
+    height: 3rem;
+    border: 2px dashed #3e5af5;
+    border-top: 0;
+    border-bottom: 0;
+    padding-left: 1rem;
     font-size: 2rem;
     display: flex;
     align-items: center;
@@ -248,8 +292,7 @@ const DailyTitle = styled.div`
 
 const DailyChange = styled.div`
     width: 20%;
-    height: 6rem;
-    border: 2px solid red;
+    height: 3rem;
     border-radius: 3rem;
     display: flex;
     flex-direction: row;

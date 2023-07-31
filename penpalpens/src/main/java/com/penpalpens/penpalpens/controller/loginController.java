@@ -13,13 +13,13 @@ import java.util.Map;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 @Log4j2
-public class LoginController {
+public class loginController {
     @Autowired
     private final LoginService loginService;
 
-    //회원가입
+    // 회원가입
     @PostMapping("/join")
-    public void joinUser(@RequestParam Map<String, Object> userVO)throws ParseException {
+    public void joinUser(@RequestParam Map<String, Object> userVO) throws ParseException {
         loginService.joinUser(userVO);
     }
 }

@@ -75,7 +75,7 @@ const Diary = () => {
                 </Header>
 
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
-                <DogImage src="/images/dog.png" alt="토끼" />
+                <DogImage src="/images/dog.png" alt="곰" />
 
                 <Peel>
                     <Main>
