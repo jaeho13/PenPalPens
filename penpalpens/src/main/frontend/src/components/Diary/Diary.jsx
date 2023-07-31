@@ -129,7 +129,57 @@ const BackgroundImg = styled.img`
 const Header = styled.div`
     width: 100%;
     height: 4rem;
-    /* border: 3px solid black; */
+`
+
+const HeaderBind = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+
+const Back = styled.div`
+    width: 5%;
+    height: 4rem;
+    font-size: 6rem;
+    margin-top: 1.5rem;
+    color: #3e5af5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const BackImage = styled.div`
+    cursor: pointer;
+`
+
+const Logo = styled.div`
+    width: 30%;
+    height: 4rem;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const LogoImage = styled.img`
+    width: 100%;
+    height: 20rem;
+    padding-top: 2rem;
+`
+
+const LogOut = styled.div`
+    width: 5%;
+    height: 4rem;
+    font-size: 4rem;
+    margin-top: 1.5rem;
+    color: #3e5af5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const LogOutImage = styled.div`
+    cursor: pointer;
 `
 
 const DogImage = styled.img`
@@ -146,63 +196,6 @@ const RabbitImage = styled.img`
     top: 15%; left: 74%;
 `
 
-const HeaderBind = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-`
-
-const Back = styled.div`
-    width: 5%;
-    height: 4rem;
-    font-size: 6rem;
-    /* border: 2px solid red;
-    border-radius: 2rem; */
-    margin-top: 1.5rem;
-    color: #3e5af5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-const BackImage = styled.div`
-    cursor: pointer;
-`
-
-const Logo = styled.div`
-    width: 30%;
-    height: 4rem;
-    margin-top: 3rem;
-    /* border: 2px solid red;
-    border-radius: 2rem; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-const LogoImage = styled.img`
-    width: 100%;
-    height: 20rem;
-    padding-top: 2rem;
-`
-
-const LogOut = styled.div`
-    width: 5%;
-    height: 4rem;
-    font-size: 4rem;
-    /* border: 2px solid red;
-    border-radius: 2rem; */
-    margin-top: 1.5rem;
-    color: #3e5af5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-const LogOutImage = styled.div`
-    cursor: pointer;
-`
-
 const Peel = styled.div`
     width: 70%;
     height: 44rem;
@@ -216,7 +209,6 @@ const Peel = styled.div`
 const Main = styled.div`
     width: 80%;
     height: 40rem;
-    /* border: 2px solid red; */
     border-radius: 2rem;
     margin: 0 auto;
     margin-top: 2rem;
@@ -241,32 +233,35 @@ const Box = styled.div`
 
 const Day = styled.div`
     width: 20%;
-    height: 5rem;
-    border-radius: 2rem;
+    height: 3rem;
+    border-radius: 1rem;
     font-size: 2rem;
+    color: #fdf6e4;
+    margin-right: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 `
 
 const Write = styled.div`
-    width: 20%;
-    height: 5rem;
-    /* border: 2px solid green; */
-    border-radius: 2rem;
+    width: 10%;
+    height: 3rem;
+    border-radius: 1rem;
     font-size: 2rem;
-    /* margin: 0 auto; */
-    /* margin-left: 10rem; */
+    color: #fdf6e4;
+    margin-right: 3.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
     cursor: pointer;
 `
 
 const DiaryList = styled.div`
     width: 90%;
     height: 3rem;
-    border: 2px solid #595959;
+    border: 2px solid #3e5af5;
     border-radius: 1rem;
     margin: 0 auto;
     /* margin-top: 1rem; */
@@ -279,7 +274,6 @@ const DiaryList = styled.div`
 const DailyDate = styled.div`
     width: 20%;
     height: 3rem;
-    /* border: 2px solid blue; */
     border-radius: 1rem;
     font-size: 2rem;
     display: flex;
@@ -291,7 +285,7 @@ const DailyDate = styled.div`
 const DailyTitle = styled.div`
     width: 60%;
     height: 3rem;
-    border: 2px dashed black;
+    border: 2px dashed #3e5af5;
     border-top: 0;
     border-bottom: 0;
     /* border-right: 0; */
@@ -316,26 +310,28 @@ const DailyChange = styled.div`
 const Fix = styled.div`
     width: 40%;
     height: 2rem;
-    border: 2px solid #3e5af5;
+    border: 2px solid #595959;
     border-radius: 1rem;
     font-size: 2rem;
+    color: #fdf6e4;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #3e5af5;
+    background-color: #595959;
     cursor: pointer;
 `
 
 const Delete = styled.div`
     width: 40%;
     height: 2rem;
-    border: 2px solid #3e5af5;
+    border: 2px solid #595959;
     border-radius: 1rem;
     margin-left: 1rem;
     font-size: 2rem;
+    color: #fdf6e4;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #3e5af5;
+    background-color: #595959;
     cursor: pointer;
 `
