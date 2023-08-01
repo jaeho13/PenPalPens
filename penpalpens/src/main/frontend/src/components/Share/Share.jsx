@@ -183,7 +183,7 @@ const Question = styled.div`
     width: 70%;
     height: 3rem;
     border: 2px solid #fdf6e4;
-    border-radius: 2rem;
+    border-radius: 1rem;
     font-size: 2rem;
     margin: 0 auto;
     margin-top: 10rem;
