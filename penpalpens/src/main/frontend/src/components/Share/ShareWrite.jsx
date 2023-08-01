@@ -56,11 +56,11 @@ const ShareWrite = () => {
                 <Peel>
                     <Main>
                         <DateBind>
-                            <Cancle>취소하기</Cancle>
+                            <Cancle onClick={goshare} >취소하기</Cancle>
                             <Day>
                                 {formattedFull}
                             </Day>
-                            <Upload>글올리기</Upload>
+                            <Upload onClick={goshare} >글올리기</Upload>
                         </DateBind>
                         <TopicBind>
                             <Topic>오늘의 대답</Topic>
@@ -272,6 +272,7 @@ const Cancle = styled.div`
     justify-content: center;
     align-items: center;
     background-color: black;
+    cursor: pointer;
 `
 
 const TopicBind = styled.div`
