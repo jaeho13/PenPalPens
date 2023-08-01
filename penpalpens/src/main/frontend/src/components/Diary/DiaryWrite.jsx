@@ -246,7 +246,7 @@ const Upload = styled.div`
     width: 15%;
     height: 3rem;
     border: 2px solid #595959;
-    border-radius: 2rem;
+    border-radius: 1rem;
     font-size: 2rem;
     color: #fdf6e4;
     display: flex;
@@ -261,7 +261,7 @@ const Cancle = styled.div`
     width: 15%;
     height: 3rem;
     border: 2px solid #595959;
-    border-radius: 2rem;
+    border-radius: 1rem;
     font-size: 2rem;
     color: #fdf6e4;
     display: flex;
