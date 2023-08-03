@@ -11,6 +11,7 @@ import Share from "./components/Share/Share";
 import ShareWrite from "./components/Share/ShareWrite";
 import ShareFix from "./components/Share/ShareFix";
 import ShareRead from "./components/Share/ShareRead"
+import KakaoLogin from "./components/Kakao/KakaoLogin";
 
 
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/shareRead" element={<ShareRead />} />
           <Route path="/sharewrite" element={<ShareWrite />} />
           <Route path="/shareFix" element={<ShareFix />} />
+          <Route path="/kakaologin" element={<KakaoLogin />} />
 
         </Routes>
       </Router>
