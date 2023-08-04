@@ -38,8 +38,6 @@ public class LoginService {
         System.out.println("=====((로그인 호출))=====");
         System.out.println(userVO);
         UserInfo user = new UserInfo();
-
-
         return user;
     }
 }
