@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
+import KakaoLogin from "../Kakao/KakaoLogin"
 
 
 const Login = () => {
@@ -20,18 +21,17 @@ const Login = () => {
             <Background>
                 <BackgroundImg src="/images/login.png" alt="배경" />
                 <Main>
-                    <Bind2>
+                    <KakaoLogin />
+                    {/* <Bind2>
                         <Bind>
                             <Id placeholder="아이디" />
-
                             <Pass placeholder="비밀번호" type="password" />
                         </Bind>
                         <Bind>
                             <Enter onClick={goChoose}>로그인</Enter>
-                            {/* <Join onClick={goJoin}>회원가입</Join> */}
                         </Bind>
                     </Bind2>
-                    <Ment onClick={goJoin} >*아직 회원이 아니신가요?? 회원가입 하러 가기</Ment>
+                    <Ment onClick={goJoin} >*아직 회원이 아니신가요?? 회원가입 하러 가기</Ment> */}
                 </Main>
             </Background>
         </>
@@ -93,9 +93,6 @@ const Id = styled.input`
   background-color: #fdf6e4;
 `
 
-const Id2 = styled.div`
-`
-
 const Pass = styled.input`
     width: 90%;
     height: 4rem;
@@ -107,10 +104,6 @@ const Pass = styled.input`
     margin-left: 2rem;
     margin-top: 1rem;
     background-color: #fdf6e4;
-`
-
-
-const Pass2 = styled.div`
 `
 
 const Enter = styled.div`
@@ -128,27 +121,10 @@ const Enter = styled.div`
     cursor: pointer;
 `
 
-const Join = styled.div`
-    width: 50%;
-    height: 2rem;
-    border: 5px solid #fdf6e4;
-    color: #fdf6e4;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    margin-left: 2rem;
-    margin-top: 1rem;
-    background-color: black;
-    cursor: pointer;
-`
-
 const Ment = styled.div`
     width: 70%;
     height: 2rem;
     color: #fdf6e4;
-    /* border: 5px solid #595959; */
     text-decoration: underline;
     display: flex;
     margin: 0 auto;

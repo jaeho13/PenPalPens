@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const KaKaoLogin = () => {
 
@@ -14,10 +15,25 @@ const KaKaoLogin = () => {
 
     return (
         <>
-            <button onClick={handleLogin}>카카오 로그인</button>
+            <LoginButton onClick={handleLogin}>카카오 로그인</LoginButton>
         </>
     );
 }
 
 export default KaKaoLogin;
 
+const LoginButton = styled.div`
+    width: 50%;
+    height: 9rem;
+    border: 5px solid #fdf6e4;
+    color: #fdf6e4;
+    font-size: 2rem;
+    margin: 0 auto;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    background-color: black;
+    cursor: pointer;
+`
