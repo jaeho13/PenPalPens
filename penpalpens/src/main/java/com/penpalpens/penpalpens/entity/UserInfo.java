@@ -32,4 +32,5 @@ public class UserInfo {
 
     @Column(nullable = true)
     private int uRandom;
+
 }
