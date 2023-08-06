@@ -18,13 +18,7 @@ public class UserInfo {
     @Column(nullable = false, unique = true)
     private String uEmail;
 
-    @Column(length = 10, nullable = false)
-    private String uId;
-
-    @Column(length = 12, nullable = false)
-    private String uPw;
-
-    @Column(length = 10, nullable = false)
+    @Column(length = 10)
     private String uNick;
 
     @Column

@@ -36,27 +36,29 @@ public class KakaoController {
 
         return access_token;
     }
-//
-//    // 프론트에서 받은 액세스 토큰으로 카카오서버에 요청해 유저 정보 가져오고, 우리 DB에 있는지 확인, 그리고 로그인/회원가입 처리
-//    @RequestMapping("/login/penpalpens/userInfo")
-//    public String userInfo(@RequestParam(value = "token") String token,
-//                           HttpServletRequest request)
-//            throws Exception {
-//        UserInfo userInfo = kakaoService.getUserInfo(token);
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        Map<String, Object> map = new HashMap<String, Object>();
-//
-//        if(userInfo != null) {
-//            HttpSession session = request.getSession();
-//            session.setAttribute("userInfo", userInfo);
-//            map.put("userInfo", userInfo);
-//
-//            //로그인 성공 확인용
-//            log.info("로그인 성공!!!, userinfo={}", userInfo);
-//            return gson.toJson(map);
-//        }
-//
-//
-//        return "로그인에 실패하였습니다!";
-//    }
+
+    // 프론트에서 받은 액세스 토큰으로 카카오서버에 요청해 유저 정보 가져오고, 우리 DB에 있는지 확인, 그리고 로그인/회원가입 처리
+    @RequestMapping("/login/penpalpens/userInfo")
+    public String userInfo(@RequestParam(value = "token") String token,
+                           HttpServletRequest request)
+            throws Exception {
+        UserInfo userInfo = kakaoService.getUserInfo(token);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        //유저 정보가 없다면
+        if(userInfo != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("userInfo", userInfo);
+            map.put("userInfo", userInfo);
+            //map.put("user",)
+
+            //로그인 성공 확인용
+            log.info("로그인 성공!!!, userinfo={}", userInfo);
+            return gson.toJson(map);
+        }
+
+
+        return "로그인에 실패하였습니다!";
+    }
 }

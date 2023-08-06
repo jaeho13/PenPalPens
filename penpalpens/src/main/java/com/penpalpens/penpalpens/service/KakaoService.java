@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.penpalpens.penpalpens.entity.UserInfo;
+import com.penpalpens.penpalpens.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.User;
@@ -19,11 +20,9 @@ import java.net.URL;
 @Service
 public class KakaoService {
 
-//    @Autowired
-//    MemberRepository memberRepository;
+    @Autowired
+    UserRepository userRepository;
 
-//    @Value("#{jellyProperty['kakao.client-id']}")
-//    private String clientId;
 
     // (카카오 로그인)
     // 프론트에서 보내준 코드로 카카오에서 인증 토큰 얻어오기
@@ -83,55 +82,44 @@ public class KakaoService {
 
         return access_token;
     }
-//
-//    // access_token 값 읽어오고 DB 저장
-//    public UserInfo getUserInfo(String access_token) {
-//        UserInfo userInfo = new UserInfo();
-//        //Map<String, Object> userInfo = new HashMap<>();
-//
-//        String reqURL = "https://kapi.kakao.com/v2/user/me";
-//
-//        try {
-//            URL url = new URL(reqURL);  // 1. url객체 만들기
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//
-//            // 2. url에서 url connection 만들기
-//            conn.setRequestMethod("GET");
-//            conn.setRequestProperty("Authorization", "Bearer " + access_token);
-//
-//            // 키값, 속성 적용
-//            int responseCode = conn.getResponseCode();  // 서버에서 보낸 http 상태 코드 반환
-////            System.out.println("responseCode 확인 : " + responseCode);
-//            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-//
-//            // 버퍼를 사용하여 읽은 것
-//            String line = "";
-//            String result = "";
-//            while ((line = br.readLine()) != null) {
-//                result += line;
-//            }
-////            System.out.println("respone body 확인 : " + result);
-//
-//            JsonParser parser = new JsonParser();
-//            JsonElement element = parser.parse(result);
-//            JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
-//            JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
-//
-//            // String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-//            String email = kakao_account.getAsJsonObject().get("email").getAsString();
-//
-////            userInfo.setMEmail(email);
-////            userInfo.setMNick(nickname);
-////            userInfo.setMJelly(0); //초기값은 널로 일단 줌
-////
-////            // 유저 이메일로 유저 객체 검색해보고 등록안된 회원이라면 회원가입 처리
-////            Member findUser = memberRepository.findBymEmail(userInfo.getMEmail());
-////            if(findUser == null){
-////                memberRepository.save(userInfo);
-////
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return userInfo;
-//    }
+    // 카카오 로그인 > 이 이메일이 회원 DB에 있어?? y > 로그인 : N > 회원가입
+    // access_token 값 읽어오고 DB 저장
+    public UserInfo getUserInfo(String access_token) {
+        String reqURL = "https://kapi.kakao.com/v2/user/me";
+
+        try {
+            URL url = new URL(reqURL);  // 1. url객체 만들기
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            // 2. url에서 url connection 만들기
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", "Bearer " + access_token);
+
+            // 키값, 속성 적용
+            int responseCode = conn.getResponseCode();  // 서버에서 보낸 http 상태 코드 반환
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            // 버퍼를 사용하여 읽은 것
+            String line = "";
+            String result = "";
+            while ((line = br.readLine()) != null) {
+                result += line;
+            }
+
+            JsonParser parser = new JsonParser();
+            JsonElement element = parser.parse(result);
+            JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+            JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+
+            String email = kakao_account.getAsJsonObject().get("email").getAsString();
+            UserInfo userInfo = userRepository.findByuEmail(email);
+
+            if(userInfo != null){ //등록된 회원이 아니라면?
+                userInfo.setUEmail(email);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
