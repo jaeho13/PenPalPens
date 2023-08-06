@@ -13,6 +13,7 @@ import ShareFix from "./components/Share/ShareFix";
 import ShareRead from "./components/Share/ShareRead"
 import KakaoLogin from "./components/Kakao/KakaoLogin";
 import KakaoCallback from "./components/Kakao/KakaoCallback";
+import KakaoInfo from "./components/Kakao/KakaoInfo";
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/shareFix" element={<ShareFix />} />
           <Route path="/kakaologin" element={<KakaoLogin />} />
           <Route path="/login/penpalpens" element={<KakaoCallback />} />
+          <Route path="/kakaoinfo" element={<KakaoInfo />} />
 
         </Routes>
       </Router>
