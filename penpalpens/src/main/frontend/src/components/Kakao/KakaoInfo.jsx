@@ -16,9 +16,12 @@ const KakaoInfo = () => {
         // axios를 사용하여 서버에 요청 보내기
         axios
             .get(url)
-            .then((response) => {
+            .then((res) => {
+                const userEmail = res.data.userInfo.uEmail;
+                const userNick = res.data.userInfo.uNick;
                 // 요청이 성공한 경우 서버 응답을 처리할 수 있습니다.
                 navigate("/choose")
+                console.log(userEmail, userNick)
             })
             .catch((error) => {
                 // 요청이 실패한 경우 에러를 처리할 수 있습니다.
