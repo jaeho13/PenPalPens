@@ -12,6 +12,7 @@ const Choose = () => {
     const [enterModal, setEnterModal] = useState(false);
 
     const goLogin = () => {
+        sessionStorage.clear();
         navigate("/");
     };
 

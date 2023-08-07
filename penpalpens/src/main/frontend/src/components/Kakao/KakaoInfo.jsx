@@ -20,11 +20,10 @@ const KakaoInfo = () => {
                 const userEmail = res.data.userInfo.uEmail;
                 const userNick = res.data.userInfo.uNick;
                 // 요청이 성공한 경우 서버 응답을 처리할 수 있습니다.
-                navigate("/choose");
-
+                navigate("/choose")
                 sessionStorage.setItem("uEmail", userEmail);
                 sessionStorage.setItem("uNick", userNick);
-
+                //sessionStorage에 정보 넣기
                 console.log(userEmail, userNick)
             })
             .catch((error) => {
