@@ -44,20 +44,18 @@ public class KakaoController {
     public String userInfo(@RequestParam(value = "token") String token,
             HttpServletRequest request)
             throws Exception {
-        // UserInfo userInfo = kakaoService.getUserInfo(token);
+
+        UserInfo userInfo = kakaoService.getUserInfo(token);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, Object> map = new HashMap<String, Object>();
 
-        // if (userInfo != null) {
-        // HttpSession session = request.getSession();
-        // session.setAttribute("userInfo", userInfo);
-        // map.put("userInfo", userInfo);
-
-        // // 로그인 성공 확인용
-        // log.info("로그인 성공!!!, userinfo={}", userInfo);
-        // return gson.toJson(map);
-        // }
-
+        if (userInfo != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("userInfo", userInfo);
+            map.put("userInfo", userInfo);
+            System.out.println("로그인 성공!!!" + userInfo);
+            return gson.toJson(map);
+         }
         return "로그인에 실패하였습니다!";
     }
 }

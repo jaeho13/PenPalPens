@@ -25,8 +25,6 @@ public class LoginService {
         UserInfo user = new UserInfo();
 
         user.setUEmail((String) userVO.get("uEmail"));
-        user.setUId((String) userVO.get("uId"));
-        user.setUPw((String) userVO.get("uPw"));
         user.setUNick((String) userVO.get("uNick"));
         user.setULink(false);
 
