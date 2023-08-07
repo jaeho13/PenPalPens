@@ -55,7 +55,7 @@ public class KakaoController {
             map.put("userInfo", userInfo);
             System.out.println("로그인 성공!!!" + userInfo);
             return gson.toJson(map);
-         }
+        }
         return "로그인에 실패하였습니다!";
     }
 }

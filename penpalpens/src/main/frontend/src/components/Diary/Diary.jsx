@@ -9,6 +9,7 @@ const Diary = () => {
     const navigate = useNavigate();
 
     const goLogin = () => {
+        sessionStorage.clear();
         navigate("/");
     };
 
