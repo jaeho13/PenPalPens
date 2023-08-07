@@ -85,6 +85,8 @@ public class KakaoService {
     // 카카오 로그인 > 이 이메일이 회원 DB에 있어?? y > 로그인 : N > 회원가입
     // access_token 값 읽어오고 DB 저장
     public UserInfo getUserInfo(String access_token) {
+
+        UserInfo userInfo = new UserInfo();
         String reqURL = "https://kapi.kakao.com/v2/user/me";
 
         try {
@@ -112,14 +114,19 @@ public class KakaoService {
             JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
-            UserInfo userInfo = userRepository.findByuEmail(email);
+            String nick = properties.getAsJsonObject().get("nickname").getAsString();
 
-            if(userInfo != null){ //등록된 회원이 아니라면?
-                userInfo.setUEmail(email);
+            userInfo.setUEmail(email);
+            userInfo.setUNick(nick);
+
+            UserInfo findInfo = userRepository.findByuEmail(userInfo.getUEmail());
+
+            if(findInfo == null){ //등록된 회원이 아니라면?
+                userRepository.save(userInfo);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return userInfo;
     }
 }
