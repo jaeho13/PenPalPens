@@ -28,7 +28,6 @@ public class KakaoController {
     /* (카카오 로그인) */
 
     // 프론트에서 인가코드를 받아옴, 받은 인가코드로 카카오서버에서 액세스 토큰 받아와서 반환
-    // http://localhost:4000/oauth/login/kakao
     @RequestMapping("/login/penpalpens")
     public String login(@RequestParam(value = "code", required = false) String code) throws Exception {
         System.out.println("카카오 호출" + code);
