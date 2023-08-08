@@ -118,6 +118,7 @@ public class KakaoService {
 
             userInfo.setUEmail(email);
             userInfo.setUNick(nick);
+            userInfo.setULink(false);
 
             UserInfo findInfo = userRepository.findByuEmail(userInfo.getUEmail());
 

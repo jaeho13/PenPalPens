@@ -4,32 +4,38 @@ import com.penpalpens.penpalpens.entity.UserInfo;
 import com.penpalpens.penpalpens.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.Random;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class ShareService {
     @Autowired
     UserRepository userRepository;
 
-    public void makeCode(UserInfo userInfo) {
+    public Map<String, Object> makeCode() {
 
-        //유저 정보에 연결된 코드(uLink)가 존재하는지 확인
-        //만약 연결된 링크가 없고 중복이 없니?
-        Boolean bool = true;
+        Map <String, Object> map = new HashMap<>();
+        map.put("boolean", true);
+        map.put("code", 123456789);
+        return map;
 //
-//        if(userInfo.getULink().equals(null){
+//        //유저 정보에 연결된 일기가 있는지(uLink) 확인
+//        //1. 연결된 일기가 없는 경우에만 난수 생성하여 코드 보냄
+//        Boolean check = userInfo.getULink();
+//        if(check == false || userInfo.getURandom()==0){
+//            Boolean bool = true; //while을 돌기위해 사용
+//            int num = 0; //난수
 //            Random random = new Random();
-//            int num = 0;
-//            do{
-//                num = random.nextInt(90000000) + 10000000;
-//                userRepository.findByuRandom(num);
-//            }while(bool); //true인 동안만 do문 실행
 //
-//            System.out.println("random Num = "+ num);
-//           // Boolean bool = userRepository.findByuRandom(num); // 값이 있으면 true
-//            if(bool == true)
+//            do { //while이 참인경우 do의 내용 반복
+//                num = random.nextInt(90000000) + 10000000; //랜덤 값 생성
+//                bool = userRepository.findByuRandom(num).equals(null) ? true : false; // 랜덤 값이 이미 존재하는지 확인
+//            } while (bool); //true인 동안만 do문 실행
 //
-//            userInfo.setURandom(num);
 //        }
+//        System.out.println("======="+userInfo.getURandom()+userInfo.getULink());
+//
+
     }
 }

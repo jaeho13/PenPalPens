@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,12 +24,14 @@ public class ShareController {
     ShareService shareService;
 
     @GetMapping("/share/makeCode")
-    public String shareCode(HttpServletRequest request) throws Exception{
-        HttpSession session = request.getSession(false);
-        UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+    public Map<String, Object> shareCode() throws Exception{
+        System.out.println("호출");
+        //HttpSession session = request.getSession(false);
+        //UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
 
-        shareService.makeCode(userInfo);
+        Map<String, Object> map = shareService.makeCode();
+        //System.out.println("dbfl ==== " + userInfo);
 
-        return null;
+        return map;
     }
 }
