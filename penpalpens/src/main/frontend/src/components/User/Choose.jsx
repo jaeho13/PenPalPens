@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
@@ -32,6 +33,27 @@ const Choose = () => {
         setEnterModal(!enterModal);
     };
 
+    const [makeCode, setMakeCode] = useState([]);
+    const [bool, setBool] = useState();
+    const [code, setCode] = useState();
+
+    // useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('/share/makeCode');
+            setBool(response.data.boolean);
+            setCode(response.data.code);
+            //접근 코드 이름
+            console.log(response.data.boolean);
+            console.log(response.data.code);
+        } catch (error) {
+            console.error(error);
+        }
+        modal()
+    };
+    // fetchData();
+    // }, []);
+
     return (
         <>
             <Background>
@@ -63,7 +85,7 @@ const Choose = () => {
                         <Title>교환 일기</Title>
                         <FolderImage src="/images/folder.png" />
                         <ShareBind>
-                            <Make onClick={modal}>만들기</Make>
+                            <Make onClick={fetchData}>만들기</Make>
                             <Enter onClick={modal3} >들어가기</Enter>
                         </ShareBind>
                     </Right>
@@ -74,7 +96,13 @@ const Choose = () => {
                         <Modal>
                             <ModalTitle>초대코드</ModalTitle>
                             <ModalTip>*초대코드를 공유하여 친구와 교환일기를 시작해보세요.</ModalTip>
-                            <ModalCode>123456</ModalCode>
+                            <ModalCode>
+                                {bool ? (
+                                    <div>이미 교환 일기 코드가 있습니다.</div>
+                                ) : (
+                                    <div>{code}</div>
+                                )}
+                            </ModalCode>
                             <ModalButton onClick={modal}>확인</ModalButton>
                         </Modal>
                     </ModalWrapper >
@@ -95,6 +123,8 @@ const Choose = () => {
         </>
     );
 };
+
+export default Choose;
 
 const Background = styled.div`
     position: relative;
@@ -325,7 +355,7 @@ const ModalTip = styled.div`
 `
 
 const ModalCode = styled.div`
-    width: 40%;
+    width: 70%;
     height: 3rem;
     border: 2px solid #595959;
     border-radius: 2rem;
@@ -361,5 +391,3 @@ const ModalButton = styled.button`
     border-radius: 1rem;
     cursor: pointer;
 `
-
-export default Choose;
