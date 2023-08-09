@@ -1,6 +1,5 @@
 package com.penpalpens.penpalpens.controller;
 
-
 import com.penpalpens.penpalpens.entity.UserInfo;
 import com.penpalpens.penpalpens.service.ShareService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +23,7 @@ public class ShareController {
     ShareService shareService;
 
     @GetMapping("/share/makeCode")
-    public Map<String, Object> makeCode(HttpServletRequest request) throws Exception{
+    public Map<String, Object> makeCode(HttpServletRequest request) throws Exception {
         System.out.println("호출");
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -33,9 +32,10 @@ public class ShareController {
 
         return map;
     }
-    //초대코드 가져오기
+
+    // 초대코드 가져오기
     @GetMapping("/share/shareCode")
-    public Boolean shareCode(HttpServletRequest request) throws Exception{
+    public Boolean shareCode(HttpServletRequest request) throws Exception {
         System.out.println("shareCode 호출");
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
