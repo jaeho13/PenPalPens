@@ -16,7 +16,7 @@ public class ShareService {
     public Map<String, Object> makeCode() {
 
         Map<String, Object> map = new HashMap<>();
-        map.put("boolean", false);
+        map.put("boolean", true);
         map.put("code", 123456789);
         return map;
         //
