@@ -24,14 +24,22 @@ public class ShareController {
     ShareService shareService;
 
     @GetMapping("/share/makeCode")
-    public Map<String, Object> shareCode() throws Exception{
+    public Map<String, Object> makeCode(HttpServletRequest request) throws Exception{
         System.out.println("호출");
-        //HttpSession session = request.getSession(false);
-        //UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-
-        Map<String, Object> map = shareService.makeCode();
-        //System.out.println("dbfl ==== " + userInfo);
+        HttpSession session = request.getSession(false);
+        UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        Map<String, Object> map = shareService.makeCode(userInfo);
+        System.out.println("코드생성==== " + userInfo);
 
         return map;
+    }
+    //초대코드 가져오기
+    @GetMapping("/share/shareCode")
+    public Boolean shareCode(HttpServletRequest request) throws Exception{
+        System.out.println("shareCode 호출");
+        HttpSession session = request.getSession(false);
+        UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        Boolean bool = shareService.shareCode(userInfo);
+        return bool;
     }
 }
