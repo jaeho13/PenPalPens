@@ -25,6 +25,10 @@ const Choose = () => {
         navigate("/choose");
     };
 
+    const goShare = () => {
+        navigate("/share")
+    }
+
     const modal = () => {
         setMakeModal(!makeModal);
     };
@@ -34,14 +38,13 @@ const Choose = () => {
     };
 
     const [makeCode, setMakeCode] = useState([]);
-    const [bool, setBool] = useState();
+    const [boolean, setBoolean] = useState();
     const [code, setCode] = useState();
 
-    // useEffect(() => {
     const fetchData = async () => {
         try {
             const response = await axios.get('/share/makeCode');
-            setBool(response.data.boolean);
+            setBoolean(response.data.boolean);
             setCode(response.data.code);
             //접근 코드 이름
             console.log(response.data.boolean);
@@ -51,8 +54,19 @@ const Choose = () => {
         }
         modal()
     };
-    // fetchData();
-    // }, []);
+
+    const fetchData3 = async () => {
+        try {
+            const response = await axios.get('/share/shareCode');
+            setBoolean(response.data);
+            //접근 코드 이름
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+        modal3()
+    };
+
 
     return (
         <>
@@ -86,7 +100,7 @@ const Choose = () => {
                         <FolderImage src="/images/folder.png" />
                         <ShareBind>
                             <Make onClick={fetchData}>만들기</Make>
-                            <Enter onClick={modal3} >들어가기</Enter>
+                            <Enter onClick={boolean ? goShare : modal3}>들어가기</Enter>
                         </ShareBind>
                     </Right>
                 </Total>
@@ -97,7 +111,7 @@ const Choose = () => {
                             <ModalTitle>초대코드</ModalTitle>
                             <ModalTip>*초대코드를 공유하여 친구와 교환일기를 시작해보세요.</ModalTip>
                             <ModalCode>
-                                {bool ? (
+                                {boolean ? (
                                     <div>이미 교환 일기 코드가 있습니다.</div>
                                 ) : (
                                     <div>{code}</div>
@@ -119,7 +133,7 @@ const Choose = () => {
                         </Modal>
                     </ModalWrapper >
                 )}
-            </Background>
+            </Background >
         </>
     );
 };
@@ -368,7 +382,7 @@ const ModalCode = styled.div`
 `
 
 const ModalEnter = styled.input`
-    width: 40%;
+    width: 70%;
     height: 3rem;
     border: 2px solid #595959;
     border-radius: 2rem;
