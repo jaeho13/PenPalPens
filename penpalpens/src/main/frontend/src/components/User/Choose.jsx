@@ -59,13 +59,30 @@ const Choose = () => {
         try {
             const response = await axios.get('/share/shareCode');
             setBoolean(response.data);
-            //접근 코드 이름
+            // 접근 코드 이름
+            console.log(response.data);
+
+            if (response.data) {
+                // response.data 가 true일 경우, goshare 함수 호출
+                goShare();
+            } else {
+                // response.data 가 false일 경우, modal3 보여주기
+                modal3();
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const sendCode = async () => {
+        try {
+            const response = await axios.post('/share/sendCode', { code: 123 });
             console.log(response.data);
         } catch (error) {
             console.error(error);
         }
         modal3()
-    };
+    }
 
 
     return (
@@ -100,7 +117,7 @@ const Choose = () => {
                         <FolderImage src="/images/folder.png" />
                         <ShareBind>
                             <Make onClick={fetchData}>만들기</Make>
-                            <Enter onClick={boolean ? goShare : modal3}>들어가기</Enter>
+                            <Enter onClick={fetchData3}>들어가기</Enter>
                         </ShareBind>
                     </Right>
                 </Total>
@@ -129,7 +146,7 @@ const Choose = () => {
                             <ModalTitle>초대코드 입력</ModalTitle>
                             <ModalTip>*초대코드를 공유하여 친구와 교환일기를 시작해보세요.</ModalTip>
                             <ModalEnter type="text" placeholder="*초대 코드 입력" />
-                            <ModalButton onClick={modal3}>확인</ModalButton>
+                            <ModalButton onClick={sendCode}>확인</ModalButton>
                         </Modal>
                     </ModalWrapper >
                 )}

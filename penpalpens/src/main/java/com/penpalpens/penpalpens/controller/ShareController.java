@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,4 +44,10 @@ public class ShareController {
         Boolean bool = shareService.shareCode(userInfo);
         return bool;
     }
+
+    @PostMapping("/share/sendCode")
+    public void sendCode(@RequestParam int code) throws Exception {
+        System.out.println("재호야 시그러워" + code);
+    }
+
 }
