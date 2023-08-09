@@ -13,10 +13,18 @@ public class ShareService {
     @Autowired
     UserRepository userRepository;
 
-    public Map<String, Object> makeCode() {
+    public Map<String, Object> makeCode(UserInfo userInfo) {
 
         Map<String, Object> map = new HashMap<>();
-        map.put("boolean", true);
+        // 연결 된 일기장 있는지 먼저 확인
+        Boolean bool = userInfo.getULink();
+        if (bool == true) {
+            map.put("boolean", bool);
+            map.put("code", userInfo.getURandom());
+            return map;
+        }
+
+        map.put("boolean", bool);
         map.put("code", 123456789);
         return map;
         //
@@ -38,5 +46,10 @@ public class ShareService {
         // System.out.println("======="+userInfo.getURandom()+userInfo.getULink());
         //
 
+    }
+
+    public Boolean shareCode(UserInfo userInfo) {
+        Boolean bool = userInfo.getULink();
+        return bool;
     }
 }
