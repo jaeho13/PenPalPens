@@ -45,9 +45,12 @@ public class ShareController {
         return bool;
     }
 
-    @PostMapping("/share/sendCode")
-    public void sendCode(@RequestParam int code) throws Exception {
-        System.out.println("재호야 시그러워" + code);
+    @GetMapping("/share/sendCode")
+    public Boolean sendCode(@RequestParam String code) throws Exception {
+        System.out.println("code" + code);
+        System.out.println("재호야 시그러워");
+        Boolean bool = true;
+        return bool;
     }
 
 }
