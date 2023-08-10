@@ -37,9 +37,9 @@ const Choose = () => {
         setEnterModal(!enterModal);
     };
 
-    const [makeCode, setMakeCode] = useState([]);
     const [boolean, setBoolean] = useState();
     const [code, setCode] = useState();
+    const [inviteCode, setInviteCode] = useState("");
 
     const fetchData = async () => {
         try {
@@ -75,8 +75,9 @@ const Choose = () => {
     };
 
     const sendCode = async () => {
+        console.log("inviteCode:", inviteCode);
         try {
-            const response = await axios.post('/share/sendCode', { code: 123 });
+            const response = await axios.get("/share/sendCode?code=", { inviteCode });
             console.log(response.data);
         } catch (error) {
             console.error(error);
@@ -145,7 +146,13 @@ const Choose = () => {
                         <Modal>
                             <ModalTitle>초대코드 입력</ModalTitle>
                             <ModalTip>*초대코드를 공유하여 친구와 교환일기를 시작해보세요.</ModalTip>
-                            <ModalEnter type="text" placeholder="*초대 코드 입력" />
+                            {/* <ModalEnter type="text" placeholder="*초대 코드 입력" /> */}
+                            <ModalEnter
+                                type="text"
+                                placeholder="*초대 코드 입력"
+                                value={inviteCode} // 초대 코드 입력값 바인딩
+                                onChange={(e) => setInviteCode(e.target.value)} // 입력값 업데이트 함수
+                            />
                             <ModalButton onClick={sendCode}>확인</ModalButton>
                         </Modal>
                     </ModalWrapper >
