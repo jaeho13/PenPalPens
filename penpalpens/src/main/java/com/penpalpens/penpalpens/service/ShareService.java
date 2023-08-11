@@ -22,6 +22,7 @@ public class ShareService {
 
         if (bool==true) {
             System.out.println("이거인가?");
+
             map.put("boolean", bool);
             map.put("code", userInfo.getURandom());
             return map;
@@ -64,6 +65,7 @@ public class ShareService {
 
     public Boolean shareCode(UserInfo userInfo) {
         Boolean bool = userInfo.getULink();
+        bool = false;
         return bool;
     }
 }
