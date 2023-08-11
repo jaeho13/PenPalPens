@@ -6,9 +6,7 @@ import com.penpalpens.penpalpens.service.ShareService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,6 +38,14 @@ public class ShareController {
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         Boolean bool = shareService.shareCode(userInfo);
+        return bool;
+    }
+
+    @PostMapping("/share/sendCode")
+    public Boolean sendCode(@RequestParam String code) throws Exception{
+        System.out.println("code" + code);
+        System.out.println("재호야 시그러워");
+        Boolean bool = true;
         return bool;
     }
 }
