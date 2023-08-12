@@ -31,6 +31,7 @@ const DiaryWrite = () => {
 
     const [dTitle, setDTitle] = useState("");
     const [dContent, setDContent] = useState("");
+    const [dDate, setDDate] = useState("");
 
     const handleTitleChange = (e) => {
         setDTitle(e.target.value);
@@ -38,6 +39,10 @@ const DiaryWrite = () => {
 
     const handleContentChange = (e) => {
         setDContent(e.target.value);
+    };
+
+    const handleDateChange = (e) => {
+        setDDate(e.target.value);
     };
 
 
@@ -50,6 +55,7 @@ const DiaryWrite = () => {
             data: {
                 dTitle,
                 dContent,
+                dDate,
             },
         })
             .then((response) => {

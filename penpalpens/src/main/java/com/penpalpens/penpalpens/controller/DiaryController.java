@@ -21,6 +21,7 @@ import java.util.Map;
 public class DiaryController {
     @Autowired
     DiaryService diaryService;
+
     // 글 쓰기
     @PostMapping("/diary")
     public void createDiary(@RequestBody Map<String, Object> diary, HttpServletRequest request) throws ParseException {
