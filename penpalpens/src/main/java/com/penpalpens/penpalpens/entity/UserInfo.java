@@ -21,10 +21,10 @@ public class UserInfo {
     @Column(length = 10)
     private String uNick;
 
-    @Column
-    private Boolean uLink;
+    @Column(nullable = false)
+    private int uLink;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private int uRandom;
 
 }
