@@ -27,6 +27,7 @@ public class DiaryController {
     public void createDiary(@RequestBody Map<String, Object> diary, HttpServletRequest request) throws ParseException {
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        System.out.println("김유리" + userInfo);
         diaryService.createDiary(diary, userInfo);
     }
 

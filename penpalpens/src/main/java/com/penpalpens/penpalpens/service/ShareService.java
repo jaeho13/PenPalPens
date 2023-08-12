@@ -11,34 +11,36 @@ import java.util.Random;
 
 @Service
 public class ShareService {
+
     @Autowired
     UserRepository userRepository;
 
     public Map<String, Object> makeCode(UserInfo userInfo) {
-        System.out.println("유저정보 : " + userInfo);
+        Random random = new Random();
         Map<String, Object> map = new HashMap<>();
 
         if (userInfo.getULink() != 0) {
             System.out.println("이미 다른 일기장과 연결된 회원");
 
-            map.put("boolean", true);
+            map.put("boolean", 1);
             map.put("code", userInfo.getURandom());
 
             return map;
 
-        } else if (userInfo.getURandom() == 0) {
+        } else if (userInfo.getURandom() == 0) { // 연결된 일기장이 없다면
             System.out.println("랜덤코드 생성 호출");
-            Random random = new Random();
             int num;
+            boolean isUnique = false;
 
             do {
                 num = random.nextInt(90000000) + 10000000;
                 System.out.println("num = " + num);
-            } while (userRepository.findByuRandom(num) != null);
+                isUnique = !userRepository.findByuRandom(num); // 중복되지 않으면 isUnique를 true로 설정
+            } while (!isUnique);
 
             userInfo.setURandom(num);
         }
-
+        //유저 정보에
         userRepository.save(userInfo); // 저장 위치 변경
 
         map.put("boolean", userInfo.getULink());
@@ -48,9 +50,6 @@ public class ShareService {
 
         return map;
     }
-
-
-
 
     public int shareCode(UserInfo userInfo) {
         int bool = userInfo.getULink();
