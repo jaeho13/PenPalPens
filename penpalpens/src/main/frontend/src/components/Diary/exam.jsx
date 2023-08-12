@@ -67,9 +67,9 @@ const Diary = () => {
         load();
     }, []);
 
-    const handleDiaryClick = async (dIdx) => {
+    const handleDiaryClick = async (bIdx) => {
         try {
-            await axios.get(`/diary?dIdx=${dIdx}`);
+            await axios.get(`/diary?bIdx=${bIdx}`);
             // navigate(`rea`)
         } catch (error) {
             console.log("에러입니다.");
@@ -125,16 +125,14 @@ const Diary = () => {
                             </DailyChange>
                         </DiaryList>
 
-                        {diaryList.map((diaryList, index) => (
-                            <DiaryList key={diaryList.dIdx} onClick={() => handleDiaryClick(diaryList.dIdx)}>
-                                <DailyDate>{diaryList.dDate}</DailyDate>
-                                <DailyTitle>{diaryList.dTitle}</DailyTitle>
-                                <DailyChange>
-                                    <Fix onClick={goFix}>수정</Fix>
-                                    <Delete onClick={onDelete}>삭제</Delete>
-                                </DailyChange>
-                            </DiaryList>
-                        ))}
+                        <DiaryList key={diaryList.bidx} onClick={() => handleDiaryClick(diaryList.bidx)} >
+                            <DailyDate>{diaryList.dDate}</DailyDate>
+                            <DailyTitle>{diaryList.dTitle}</DailyTitle>
+                            <DailyChange>
+                                <Fix onClick={goFix}>수정</Fix>
+                                <Delete onClick={onDelete}>삭제</Delete>
+                            </DailyChange>
+                        </DiaryList>
 
                     </Main>
                 </Peel>
