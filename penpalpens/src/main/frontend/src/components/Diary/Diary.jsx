@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
+import axios from "axios";
 
 const Diary = () => {
 
@@ -49,6 +50,23 @@ const Diary = () => {
             alert("취소되었습니다.");
         }
     };
+
+    const [diaryList, setDiaryList] = useState([]);
+
+    useEffect(() => {
+        const load = async () => {
+            try {
+                const response = await axios.get("/diary");
+                setDiaryList(response.data);
+                console.log("리스트 불러오기 성공")
+            } catch (error) {
+                console.log("리스트 불러오기 실패");
+            }
+        };
+
+        load();
+    }, []);
+
 
     return (
         <>
@@ -98,6 +116,11 @@ const Diary = () => {
                                 <Delete onClick={onDelete}>삭제</Delete>
                             </DailyChange>
                         </DiaryList>
+
+                        <DiaryList>
+                            <DailyTitle></DailyTitle>
+                        </DiaryList>
+
                     </Main>
                 </Peel>
 
@@ -265,7 +288,7 @@ const DiaryList = styled.div`
     border: 2px solid #3e5af5;
     border-radius: 1rem;
     margin: 0 auto;
-    /* margin-top: 1rem; */
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
