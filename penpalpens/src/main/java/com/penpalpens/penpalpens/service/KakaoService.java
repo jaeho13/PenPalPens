@@ -5,13 +5,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.penpalpens.penpalpens.entity.UserInfo;
 import com.penpalpens.penpalpens.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
 import java.net.HttpURLConnection;
