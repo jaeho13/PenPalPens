@@ -118,13 +118,15 @@ public class KakaoService {
 
             userInfo.setUEmail(email);
             userInfo.setUNick(nick);
-            userInfo.setULink(false);
 
-            UserInfo findInfo = userRepository.findByuEmail(userInfo.getUEmail());
+            UserInfo findInfo = userRepository.findByuEmail(email);
 
             if (findInfo == null) { // 등록된 회원이 아니라면?
+                System.out.println("등록된회원아님");
+                userInfo.setULink(false);
                 userRepository.save(userInfo);
             }
+            System.out.println("유저정보 "+ userInfo);
         } catch (Exception e) {
             e.printStackTrace();
         }

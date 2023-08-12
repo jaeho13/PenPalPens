@@ -3,6 +3,7 @@ package com.penpalpens.penpalpens.repository;
 import com.penpalpens.penpalpens.entity.UserInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserInfo, String> {
@@ -10,4 +11,5 @@ public interface UserRepository extends JpaRepository<UserInfo, String> {
     UserInfo findByuEmail(String email);
 
     Boolean findByuRandom(int num);
+
 }
