@@ -31,9 +31,18 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
 	implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.5'
 
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+// Jackson 설정 추가
+compileJava {
+	options.compilerArgs += ["-parameters"]
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
 }
