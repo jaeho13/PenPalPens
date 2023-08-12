@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
+import axios from "axios";
 
 const DiaryWrite = () => {
 
@@ -27,6 +28,37 @@ const DiaryWrite = () => {
     const formattedFull = `${formattedYear}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
+
+    const [dTitle, setDTitle] = useState("");
+    const [dContent, setDContent] = useState("");
+
+    const handleTitleChange = (e) => {
+        setDTitle(e.target.value);
+    };
+
+    const handleContentChange = (e) => {
+        setDContent(e.target.value);
+    };
+
+
+    const dataPass = (e) => {
+        e.preventDefault();
+
+        axios({
+            url: "/diary",
+            data: {
+                dTitle,
+                dContent,
+            },
+        })
+            .then((response) => {
+                console.log(response);
+                navigate("/diary");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
 
     return (
         <>
@@ -60,8 +92,20 @@ const DiaryWrite = () => {
                                 {formattedFull}
                             </Day>
                         </DateBind>
-                        <Title type="text" placeholder="*제목" />
-                        <Board type="text" placeholder="*내용" />
+                        <form onSubmit={dataPass}>
+                            <Title
+                                type="text"
+                                placeholder="*제목"
+                                onChange={handleTitleChange}
+                                value={dTitle}
+                            />
+                            <Board
+                                type="text"
+                                placeholder="*내용"
+                                onChange={handleContentChange}
+                                value={dTitle}
+                            />
+                        </form>
                         <ButtonBind>
                             <Upload onClick={goDiary} >글올리기</Upload>
                             <Cancle onClick={goDiary} >취소하기</Cancle>
