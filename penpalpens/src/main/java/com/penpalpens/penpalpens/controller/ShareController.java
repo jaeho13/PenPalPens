@@ -47,7 +47,6 @@ public class ShareController {
         return bool;
     }
 
-
     @GetMapping("/share/sendCode")
     public Boolean sendCode(@RequestParam String code) throws Exception {
 
