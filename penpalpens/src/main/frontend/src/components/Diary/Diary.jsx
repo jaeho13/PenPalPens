@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
 import axios from "axios";
+import DiaryWrite from "./DiaryWrite";
 
 const Diary = () => {
 
@@ -118,7 +119,12 @@ const Diary = () => {
                         </DiaryList>
 
                         <DiaryList>
-                            <DailyTitle></DailyTitle>
+                            <DailyDate></DailyDate>
+                            <DailyTitle>{dTitle}</DailyTitle>
+                            <DailyChange>
+                                <Fix onClick={goFix}>수정</Fix>
+                                <Delete onClick={onDelete}>삭제</Delete>
+                            </DailyChange>
                         </DiaryList>
 
                     </Main>
