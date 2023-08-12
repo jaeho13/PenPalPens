@@ -2,19 +2,16 @@ package com.penpalpens.penpalpens;
 
 import com.penpalpens.penpalpens.controller.ShareController;
 import com.penpalpens.penpalpens.entity.UserInfo;
-import com.penpalpens.penpalpens.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.test.annotation.Commit;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TestService {
     @Autowired
     ShareController shareController;
     @Autowired
-    UserRepository userRepository;
+    UserRepository2 userRepository;
 
     @Test
     void 테스트(){
