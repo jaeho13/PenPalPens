@@ -19,6 +19,7 @@ public class ShareService {
         Random random = new Random();
         Map<String, Object> map = new HashMap<>();
 
+
         if (userInfo.getULink() != 0) {
             System.out.println("이미 다른 일기장과 연결된 회원");
 
@@ -27,16 +28,14 @@ public class ShareService {
 
             return map;
 
-        } else if (userInfo.getURandom() == 0) { // 연결된 일기장이 없다면
+        } else if (userInfo.getURandom() == 0) { //연결된 일기장이 없다면?
             System.out.println("랜덤코드 생성 호출");
             int num;
-            boolean isUnique = false;
 
             do {
                 num = random.nextInt(90000000) + 10000000;
                 System.out.println("num = " + num);
-                isUnique = !userRepository.findByuRandom(num); // 중복되지 않으면 isUnique를 true로 설정
-            } while (!isUnique);
+            } while (userRepository.findByuRandom(num) != null);
 
             userInfo.setURandom(num);
         }
@@ -50,6 +49,9 @@ public class ShareService {
 
         return map;
     }
+
+
+
 
     public int shareCode(UserInfo userInfo) {
         int bool = userInfo.getULink();
