@@ -287,7 +287,7 @@ const ButtonBind = styled.div`
     margin-right: 3rem;
 `
 
-const Upload = styled.div`
+const Upload = styled.button`
     width: 15%;
     height: 3rem;
     border: 2px solid #595959;
@@ -302,7 +302,7 @@ const Upload = styled.div`
     cursor: pointer;
 `
 
-const Cancle = styled.div`
+const Cancle = styled.button`
     width: 15%;
     height: 3rem;
     border: 2px solid #595959;
