@@ -36,7 +36,7 @@ public class Diary {
     private UserInfo userInfoVO;
 
     @CreatedDate
-    @Column(name = "dDate", updatable = true)
+    @Column(name = "dDate", updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime dDate;
 }

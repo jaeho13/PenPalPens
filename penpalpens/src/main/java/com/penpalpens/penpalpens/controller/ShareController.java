@@ -26,11 +26,10 @@ public class ShareController {
 
     @GetMapping("/share/makeCode")
     public Map<String, Object> makeCode(HttpServletRequest request) throws Exception {
-        System.out.println("호출");
+        System.out.println("코드 호출");
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         Map<String, Object> map = shareService.makeCode(userInfo);
-        System.out.println("코드생성==== " + userInfo);
 
         return map;
     }

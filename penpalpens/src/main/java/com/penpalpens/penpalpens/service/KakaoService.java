@@ -111,19 +111,31 @@ public class KakaoService {
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
             String nick = properties.getAsJsonObject().get("nickname").getAsString();
 
+
+            userInfo = userRepository.findByuEmail(email);
+
+            if (userInfo == null) {
+                System.out.println("등록된 회원 아님");
+
+                // userInfo 객체 생성 및 초기화
+                userInfo = new UserInfo();
+
+                userInfo.setUEmail(email);
+                userInfo.setUNick(nick);
+                userInfo.setULink(0);
+                userInfo.setURandom(0);
+
+                userRepository.save(userInfo);
+
+                return userInfo;
+            }
+
+
             userInfo.setUEmail(email);
             userInfo.setUNick(nick);
 
-            Boolean bool  = userRepository.findByuEmail(email)==null;
-
-            if (bool == false) { // 등록된 회원이 아니라면?
-                System.out.println("등록된회원아님");
-                userInfo.setULink(0);
-                userInfo.setURandom(0);
-                userRepository.save(userInfo);
-            }
-
             System.out.println("유저정보 "+ userInfo);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
