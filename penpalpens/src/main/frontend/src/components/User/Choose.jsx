@@ -40,6 +40,7 @@ const Choose = () => {
     const [boolean, setBoolean] = useState();
     const [code, setCode] = useState();
     const [inviteCode, setInviteCode] = useState("");
+    const [inviteCodeError, setInviteCodeError] = useState(0);
 
     const fetchData = async () => {
         try {
@@ -79,10 +80,18 @@ const Choose = () => {
         try {
             const response = await axios.get("/share/sendCode?code=", { inviteCode });
             console.log(response.data);
+
+            if (response.data) {
+                // 초대 코드가 일치하는 경우 goshare 페이지로 이동
+                goShare();
+            } else {
+                // 초대 코드가 일치하지 않는 경우 에러 메시지 표시
+                setInviteCodeError(1);
+            }
         } catch (error) {
             console.error(error);
         }
-        modal3()
+        modal3();
     }
 
 
@@ -150,10 +159,13 @@ const Choose = () => {
                             <ModalEnter
                                 type="text"
                                 placeholder="*초대 코드 입력"
-                                value={inviteCode} // 초대 코드 입력값 바인딩
-                                onChange={(e) => setInviteCode(e.target.value)} // 입력값 업데이트 함수
+                                value={inviteCode}
+                                onChange={(e) => setInviteCode(e.target.value)}
                             />
                             <ModalButton onClick={sendCode}>확인</ModalButton>
+                            {inviteCodeError && (
+                                <ModalMessage>초대 코드가 일치하지 않습니다.</ModalMessage>
+                            )}
                         </Modal>
                     </ModalWrapper >
                 )}
@@ -428,4 +440,15 @@ const ModalButton = styled.button`
     background-color: #3e5af5;
     border-radius: 1rem;
     cursor: pointer;
+`
+
+const ModalMessage = styled.div`
+    width: 80%;
+    height: 3rem;
+    font-size: 1.5rem;
+    color: red;
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
