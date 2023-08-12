@@ -41,11 +41,12 @@ const DiaryWrite = () => {
     };
 
 
-    const dataPass = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         axios({
             url: "/diary",
+            method: "post",
             data: {
                 dTitle,
                 dContent,
@@ -92,7 +93,7 @@ const DiaryWrite = () => {
                                 {formattedFull}
                             </Day>
                         </DateBind>
-                        <form onSubmit={dataPass}>
+                        <form onSubmit={handleSubmit}>
                             <Title
                                 type="text"
                                 placeholder="*제목"
@@ -103,13 +104,13 @@ const DiaryWrite = () => {
                                 type="text"
                                 placeholder="*내용"
                                 onChange={handleContentChange}
-                                value={dTitle}
+                                value={dContent}
                             />
+                            <ButtonBind>
+                                <Upload type="submit">글올리기</Upload>
+                                <Cancle onClick={goDiary} >취소하기</Cancle>
+                            </ButtonBind>
                         </form>
-                        <ButtonBind>
-                            <Upload onClick={goDiary} >글올리기</Upload>
-                            <Cancle onClick={goDiary} >취소하기</Cancle>
-                        </ButtonBind>
                     </Main>
                 </Peel>
             </Background>
