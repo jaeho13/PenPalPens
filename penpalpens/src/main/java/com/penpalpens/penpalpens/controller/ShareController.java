@@ -39,11 +39,11 @@ public class ShareController {
 
     // 초대코드 가져오기
     @GetMapping("/share/shareCode")
-    public Boolean shareCode(HttpServletRequest request) throws Exception {
+    public int shareCode(HttpServletRequest request) throws Exception {
         System.out.println("shareCode 호출");
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-        Boolean bool = shareService.shareCode(userInfo);
+        int bool = shareService.shareCode(userInfo);
         return bool;
     }
 

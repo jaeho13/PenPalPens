@@ -15,10 +15,10 @@ public class ShareService {
     UserRepository userRepository;
 
     public Map<String, Object> makeCode(UserInfo userInfo) {
-        System.out.println("update 전 유저정보 : " + userInfo);
+        System.out.println("유저정보 : " + userInfo);
         Map<String, Object> map = new HashMap<>();
 
-        if (userInfo.getULink() != null) {
+        if (userInfo.getULink() != 0) {
             System.out.println("이미 다른 일기장과 연결된 회원");
 
             map.put("boolean", true);
@@ -52,9 +52,9 @@ public class ShareService {
 
 
 
-    public Boolean shareCode(UserInfo userInfo) {
-        Boolean bool = userInfo.getULink();
-        bool = false;
-        return bool;
+    public int shareCode(UserInfo userInfo) {
+        int bool = userInfo.getULink();
+        bool = 0;
+        return 0;
     }
 }
