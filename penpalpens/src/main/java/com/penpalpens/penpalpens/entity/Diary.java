@@ -1,6 +1,7 @@
 package com.penpalpens.penpalpens.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.springframework.data.annotation.CreatedDate;
@@ -31,6 +32,7 @@ public class Diary {
     @Column(nullable = true, length = 3000)
     private String dContent;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uEmail")
     private UserInfo userInfoVO;

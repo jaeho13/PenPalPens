@@ -43,7 +43,7 @@ public class DiaryService {
         String uEmail = userInfo.getUEmail();
         System.out.println("회원 조회 후 그 회원이 쓴 글 가져오기 : "+ uEmail);
         List<Diary> list = diaryRepository.findMyDiary(uEmail);
-        System.out.println("전체 글 리스트");
+        System.out.println("전체 글 리스트"+list);
 
         return list;
     }
