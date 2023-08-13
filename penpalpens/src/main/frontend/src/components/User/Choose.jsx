@@ -40,7 +40,7 @@ const Choose = () => {
     const [boolean, setBoolean] = useState();
     const [code, setCode] = useState();
     const [inviteCode, setInviteCode] = useState("");
-    const [inviteCodeError, setInviteCodeError] = useState(0);
+    const [inviteCodeError, setInviteCodeError] = useState("");
 
     const fetchData = async () => {
         try {
@@ -64,7 +64,7 @@ const Choose = () => {
             // 접근 코드 이름
             console.log(response.data);
 
-            if (response.data) {
+            if (response.data === 1) {
                 // response.data 가 true일 경우, goshare 함수 호출
                 goShare();
             } else {
@@ -79,7 +79,7 @@ const Choose = () => {
     const sendCode = async () => {
         console.log("inviteCode:", inviteCode);
         try {
-            const response = await axios.get("/share/sendCode?code=", { inviteCode });
+            const response = await axios.get("/share/sendCode", { params: { code: inviteCode } });
             console.log(response.data);
 
             if (response.data === 1) {
@@ -163,7 +163,7 @@ const Choose = () => {
                                 onChange={(e) => setInviteCode(e.target.value)}
                             />
                             <ModalButton onClick={sendCode}>확인</ModalButton>
-                            {inviteCodeError && (
+                            {inviteCodeError !== "" && (
                                 <ModalMessage>초대 코드가 일치하지 않습니다.</ModalMessage>
                             )}
                         </Modal>
