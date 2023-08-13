@@ -60,7 +60,7 @@ const Choose = () => {
     const fetchData3 = async () => {
         try {
             const response = await axios.get('/share/shareCode');
-            setBoolean(response.data);
+            setBoolean(response.data === 1);
             // 접근 코드 이름
             console.log(response.data);
 
@@ -82,7 +82,7 @@ const Choose = () => {
             const response = await axios.get("/share/sendCode?code=", { inviteCode });
             console.log(response.data);
 
-            if (response.data) {
+            if (response.data === 1) {
                 // 초대 코드가 일치하는 경우 goshare 페이지로 이동
                 goShare();
             } else {
@@ -149,8 +149,6 @@ const Choose = () => {
                         </Modal>
                     </ModalWrapper >
                 )}
-
-                {/* 0이면 false 1이면 true */}
 
                 {enterModal && (
                     <ModalWrapper>
