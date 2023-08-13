@@ -64,7 +64,7 @@ const Choose = () => {
             // 접근 코드 이름
             console.log(response.data);
 
-            if (response.data) {
+            if (response.data === 1) {
                 // response.data 가 true일 경우, goshare 함수 호출
                 goShare();
             } else {
@@ -77,23 +77,24 @@ const Choose = () => {
     };
 
     const sendCode = async () => {
-        console.log("inviteCode:", inviteCode);
-        try {
-            const response = await axios.get("/share/sendCode?code=", { inviteCode });
-            console.log(response.data);
+            console.log("inviteCode:", inviteCode);
+            try {
+const response = await axios.get("/share/sendCode", { params: { code: inviteCode } });
+                console.log(response.data);
 
-            if (response.data === 1) {
-                // 초대 코드가 일치하는 경우 goshare 페이지로 이동
-                goShare();
-            } else {
-                // 초대 코드가 일치하지 않는 경우 에러 메시지 표시
-                setInviteCodeError(1);
+                if (response.data === 1) {
+                    // 초대 코드가 일치하는 경우 goshare 페이지로 이동
+                    goShare();
+                } else {
+                    // 초대 코드가 일치하지 않는 경우 에러 메시지 표시
+                    setInviteCodeError(1);
+                }
+            } catch (error) {
+                console.error(error);
             }
-        } catch (error) {
-            console.error(error);
+            modal3();
         }
-        modal3();
-    }
+
 
 
     return (
