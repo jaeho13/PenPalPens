@@ -40,13 +40,12 @@ const Choose = () => {
     const [boolean, setBoolean] = useState();
     const [code, setCode] = useState();
     const [inviteCode, setInviteCode] = useState("");
-    const [inviteCodeError, setInviteCodeError] = useState("");
+    const [inviteCodeError, setInviteCodeError] = useState(0);
 
     const fetchData = async () => {
         try {
             const response = await axios.get('/share/makeCode');
-            // Assuming response.data.boolean is 0 or 1
-            setBoolean(response.data.boolean === 1); // Convert to true or false
+            setBoolean(response.data.boolean === 1);
             setCode(response.data.code);
             //접근 코드 이름
             console.log(response.data.boolean);
@@ -54,7 +53,7 @@ const Choose = () => {
         } catch (error) {
             console.error(error);
         }
-        modal();
+        modal()
     };
 
     const fetchData3 = async () => {
@@ -81,9 +80,9 @@ const Choose = () => {
         console.log("inviteCode:", inviteCode);
         try {
             const response = await axios.get("/share/sendCode", { params: { code: inviteCode } });
-            console.log(response.data);
+            console.log(response.data === 1);
 
-            if (response.data === 1) {
+            if (response.data) {
                 // 초대 코드가 일치하는 경우 goshare 페이지로 이동
                 goShare();
             } else {
@@ -149,6 +148,7 @@ const Choose = () => {
                     </ModalWrapper >
                 )}
 
+
                 {enterModal && (
                     <ModalWrapper>
                         <Modal>
@@ -162,7 +162,7 @@ const Choose = () => {
                                 onChange={(e) => setInviteCode(e.target.value)}
                             />
                             <ModalButton onClick={sendCode}>확인</ModalButton>
-                            {inviteCodeError !== "" && (
+                            {inviteCodeError && (
                                 <ModalMessage>초대 코드가 일치하지 않습니다.</ModalMessage>
                             )}
                         </Modal>
