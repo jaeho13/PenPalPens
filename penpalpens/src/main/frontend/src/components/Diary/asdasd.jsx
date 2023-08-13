@@ -53,28 +53,18 @@ const Diary = () => {
 
     const [diaryList, setDiaryList] = useState([]);
 
-    useEffect(() => {
-        const load = async () => {
-            try {
-                const response = await axios.get("/diary");
-                setDiaryList(response.data.diaryList);
-                console.log("리스트 불러오기 성공")
-            } catch (error) {
-                console.log("리스트 불러오기 실패");
-            }
-        };
-
-        load();
-    }, []);
-
-    const handleDiaryClick = async (dIdx) => {
+    const load = async () => {
         try {
-            await axios.get(`/diary?dIdx=${dIdx}`);
-            // navigate(`rea`)
+            const response = await axios.get("/diary");
+            setDiaryList(response.data.diaryList);
+            console.log("리스트 불러오기 성공")
         } catch (error) {
-            console.log("에러입니다.");
+            console.log("리스트 불러오기 실패");
         }
     };
+
+    load();
+
 
     return (
         <>
@@ -125,16 +115,23 @@ const Diary = () => {
                             </DailyChange>
                         </DiaryList>
 
-                        {diaryList.map((diaryList, index) => (
-                            <DiaryList key={diaryList.dIdx} onClick={() => handleDiaryClick(diaryList.dIdx)}>
-                                <DailyDate>{diaryList.dDate}</DailyDate>
-                                <DailyTitle>{diaryList.dTitle}</DailyTitle>
+                        {diaryList.map((diary, index) => (
+                            <DiaryList key={index}>
+                                <DailyDate>
+                                    {diary.dDate} {/* 백엔드에서 받아온 날짜 */}
+                                </DailyDate>
+                                <DailyTitle onClick={goRead}>
+                                    {diary.dTitle} {/* 백엔드에서 받아온 제목 */}
+                                </DailyTitle>
                                 <DailyChange>
                                     <Fix onClick={goFix}>수정</Fix>
                                     <Delete onClick={onDelete}>삭제</Delete>
                                 </DailyChange>
                             </DiaryList>
                         ))}
+
+
+
 
                     </Main>
                 </Peel>
