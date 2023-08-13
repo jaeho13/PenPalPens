@@ -40,7 +40,7 @@ const Choose = () => {
     const [boolean, setBoolean] = useState();
     const [code, setCode] = useState();
     const [inviteCode, setInviteCode] = useState("");
-    const [inviteCodeError, setInviteCodeError] = useState(0);
+    const [inviteCodeError, setInviteCodeError] = useState("");
 
     const fetchData = async () => {
         try {
@@ -77,20 +77,18 @@ const Choose = () => {
     };
 
     const sendCode = async () => {
-            console.log("inviteCode:", inviteCode);
-            try {
-const response = await axios.get("/share/sendCode", { params: { code: inviteCode } });
-                console.log(response.data);
 
-                if (response.data === 1) {
-                    // 초대 코드가 일치하는 경우 goshare 페이지로 이동
-                    goShare();
-                } else {
-                    // 초대 코드가 일치하지 않는 경우 에러 메시지 표시
-                    setInviteCodeError(1);
-                }
-            } catch (error) {
-                console.error(error);
+        console.log("inviteCode:", inviteCode);
+        try {
+            const response = await axios.get("/share/sendCode", { params: { code: inviteCode } });
+            console.log(response.data);
+
+            if (response.data === 1) {
+                // 초대 코드가 일치하는 경우 goshare 페이지로 이동
+                goShare();
+            } else {
+                // 초대 코드가 일치하지 않는 경우 에러 메시지 표시
+                setInviteCodeError(1);
             }
             modal3();
         }
@@ -164,7 +162,7 @@ const response = await axios.get("/share/sendCode", { params: { code: inviteCode
                                 onChange={(e) => setInviteCode(e.target.value)}
                             />
                             <ModalButton onClick={sendCode}>확인</ModalButton>
-                            {inviteCodeError && (
+                            {inviteCodeError !== "" && (
                                 <ModalMessage>초대 코드가 일치하지 않습니다.</ModalMessage>
                             )}
                         </Modal>
