@@ -45,7 +45,8 @@ const Choose = () => {
     const fetchData = async () => {
         try {
             const response = await axios.get('/share/makeCode');
-            setBoolean(response.data.boolean === 1);
+            // Assuming response.data.boolean is 0 or 1
+            setBoolean(response.data.boolean === 1); // Convert to true or false
             setCode(response.data.code);
             //접근 코드 이름
             console.log(response.data.boolean);
@@ -53,7 +54,7 @@ const Choose = () => {
         } catch (error) {
             console.error(error);
         }
-        modal()
+        modal();
     };
 
     const fetchData3 = async () => {
@@ -76,21 +77,23 @@ const Choose = () => {
     };
 
     const sendCode = async () => {
-
         console.log("inviteCode:", inviteCode);
         try {
             const response = await axios.get("/share/sendCode", { params: { code: inviteCode } });
-            console.log(response.data === 1);
+            console.log(response.data);
 
-            if (response.data) {
+            if (response.data === 1) {
                 // 초대 코드가 일치하는 경우 goshare 페이지로 이동
                 goShare();
             } else {
                 // 초대 코드가 일치하지 않는 경우 에러 메시지 표시
                 setInviteCodeError(1);
             }
-            modal3();
+        } catch (error) {
+            console.error(error);
         }
+        modal3();
+    }
 
 
 
@@ -147,7 +150,6 @@ const Choose = () => {
                         </Modal>
                     </ModalWrapper >
                 )}
-
 
                 {enterModal && (
                     <ModalWrapper>
