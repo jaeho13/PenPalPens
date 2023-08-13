@@ -45,7 +45,8 @@ const Choose = () => {
     const fetchData = async () => {
         try {
             const response = await axios.get('/share/makeCode');
-            setBoolean(response.data.boolean);
+            // Assuming response.data.boolean is 0 or 1
+            setBoolean(response.data.boolean === 1); // Convert to true or false
             setCode(response.data.code);
             //접근 코드 이름
             console.log(response.data.boolean);
@@ -53,7 +54,7 @@ const Choose = () => {
         } catch (error) {
             console.error(error);
         }
-        modal()
+        modal();
     };
 
     const fetchData3 = async () => {
