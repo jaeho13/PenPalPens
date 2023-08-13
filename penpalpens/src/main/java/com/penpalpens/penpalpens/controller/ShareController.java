@@ -34,7 +34,7 @@ public class ShareController {
         return map;
     }
 
-    // 초대코드 가져오기
+    // 이미 연결된 일기장인지 들어가기가 가능한지 확인
     @GetMapping("/share/shareCode")
     public int shareCode(HttpServletRequest request) throws Exception {
         System.out.println("shareCode 호출");
@@ -44,12 +44,12 @@ public class ShareController {
         return bool;
     }
 
-    @GetMapping("/share/sendCode")
-    public Boolean sendCode(@RequestParam String code) throws Exception {
-
-        System.out.println("code" + code);
-        System.out.println("재호야 시그러워");
-        Boolean bool = true;
-        return bool;
+    @GetMapping("/share/sendCode") //교환일기 연결하기
+    public int sendCode(@RequestParam int code, HttpServletRequest request) throws Exception {
+        System.out.println("교환일기 연결 호출");
+        HttpSession session = request.getSession(false);
+        UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        int link = shareService.sendCode(code, userInfo);
+        return link;
     }
 }
