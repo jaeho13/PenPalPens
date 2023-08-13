@@ -149,6 +149,7 @@ const Choose = () => {
                     </ModalWrapper >
                 )}
 
+                {/* 0이면 false 1이면 true */}
 
                 {enterModal && (
                     <ModalWrapper>
