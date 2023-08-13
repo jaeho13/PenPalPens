@@ -77,6 +77,7 @@ const Choose = () => {
     };
 
     const sendCode = async () => {
+
         console.log("inviteCode:", inviteCode);
         try {
             const response = await axios.get("/share/sendCode", { params: { code: inviteCode } });
@@ -89,11 +90,9 @@ const Choose = () => {
                 // 초대 코드가 일치하지 않는 경우 에러 메시지 표시
                 setInviteCodeError(1);
             }
-        } catch (error) {
-            console.error(error);
+            modal3();
         }
-        modal3();
-    }
+
 
 
     return (
