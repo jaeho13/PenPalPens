@@ -45,11 +45,13 @@ public class ShareController {
     }
 
     @GetMapping("/share/sendCode") //교환일기 연결하기
-    public int sendCode(@RequestParam int code, HttpServletRequest request) throws Exception {
+    public int sendCode(@RequestParam String code, HttpServletRequest request) throws Exception {
         System.out.println("교환일기 연결 호출");
+        System.out.println("code" + code);
+        int num = Integer.parseInt(String.valueOf(code));
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-        int link = shareService.sendCode(code, userInfo);
+        int link = shareService.sendCode(num, userInfo);
         return link;
     }
 }
