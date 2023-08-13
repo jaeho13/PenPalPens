@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
 import axios from "axios";
-import DiaryWrite from "./DiaryWrite";
 
 const Diary = () => {
 
@@ -58,7 +57,7 @@ const Diary = () => {
         const load = async () => {
             try {
                 const response = await axios.get("/diary");
-                setDiaryList(response.data);
+                setDiaryList(response.data.diaryList);
                 console.log("리스트 불러오기 성공")
             } catch (error) {
                 console.log("리스트 불러오기 실패");
@@ -68,6 +67,14 @@ const Diary = () => {
         load();
     }, []);
 
+    const handleDiaryClick = async (dIdx) => {
+        try {
+            await axios.get(`/diary?dIdx=${dIdx}`);
+            // navigate(`rea`)
+        } catch (error) {
+            console.log("에러입니다.");
+        }
+    };
 
     return (
         <>
@@ -118,14 +125,61 @@ const Diary = () => {
                             </DailyChange>
                         </DiaryList>
 
-                        <DiaryList>
-                            <DailyDate></DailyDate>
-                            <DailyTitle>{dTitle}</DailyTitle>
-                            <DailyChange>
-                                <Fix onClick={goFix}>수정</Fix>
-                                <Delete onClick={onDelete}>삭제</Delete>
-                            </DailyChange>
-                        </DiaryList>
+                        {diaryList.map((diary, index) => (
+                            <DiaryList key={diary.dIdx} onClick={() => handleDiaryClick(diary.bIdx)}>
+                                <DailyDate>{diary.dDate}</DailyDate>
+                                <DailyTitle>{diary.dTitle}</DailyTitle>
+                                <DailyChange>
+                                    <Fix onClick={goFix}>수정</Fix>
+                                    <Delete onClick={onDelete}>삭제</Delete>
+                                </DailyChange>
+                            </DiaryList>
+                        ))} {diaryList.map((diary, index) => (
+                            <DiaryList key={diary.dIdx} onClick={() => handleDiaryClick(diary.bIdx)}>
+                                <DailyDate>{diary.dDate}</DailyDate>
+                                <DailyTitle>{diary.dTitle}</DailyTitle>
+                                <DailyChange>
+                                    <Fix onClick={goFix}>수정</Fix>
+                                    <Delete onClick={onDelete}>삭제</Delete>
+                                </DailyChange>
+                            </DiaryList>
+                        ))} {diaryList.map((diary, index) => (
+                            <DiaryList key={diary.bIdx} onClick={() => handleDiaryClick(diary.bIdx)}>
+                                <DailyDate>{diary.dDate}</DailyDate>
+                                <DailyTitle>{diary.dTitle}</DailyTitle>
+                                <DailyChange>
+                                    <Fix onClick={goFix}>수정</Fix>
+                                    <Delete onClick={onDelete}>삭제</Delete>
+                                </DailyChange>
+                            </DiaryList>
+                        ))} {diaryList.map((diary, index) => (
+                            <DiaryList key={diary.bIdx} onClick={() => handleDiaryClick(diary.bIdx)}>
+                                <DailyDate>{diary.dDate}</DailyDate>
+                                <DailyTitle>{diary.dTitle}</DailyTitle>
+                                <DailyChange>
+                                    <Fix onClick={goFix}>수정</Fix>
+                                    <Delete onClick={onDelete}>삭제</Delete>
+                                </DailyChange>
+                            </DiaryList>
+                        ))} {diaryList.map((diary, index) => (
+                            <DiaryList key={diary.bIdx} onClick={() => handleDiaryClick(diary.bIdx)}>
+                                <DailyDate>{diary.dDate}</DailyDate>
+                                <DailyTitle>{diary.dTitle}</DailyTitle>
+                                <DailyChange>
+                                    <Fix onClick={goFix}>수정</Fix>
+                                    <Delete onClick={onDelete}>삭제</Delete>
+                                </DailyChange>
+                            </DiaryList>
+                        ))} {diaryList.map((diary, index) => (
+                            <DiaryList key={diary.bIdx} onClick={() => handleDiaryClick(diary.bIdx)}>
+                                <DailyDate>{diary.dDate}</DailyDate>
+                                <DailyTitle>{diary.dTitle}</DailyTitle>
+                                <DailyChange>
+                                    <Fix onClick={goFix}>수정</Fix>
+                                    <Delete onClick={onDelete}>삭제</Delete>
+                                </DailyChange>
+                            </DiaryList>
+                        ))}
 
                     </Main>
                 </Peel>
