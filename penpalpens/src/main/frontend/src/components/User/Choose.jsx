@@ -40,7 +40,7 @@ const Choose = () => {
     const [boolean, setBoolean] = useState();
     const [code, setCode] = useState();
     const [inviteCode, setInviteCode] = useState("");
-    const [inviteCodeError, setInviteCodeError] = useState(0);
+    const [inviteCodeError, setInviteCodeError] = useState();
 
     const fetchData = async () => {
         try {
@@ -92,6 +92,7 @@ const Choose = () => {
         } catch (error) {
             console.error(error);
         }
+        setInviteCode("");
         modal3();
     }
 
