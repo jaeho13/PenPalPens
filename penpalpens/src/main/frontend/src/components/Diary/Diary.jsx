@@ -57,7 +57,7 @@ const Diary = () => {
         const load = async () => {
             try {
                 const response = await axios.get("/diary");
-                setDiaryList(response.data.diaryList);
+                setDiaryList(response.data);
                 console.log("리스트 불러오기 성공")
             } catch (error) {
                 console.log("리스트 불러오기 실패");
@@ -116,7 +116,7 @@ const Diary = () => {
 
                         <DiaryList>
                             <DailyDate>
-                                {formattedDate}
+                                {formattedFull}
                             </DailyDate>
                             <DailyTitle onClick={goRead}>제목</DailyTitle>
                             <DailyChange>
@@ -125,21 +125,32 @@ const Diary = () => {
                             </DailyChange>
                         </DiaryList>
 
-                        {diaryList.map((diaryList, index) => (
-                            <DiaryList key={diaryList.dIdx} onClick={() => handleDiaryClick(diaryList.dIdx)}>
-                                <DailyDate>{diaryList.dDate}</DailyDate>
-                                <DailyTitle>{diaryList.dTitle}</DailyTitle>
-                                <DailyChange>
-                                    <Fix onClick={goFix}>수정</Fix>
-                                    <Delete onClick={onDelete}>삭제</Delete>
-                                </DailyChange>
-                            </DiaryList>
-                        ))}
+                        {diaryList.length > 0 && diaryList.map((item, index) => {
+                            const dDate = new Date(item.dDate);
+                            const year = dDate.getFullYear().toString().slice(-2);
+                            const month = dDate.getMonth() + 1;
+                            const date = dDate.getDate();
+
+                            return (
+                                <DiaryList key={item.didx}>
+                                    <DailyDate>{`${year}년 ${month}월 ${date}일`}</DailyDate>
+                                    {/* <DailyTitle>{item.dtitle}</DailyTitle> */}
+                                    <DailyTitle onClick={() => handleDiaryClick(item.didx)}>{item.dtitle}</DailyTitle>
+
+
+                                    <DailyChange>
+                                        <Fix onClick={goFix}>수정</Fix>
+                                        <Delete onClick={onDelete}>삭제</Delete>
+                                    </DailyChange>
+                                </DiaryList>
+                            );
+                        })}
+
 
                     </Main>
                 </Peel>
 
-            </Background>
+            </Background >
         </>
     );
 }
@@ -314,7 +325,7 @@ const DailyDate = styled.div`
     width: 20%;
     height: 3rem;
     border-radius: 1rem;
-    font-size: 2rem;
+    font-size: 1.7rem;
     display: flex;
     justify-content: center;
     align-items: center;
