@@ -77,6 +77,10 @@ const Diary = () => {
         navigate(`/diary/read/${dIdx}`); // dIdx에 해당하는 다이어리 읽기 페이지로 이동
     };
 
+    const handleDiaryFixClick = (dIdx) => {
+        navigate(`/diary/update/${dIdx}`); // dIdx에 해당하는 다이어리 수정 페이지로 이동
+    };
+
     return (
         <>
             <Background>
@@ -137,7 +141,7 @@ const Diary = () => {
                                     <DailyDate>{`${year}년 ${month}월 ${date}일`}</DailyDate>
                                     <DailyTitle onClick={() => handleDiaryClick(item.didx)}>{item.dtitle}</DailyTitle>
                                     <DailyChange>
-                                        <Fix onClick={goFix}>수정</Fix>
+                                        <Fix onClick={() => handleDiaryFixClick(item.didx)}>수정</Fix>
                                         <Delete onClick={() => onDelete(item.didx)}>삭제</Delete>
                                     </DailyChange>
                                 </DiaryList>

@@ -37,6 +37,7 @@ const App = () => {
           <Route path="/login/penpalpens" element={<KakaoCallback />} />
           <Route path="/kakaoinfo" element={<KakaoInfo />} />
           <Route path="/diary/read/:dIdx" element={<DiaryRead />} />
+          <Route path="/diary/update/:dIdx" element={<DiaryFix />} />
 
         </Routes>
       </Router>

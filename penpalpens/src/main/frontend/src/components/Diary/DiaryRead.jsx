@@ -78,7 +78,9 @@ const DiaryRead = () => {
                     <Peel>
                         <Main>
                             <DateBind>
-                                <Day>{`${diary.ddate.slice(2, 4)}년 ${diary.ddate.slice(5, 7)}월 ${diary.ddate.slice(8, 10)}일`}</Day>
+                                <Day>
+                                    {`${diary.ddate.slice(2, 4)}년 ${diary.ddate.slice(5, 7)}월 ${diary.ddate.slice(8, 10)}일`}
+                                </Day>
                             </DateBind>
                             <Title>{diary.dtitle}</Title>
                             <Board>{diary.dcontent}</Board>
