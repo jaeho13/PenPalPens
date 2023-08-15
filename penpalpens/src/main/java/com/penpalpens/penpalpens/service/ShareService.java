@@ -63,18 +63,22 @@ public class ShareService {
         if(user!=null){
             UserInfo linkUser = userRepository.checkUserCode(code);
             System.out.println("초대코드가 일치하는 회원 발견!");
+
             //1. 연결 된 회원 0>1로 변경
             linkUser.setULink(1);
             linkUser.setURandom(code);
+
             //2. 요청 회원 0>1로 변경
             userInfo.setULink(1);
             userInfo.setURandom(code);
+
             //3. 저장하기
             userRepository.save(linkUser);
             userRepository.save(userInfo);
 
             return 1;
         }
+
         return 0;
     }
 }
