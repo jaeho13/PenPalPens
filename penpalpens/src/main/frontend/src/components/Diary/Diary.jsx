@@ -115,13 +115,13 @@ const Diary = () => {
                         </DateBind>
 
                         <DiaryList>
-                            <DailyDate>
-                                {formattedFull}
-                            </DailyDate>
-                            <DailyTitle onClick={goRead}>제목</DailyTitle>
+                            <DailyDateExam>
+                                날짜
+                            </DailyDateExam>
+                            <DailyTitleExam>제목</DailyTitleExam>
                             <DailyChange>
-                                <Fix onClick={goFix}>수정</Fix>
-                                <Delete onClick={onDelete}>삭제</Delete>
+                                {/* <FixExam>수정</FixExam>
+                                <DeleteExam>삭제</DeleteExam> */}
                             </DailyChange>
                         </DiaryList>
 
@@ -263,6 +263,8 @@ const Main = styled.div`
     margin: 0 auto;
     margin-top: 2rem;
     background-color: #fdf6e4;
+    overflow: auto; /* 스크롤 추가 */
+    overflow-x: hidden; /* 가로 스크롤 제거 */
 `
 
 const DateBind = styled.div`
@@ -314,11 +316,23 @@ const DiaryList = styled.div`
     border: 2px solid #3e5af5;
     border-radius: 1rem;
     margin: 0 auto;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
+    margin-bottom: 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+`
+
+const DailyDateExam = styled.div`
+    width: 20%;
+    height: 3rem;
+    border-radius: 1rem;
+    font-size: 1.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #797979;
 `
 
 const DailyDate = styled.div`
@@ -330,6 +344,21 @@ const DailyDate = styled.div`
     justify-content: center;
     align-items: center;
     /* background-color: #595959; */
+`
+
+const DailyTitleExam = styled.div`
+    width: 60%;
+    height: 3rem;
+    border: 2px dashed #3e5af5;
+    border-top: 0;
+    border-bottom: 0;
+    /* border-right: 0; */
+    padding-left: 1rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #797979;
 `
 
 const DailyTitle = styled.div`
@@ -357,6 +386,19 @@ const DailyChange = styled.div`
     align-items: center;
 `
 
+const FixExam = styled.div`
+    width: 40%;
+    height: 2rem;
+    border: 2px solid #595959;
+    border-radius: 1rem;
+    font-size: 2rem;
+    color: #fdf6e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #595959;
+`
+
 const Fix = styled.div`
     width: 40%;
     height: 2rem;
@@ -369,6 +411,20 @@ const Fix = styled.div`
     align-items: center;
     background-color: #595959;
     cursor: pointer;
+`
+
+const DeleteExam = styled.div`
+    width: 40%;
+    height: 2rem;
+    border: 2px solid #595959;
+    border-radius: 1rem;
+    margin-left: 1rem;
+    font-size: 2rem;
+    color: #fdf6e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #595959;
 `
 
 const Delete = styled.div`
