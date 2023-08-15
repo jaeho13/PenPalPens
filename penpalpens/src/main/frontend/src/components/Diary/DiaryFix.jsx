@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
+import axios from "axios";
 
 const DiaryFix = () => {
 
@@ -28,6 +29,52 @@ const DiaryFix = () => {
     const formattedFull = `${formattedYear}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
+
+    const { dIdx } = useParams(); // URL 매개변수에서 dIdx 가져오기
+    const [diary, setDiary] = useState({});
+    const [title, setTitle] = useState("");
+    const [board, setBoard] = useState("");
+
+
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value); // 사용자의 입력값으로 상태를 업데이트
+    };
+
+    const handleBoardChange = (e) => {
+        setBoard(e.target.value); // 사용자의 입력값으로 상태를 업데이트
+    };
+
+
+    useEffect(() => {
+        const fixDiary = async () => {
+            try {
+                const response = await axios.get(`/diary/update?dIdx=${dIdx}`);
+                setDiary(response.data);
+                setTitle(response.data.dtitle || "");
+                setBoard(response.data.dcontent || "");
+                console.log("ㅇㅁㄴㅇㅁㄴㅇㄴㅁ", diary)
+            } catch (error) {
+                console.log("다이어리 정보 불러오기 실패", error);
+            }
+        };
+
+        fixDiary();
+    }, [dIdx]);
+
+    const handleUpdateDiary = async () => {
+        try {
+            // 서버에 데이터 업데이트 요청 보내기
+            await axios.put(`/diary`, {
+                dIdx: dIdx,
+                dTitle: title,
+                dContent: board
+            });
+            console.log("다이어리 수정 완료");
+            goDiary(); // 다이어리 페이지로 이동
+        } catch (error) {
+            console.log("다이어리 수정 실패", error);
+        }
+    };
 
     return (
         <>
@@ -61,10 +108,18 @@ const DiaryFix = () => {
                                 {formattedFull}
                             </Day>
                         </DateBind>
-                        <Title type="text" placeholder="*제목" />
-                        <Board type="text" placeholder="*내용" />
+                        <Title
+                            value={title}
+                            onChange={handleTitleChange}
+                            placeholder="제목을 입력하세요" // 예시로 placeholder 추가
+                        />
+                        <Board
+                            value={board}
+                            onChange={handleBoardChange}
+                            placeholder="내용을 입력하세요" // 예시로 placeholder 추가
+                        />
                         <ButtonBind>
-                            <Upload onClick={goDiary}>수정하기</Upload>
+                            <Upload onClick={handleUpdateDiary}>수정하기</Upload>
                             <Cancle onClick={goDiary}>취소하기</Cancle>
                         </ButtonBind>
                     </Main>
@@ -215,6 +270,7 @@ const Title = styled.input`
     font-size: 2rem;
     margin: 0 auto;
     margin-top: 1rem;
+    /* padding: 0.5rem; */
     display: flex;
     align-items: center;
     background-color: #fdf6e4;
@@ -228,6 +284,7 @@ const Board = styled.textarea`
     font-size: 2rem;
     margin: 0 auto;
     margin-top: 2rem;
+    /* padding: 0.5rem; */
     display: flex;
     align-items: top;
     background-color: #fdf6e4;
