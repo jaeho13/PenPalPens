@@ -1,19 +1,22 @@
 package com.penpalpens.penpalpens.service;
 
+import com.penpalpens.penpalpens.entity.Shared;
 import com.penpalpens.penpalpens.entity.UserInfo;
+import com.penpalpens.penpalpens.repository.ShareRepository;
 import com.penpalpens.penpalpens.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class ShareService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    ShareRepository shareRepository;
 
     public Map<String, Object> makeCode(UserInfo userInfo) {
         Random random = new Random();
@@ -80,5 +83,16 @@ public class ShareService {
         }
 
         return 0;
+    }
+
+    public Map<String, Object> shareList(UserInfo userInfo) {
+        Map<String, Object> map = new HashMap<>();
+        int num = userInfo.getURandom();
+        List<Shared> list = shareRepository.findByShareDiary(num);
+
+        map.put("List", list);
+        map.put("question", "뉴진스 좋아하세요? 유진수씨요?");
+
+        return map;
     }
 }
