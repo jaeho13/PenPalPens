@@ -1,9 +1,12 @@
 package com.penpalpens.penpalpens.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -27,11 +30,14 @@ public class Shared {
     private String sContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="qContent")
+    @JoinColumn(name="qIdx")
     private Question questionVO;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uEmail")
+    @JoinColumn(name = "uRandom")
     private UserInfo userInfoVO;
 
+    @CreatedDate
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+    private LocalDateTime sDate;
 }
