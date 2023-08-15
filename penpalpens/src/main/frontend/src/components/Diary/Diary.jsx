@@ -42,10 +42,16 @@ const Diary = () => {
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
 
-    const onDelete = () => {
+    const onDelete = async (didx) => {
         if (window.confirm("정말 삭제하시겠습니까??")) {
-            //삭제 수행 함수 넣기
-            alert("삭제되었습니다.");
+            try {
+                await axios.delete(`/diary?dIdx=${didx}`);
+                alert("삭제되었습니다.");
+                const response = await axios.get("/diary");
+                setDiaryList(response.data);
+            } catch (error) {
+                console.log("삭제 실패", error);
+            }
         } else {
             alert("취소되었습니다.");
         }
@@ -132,7 +138,7 @@ const Diary = () => {
                                     <DailyTitle onClick={() => handleDiaryClick(item.didx)}>{item.dtitle}</DailyTitle>
                                     <DailyChange>
                                         <Fix onClick={goFix}>수정</Fix>
-                                        <Delete onClick={onDelete}>삭제</Delete>
+                                        <Delete onClick={() => onDelete(item.didx)}>삭제</Delete>
                                     </DailyChange>
                                 </DiaryList>
                             );

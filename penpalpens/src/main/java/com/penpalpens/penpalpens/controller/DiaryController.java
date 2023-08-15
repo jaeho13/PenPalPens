@@ -22,7 +22,7 @@ public class DiaryController {
     @Autowired
     DiaryService diaryService;
 
-    public UserInfo userSession(HttpServletRequest request){
+    public UserInfo userSession(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
         return userInfo;
@@ -53,7 +53,6 @@ public class DiaryController {
         Diary diary = diaryService.ReadDiary(num, userInfo);
         return diary;
     }
-
 
     // 글 수정 불러오기
     @GetMapping("/diary/update")
