@@ -67,13 +67,8 @@ const Diary = () => {
         load();
     }, []);
 
-    const handleDiaryClick = async (dIdx) => {
-        try {
-            await axios.get(`/diary?dIdx=${dIdx}`);
-            // navigate(`rea`)
-        } catch (error) {
-            console.log("에러입니다.");
-        }
+    const handleDiaryClick = (dIdx) => {
+        navigate(`/diary/read/${dIdx}`); // dIdx에 해당하는 다이어리 읽기 페이지로 이동
     };
 
     return (
@@ -134,10 +129,7 @@ const Diary = () => {
                             return (
                                 <DiaryList key={item.didx}>
                                     <DailyDate>{`${year}년 ${month}월 ${date}일`}</DailyDate>
-                                    {/* <DailyTitle>{item.dtitle}</DailyTitle> */}
                                     <DailyTitle onClick={() => handleDiaryClick(item.didx)}>{item.dtitle}</DailyTitle>
-
-
                                     <DailyChange>
                                         <Fix onClick={goFix}>수정</Fix>
                                         <Delete onClick={onDelete}>삭제</Delete>
