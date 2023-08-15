@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
 import axios from "axios";
+
+const moveUpDown = keyframes`
+  0%, 100% {
+    transform: translateY(2rem);
+  }
+  50% {
+    transform: translateY(5rem);
+  }
+`
 
 const Diary = () => {
 
@@ -239,6 +248,8 @@ const DogImage = styled.img`
     height: 35rem;
     position: absolute;
     top: 40%;
+    animation: ${moveUpDown} 3s infinite ease-in-out alternate; /* Apply animation */
+
 `
 
 const RabbitImage = styled.img`
@@ -246,6 +257,8 @@ const RabbitImage = styled.img`
     height: 35rem;
     position: absolute;
     top: 15%; left: 74%;
+    animation: ${moveUpDown} 3s infinite ease-in-out alternate; /* Apply animation */
+
 `
 
 const Peel = styled.div`
