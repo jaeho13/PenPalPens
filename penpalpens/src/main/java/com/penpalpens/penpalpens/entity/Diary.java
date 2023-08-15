@@ -22,8 +22,8 @@ public class Diary {
     // 개인 다이어리
     // 글 번호, 글 제목, 글 내용, 글 작성자(모든 정보), 글 작성일자
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diary_seq")
-    @SequenceGenerator(name = "diary_seq", sequenceName = "diary_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "diarySeq")
+    @SequenceGenerator(name = "diarySeq", sequenceName = "diarySeq", allocationSize = 1)
     private int dIdx;
 
     @Column(nullable = true, length = 300)
