@@ -22,12 +22,17 @@ public class DiaryController {
     @Autowired
     DiaryService diaryService;
 
+    public UserInfo userSession(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        return userInfo;
+    }
+
     // 글 쓰기
     @PostMapping("/diary")
     public void createDiary(@RequestBody Map<String, Object> diary, HttpServletRequest request) throws ParseException {
-        HttpSession session = request.getSession(false);
-        UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
-        System.out.println("김유리" + userInfo);
+        UserInfo userInfo = userSession(request);
+        System.out.println("user Info " + userInfo);
         diaryService.createDiary(diary, userInfo);
     }
 
@@ -35,9 +40,18 @@ public class DiaryController {
     @GetMapping("/diary")
     public List<Diary> ListDiary(HttpServletRequest request) throws ParseException {
         System.out.println("전체 글 리스트 불러오기 호출");
-        HttpSession session = request.getSession(false);
-        UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
+        UserInfo userInfo = userSession(request);
         List<Diary> list = new ArrayList<>();
         return list = diaryService.ListDiary(userInfo);
     }
+
+    // 글 읽기
+    @GetMapping("/diary/read")
+    public Diary ReadDiary(@RequestParam String dIdx, HttpServletRequest request) throws Exception {
+        int num = Integer.parseInt(dIdx);
+        UserInfo userInfo = userSession(request);
+        Diary diary = diaryService.ReadDiary(num, userInfo);
+        return diary;
+    }
+
 }

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserInfo, String> {
+
     @Query("select u from UserInfo u where u.uEmail like :uEmail")
     UserInfo findByuEmail(@Param(value = "uEmail") String uEmail);
 
@@ -17,4 +18,5 @@ public interface UserRepository extends JpaRepository<UserInfo, String> {
 
     @Query("select u from UserInfo u where u.uRandom like :uRandom")
     UserInfo checkUserCode(@Param(value = "uRandom") int num);
+
 }
