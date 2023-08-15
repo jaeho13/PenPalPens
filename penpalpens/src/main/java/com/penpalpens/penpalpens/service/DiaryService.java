@@ -24,7 +24,7 @@ public class DiaryService {
 
     public void createDiary(Map<String, Object> diary, UserInfo userInfo) {
         Diary d = new Diary();
-        System.out.println("user은??" + userInfo.getUEmail());
+        System.out.println("user은?? " + userInfo.getUEmail());
         String uEmail = (String) userInfo.getUEmail();
         UserInfo userVO = userRepository.findByuEmail(uEmail);
         System.out.println("========데려옴"+userVO);
@@ -46,5 +46,11 @@ public class DiaryService {
         System.out.println("전체 글 리스트"+list);
 
         return list;
+    }
+
+    public Diary ReadDiary(int didx, UserInfo userInfo) {
+        System.out.println("찾을 글 = "+ didx);
+        Diary diary = diaryRepository.findByDIdx(didx);
+        return diary;
     }
 }
