@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
+import axios from "axios";
 
 const DiaryRead = () => {
 
@@ -29,6 +30,25 @@ const DiaryRead = () => {
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
 
+
+    const { dIdx } = useParams(); // URL 매개변수에서 dIdx 가져오기
+    const [diary, setDiary] = useState({});
+
+    useEffect(() => {
+        const loadDiary = async () => {
+            try {
+                const response = await axios.get(`/diary/read?dIdx=${dIdx}`);
+                setDiary(response.data);
+                console.log("ㅇㅁㄴㅇㅁㄴㅇㄴㅁ", diary)
+            } catch (error) {
+                console.log("다이어리 정보 불러오기 실패", error);
+            }
+        };
+
+        loadDiary();
+    }, [dIdx]);
+
+
     return (
         <>
             <Background>
@@ -54,17 +74,19 @@ const DiaryRead = () => {
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
                 <DogImage src="/images/dog.png" alt="곰" />
 
-                <Peel>
-                    <Main>
-                        <DateBind>
-                            <Day>
-                                {formattedFull}
-                            </Day>
-                        </DateBind>
-                        <Title>제목</Title>
-                        <Board>글 내용</Board>
-                    </Main>
-                </Peel>
+                {diary && diary.ddate && (
+                    <Peel>
+                        <Main>
+                            <DateBind>
+                                <Day>{`${diary.ddate.slice(2, 4)}년 ${diary.ddate.slice(5, 7)}월 ${diary.ddate.slice(8, 10)}일`}</Day>
+                            </DateBind>
+                            <Title>{diary.dtitle}</Title>
+                            <Board>{diary.dcontent}</Board>
+                        </Main>
+                    </Peel>
+                )}
+
+
             </Background>
 
         </>
@@ -194,7 +216,7 @@ const Day = styled.div`
     width: 20%;
     height: 3rem;
     border-radius: 1rem;
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: #fdf6e4;
     margin-top: 1rem;
     display: flex;
@@ -216,8 +238,6 @@ const Title = styled.div`
     justify-content: center;
     background-color: #fdf6e4;
 `
-
-//너 이거 분명 후회한다 유리야 진짜로 내가 장담한다
 
 const Board = styled.div`
     width: 90%;

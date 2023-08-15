@@ -49,6 +49,11 @@ const DiaryWrite = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (!dTitle || !dContent) {
+            alert("제목과 내용을 모두 입력해주세요.");
+            return;
+        }
+
         axios({
             url: "/diary",
             method: "post",
