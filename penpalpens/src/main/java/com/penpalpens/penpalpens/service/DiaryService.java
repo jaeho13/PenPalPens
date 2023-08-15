@@ -53,4 +53,29 @@ public class DiaryService {
         Diary diary = diaryRepository.findByDIdx(didx);
         return diary;
     }
+
+    public Diary UpdateDiary(int num, UserInfo userInfo) {
+        System.out.println("찾을 글 = "+ num);
+        Diary diary = diaryRepository.findByDIdx(num);
+        return diary;
+    }
+
+    public void ModifyDiary(Map<String, Object> diary) {
+        int dIdx = Integer.parseInt((String) diary.get("dIdx"));
+        String dTitle = (String) diary.get("dTitle");
+        String dContent = (String) diary.get("dContent");
+
+        Diary updateDiary = diaryRepository.findByDIdx(dIdx);
+
+        updateDiary.setDTitle(dTitle);
+        updateDiary.setDContent(dContent);
+
+        diaryRepository.save(updateDiary);
+
+        System.out.println("업데이트 성공!!");
+    }
+
+    public void DeleteDiary(int num) {
+        diaryRepository.deleteByDIdx(num);
+    }
 }

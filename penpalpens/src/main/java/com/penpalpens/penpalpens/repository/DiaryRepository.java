@@ -16,4 +16,7 @@ public interface DiaryRepository extends JpaRepository<Diary, Integer> {
 
     @Query(value = "select * from Diary where d_Idx = :dIdx", nativeQuery = true)
     Diary findByDIdx(@Param(value = "dIdx") int dIdx);
+
+    @Query(value = "delete from Diary where d_Idx = :dIdx", nativeQuery = true)
+    void deleteByDIdx(@Param(value = "dIdx") int dIdx);
 }

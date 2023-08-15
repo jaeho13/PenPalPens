@@ -54,4 +54,24 @@ public class DiaryController {
         return diary;
     }
 
+
+    // 글 수정 불러오기
+    @GetMapping("/diary/update")
+    public Diary UpdateDiary(@RequestParam String dIdx, HttpServletRequest request) throws Exception {
+        int num = Integer.parseInt(dIdx);
+        UserInfo userInfo = userSession(request);
+        Diary diary = diaryService.UpdateDiary(num, userInfo);
+        return diary;
+    }
+
+    @PutMapping("/diary")
+    public void ModifyDiary(@RequestBody Map<String, Object> diary) throws ParseException {
+        diaryService.ModifyDiary(diary);
+    }
+
+    @DeleteMapping("/diary")
+    public void DeleteDiary(@RequestParam String dIdx, HttpServletRequest request) throws Exception {
+        int num = Integer.parseInt(dIdx);
+        diaryService.DeleteDiary(num);
+    }
 }
