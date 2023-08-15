@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface DiaryRepository extends JpaRepository<Diary, Integer> {
 
-    @Query("SELECT d FROM Diary d JOIN d.userInfoVO u WHERE u.uEmail = :uEmail")
+    @Query("SELECT d FROM Diary d JOIN d.userInfoVO u WHERE u.uEmail = :uEmail ORDER BY d.dDate DESC")
     List<Diary> findMyDiary(@Param("uEmail") String uEmail);
 
 
