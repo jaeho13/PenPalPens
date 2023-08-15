@@ -111,12 +111,10 @@ const DiaryFix = () => {
                         <Title
                             value={title}
                             onChange={handleTitleChange}
-                            placeholder="제목을 입력하세요" // 예시로 placeholder 추가
                         />
                         <Board
                             value={board}
                             onChange={handleBoardChange}
-                            placeholder="내용을 입력하세요" // 예시로 placeholder 추가
                         />
                         <ButtonBind>
                             <Upload onClick={handleUpdateDiary}>수정하기</Upload>
