@@ -134,8 +134,6 @@ const Diary = () => {
                             </DailyDateExam>
                             <DailyTitleExam>제목</DailyTitleExam>
                             <DailyChange>
-                                {/* <FixExam>수정</FixExam>
-                                <DeleteExam>삭제</DeleteExam> */}
                             </DailyChange>
                         </DiaryList>
 
@@ -382,11 +380,13 @@ const DailyTitle = styled.div`
     border: 2px dashed #3e5af5;
     border-top: 0;
     border-bottom: 0;
-    /* border-right: 0; */
     padding-left: 1rem;
     font-size: 2rem;
     display: flex;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     cursor: pointer;
 `
 
