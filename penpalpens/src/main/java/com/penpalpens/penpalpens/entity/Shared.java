@@ -24,7 +24,7 @@ public class Shared {
     private int sIdx;
 
     @Column(nullable = false, length = 3000)
-    private String qContent;
+    private String aContent;
 
     @Column(nullable = false, length = 3000)
     private String sContent;

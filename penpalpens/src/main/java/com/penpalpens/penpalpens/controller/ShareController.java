@@ -69,6 +69,7 @@ public class ShareController {
     @PostMapping("/share")
     public void shareWrite(@RequestBody Map<String, Object>share, HttpServletRequest request) throws ParseException{
         UserInfo userInfo = userSession(request);
+        System.out.println("일기 호출"+share);
         Map<String, Object> map = new HashMap<>();
         shareService.shareWrite(share, userInfo);
     }

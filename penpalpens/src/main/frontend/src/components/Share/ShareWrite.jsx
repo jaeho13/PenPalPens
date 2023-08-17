@@ -32,7 +32,7 @@ const ShareWrite = () => {
     // const [sAnswer, setSAnswer] = useState("");
     // const [sComment, setSComment] = useState("");
     // const [sDate, setSDate] = useState("");
-    const [qContent, setQContent] = useState("");
+    const [aContent, setAContent] = useState("");
     const [sContent, setSContent] = useState("");
 
     // const handleAnswerChange = (e) => {
@@ -47,8 +47,8 @@ const ShareWrite = () => {
     //     setSDate(e.target.value);
     // };
 
-    const handleQContentChange = (e) => {
-        setQContent(e.target.value);
+    const handleAContentChange = (e) => {
+        setAContent(e.target.value);
     };
 
     const handleSContentChange = (e) => {
@@ -59,7 +59,7 @@ const ShareWrite = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!qContent || !sContent) {
+        if (!aContent || !sContent) {
             alert("대답과 한 마디 모두 입력해주세요.");
             return;
         }
@@ -68,7 +68,7 @@ const ShareWrite = () => {
             url: "/share",
             method: "post",
             data: {
-                qContent,
+                aContent,
                 sContent,
             },
         })
@@ -131,8 +131,8 @@ const ShareWrite = () => {
                                 <TopicAnswer
                                     type="text"
                                     placeholder="*내용"
-                                    onChange={handleQContentChange}
-                                    value={qContent}
+                                    onChange={handleAContentChange}
+                                    value={aContent}
                                 />
                                 <TopicAnswer
                                     type="text"
