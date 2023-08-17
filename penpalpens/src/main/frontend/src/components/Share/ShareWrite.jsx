@@ -29,27 +29,38 @@ const ShareWrite = () => {
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
 
-    const [sAnswer, setSAnswer] = useState("");
-    const [sComment, setSComment] = useState("");
-    const [sDate, setSDate] = useState("");
+    // const [sAnswer, setSAnswer] = useState("");
+    // const [sComment, setSComment] = useState("");
+    // const [sDate, setSDate] = useState("");
+    const [qContent, setQContent] = useState("");
+    const [sContent, setSContent] = useState("");
 
-    const handleAnswerChange = (e) => {
-        setSAnswer(e.target.value);
+    // const handleAnswerChange = (e) => {
+    //     setSAnswer(e.target.value);
+    // };
+
+    // const handleCommentChange = (e) => {
+    //     setSComment(e.target.value);
+    // };
+
+    // const handleDateChange = (e) => {
+    //     setSDate(e.target.value);
+    // };
+
+    const handleQContentChange = (e) => {
+        setQContent(e.target.value);
     };
 
-    const handleCommentChange = (e) => {
-        setSComment(e.target.value);
+    const handleSContentChange = (e) => {
+        setSContent(e.target.value);
     };
 
-    const handleDateChange = (e) => {
-        setSDate(e.target.value);
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!setSAnswer || !setSComment) {
-            alert("제목과 내용을 모두 입력해주세요.");
+        if (!qContent || !sContent) {
+            alert("대답과 한 마디 모두 입력해주세요.");
             return;
         }
 
@@ -57,9 +68,8 @@ const ShareWrite = () => {
             url: "/share",
             method: "post",
             data: {
-                sAnswer,
-                sComment,
-                sDate,
+                qContent,
+                sContent,
             },
         })
             .then((response) => {
@@ -96,45 +106,51 @@ const ShareWrite = () => {
 
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
                 <DogImage src="/images/dog.png" alt="곰" />
+
                 <Question>오늘의 질문 : </Question>
+
                 <Peel>
                     <Main>
-                        <DateBind>
-                            <Cancle onClick={goshare} >취소하기</Cancle>
-                            <Day>
-                                {formattedFull}
-                            </Day>
-                            <Upload onClick={goshare} >글올리기</Upload>
-                        </DateBind>
-
-                        <TopicBind>
-                            <Topic>오늘의 대답</Topic>
-                            <Topic>오늘의 한 마디</Topic>
-                        </TopicBind>
 
                         <form onSubmit={handleSubmit}>
+
+                            <DateBind>
+                                <Cancle onClick={goshare} >취소하기</Cancle>
+                                <Day>
+                                    {formattedFull}
+                                </Day>
+                                <Upload type="button" onClick={handleSubmit}>글올리기</Upload>
+                            </DateBind>
+
+                            <TopicBind>
+                                <Topic>오늘의 대답</Topic>
+                                <Topic>오늘의 한 마디</Topic>
+                            </TopicBind>
+
                             <TopicAnswerBind>
                                 <TopicAnswer
                                     type="text"
                                     placeholder="*내용"
-                                    onChange={handleAnswerChange}
-                                    value={sAnswer}
+                                    onChange={handleQContentChange}
+                                    value={qContent}
                                 />
                                 <TopicAnswer
                                     type="text"
                                     placeholder="*내용"
-                                    onChange={handleCommentChange}
-                                    value={sComment}
+                                    onChange={handleSContentChange}
+                                    value={sContent}
                                 />
                             </TopicAnswerBind>
-                        </form>
 
+                        </form>
                     </Main>
                 </Peel>
+
                 <Leg></Leg>
                 <Leg1></Leg1>
                 <Leg2></Leg2>
                 <Leg3></Leg3>
+
             </Background>
         </>
     );
