@@ -23,8 +23,8 @@ public class Shared {
     @SequenceGenerator(name = "share_seq", sequenceName = "share_seq", allocationSize = 1)
     private int sIdx;
 
-    @Column(nullable = false, length = 300)
-    private String sTitle;
+    @Column(nullable = false, length = 3000)
+    private String qContent;
 
     @Column(nullable = false, length = 3000)
     private String sContent;

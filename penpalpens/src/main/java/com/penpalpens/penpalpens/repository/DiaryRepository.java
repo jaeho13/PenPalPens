@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface DiaryRepository extends JpaRepository<Diary, Integer> {
 
     @Query(value = "SELECT * FROM Diary WHERE u_Email = :uEmail ORDER BY d_Date DESC", nativeQuery = true)

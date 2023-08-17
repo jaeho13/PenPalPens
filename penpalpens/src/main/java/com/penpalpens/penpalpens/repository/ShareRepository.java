@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public interface ShareRepository extends JpaRepository<UserInfo, String> {
+public interface ShareRepository extends JpaRepository<Shared, String> {
 
     @Query(value = "SELECT * FROM Shared WHERE u_Random = :uRandom ORDER BY s_Date DESC", nativeQuery = true)
     List<Shared> findByShareDiary(@Param("uRandom") int uRandom);
