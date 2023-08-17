@@ -107,12 +107,12 @@ public class ShareService {
         Shared s = new Shared();
         UserInfo userVO = userRepository.findByuEmail(userInfo.getUEmail());
         System.out.println(userVO+"일기 추가");
-        String qContent = (String)share.get("qContent");
+        String aContent = (String)share.get("aContent");
         String sContent = (String)share.get("sContent");
 
         Question q = questionRepository.findByqIdx(1);
 
-        s.setQContent(qContent);
+        s.setAContent(aContent);
         s.setSContent(sContent);
         s.setUserInfoVO(userVO);
         s.setSDate(LocalDateTime.now());
