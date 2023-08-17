@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
+import axios from "axios";
 
 const Share = () => {
 
@@ -31,6 +32,43 @@ const Share = () => {
     const formattedFull = `${formattedYear}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
+
+    const onDelete = async (sidx) => {
+        if (window.confirm("정말 삭제하시겠습니까??")) {
+            try {
+                await axios.delete(`/share?sIdx=${sidx}`);
+                alert("삭제되었습니다.");
+                const response = await axios.get("/share");
+                setShareList(response.data);
+            } catch (error) {
+                console.log("삭제 실패", error);
+            }
+        } else {
+            alert("취소되었습니다.");
+        }
+    };
+
+    const [shareList, setShareList] = useState([]);
+
+    useEffect(() => {
+        const load = async () => {
+            try {
+                const response = await axios.get("/share");
+                setShareList(response.data);
+                console.log("리스트 불러오기 성공")
+            } catch (error) {
+
+                console.log("리스트 불러오기 실패")
+            }
+        };
+
+        load();
+    }, []);
+
+    const handleShareClick = (sIdx) => {
+        navigate(`/share/read${sIdx}`); //sIdx에 해당하는 다이어리 읽기 페이지로 이동
+    };
+
 
     return (
         <>
@@ -71,18 +109,37 @@ const Share = () => {
                         </DateBind>
 
                         <DiaryList>
+
                             <DailyDateExam>
                                 날짜
                             </DailyDateExam>
+
                             <DailyTitleExam>
                                 제목
                             </DailyTitleExam>
+
                             <DailyChangeExam>
                                 닉네임
                             </DailyChangeExam>
+
                         </DiaryList>
 
-                        <DiaryList>
+                        {shareList.length > 0 && shareList.map((item, index) => {
+                            const dDate = new Date(item.dDate);
+                            const year = dDate.getFullYear().toString().slice(-2);
+                            const month = dDate.getMonth() + 1;
+                            const date = dDate.getDate();
+
+                            return (
+                                <DiaryList ket={item.sidx}>
+                                    <DailyDate>{`${year}년 ${month}월 ${date}일`}</DailyDate>
+                                    {/* <DailyTitle onClick={() => handleShareClick(item.sidx)}>{item.}</DailyTitle> */} //오늘의질문 주소값
+                                    <DailyChange>ㅇㅁㄴㅇㅁㄴ</DailyChange>
+
+                                </DiaryList>
+                            );
+                        })}
+                        {/* <DiaryList>
                             <DailyDate>
                                 {formattedDate}
                             </DailyDate>
@@ -100,7 +157,7 @@ const Share = () => {
                             <DailyChange>
                                 훈이
                             </DailyChange>
-                        </DiaryList>
+                        </DiaryList> */}
 
                     </Main>
                 </Peel>

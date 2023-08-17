@@ -129,12 +129,19 @@ const Diary = () => {
                         </DateBind>
 
                         <DiaryList>
+
                             <DailyDateExam>
                                 날짜
                             </DailyDateExam>
-                            <DailyTitleExam>제목</DailyTitleExam>
+
+                            <DailyTitleExam>
+                                제목
+                            </DailyTitleExam>
+
                             <DailyChange>
+
                             </DailyChange>
+
                         </DiaryList>
 
                         {diaryList.length > 0 && diaryList.map((item, index) => {
