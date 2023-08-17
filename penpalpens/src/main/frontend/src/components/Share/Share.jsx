@@ -86,11 +86,22 @@ const Share = () => {
                             <DailyDate>
                                 {formattedDate}
                             </DailyDate>
-                            <DailyTitle onClick={goRead}>제목</DailyTitle>
+                            <DailyTitle onClick={goRead}>오늘 점심은?</DailyTitle>
                             <DailyChange>
-                                닉네임
+                                김유리
                             </DailyChange>
                         </DiaryList>
+
+                        <DiaryList>
+                            <DailyDate>
+                                {formattedDate}
+                            </DailyDate>
+                            <DailyTitle onClick={goRead}>오늘 점심은?</DailyTitle>
+                            <DailyChange>
+                                훈이
+                            </DailyChange>
+                        </DiaryList>
+
                     </Main>
                 </Peel>
             </Background>
