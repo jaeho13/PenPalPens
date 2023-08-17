@@ -122,4 +122,8 @@ public class ShareService {
         System.out.println(s+"저장완료");
 
     }
+
+    public void shareDelete(int num) {
+        shareRepository.deleteById(num);
+    }
 }

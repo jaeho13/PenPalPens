@@ -73,4 +73,11 @@ public class ShareController {
         Map<String, Object> map = new HashMap<>();
         shareService.shareWrite(share, userInfo);
     }
+
+    //삭제
+    @DeleteMapping("/share")
+    public void shareDelete(@RequestParam String sIdx) throws ParseException{
+        int num = Integer.parseInt(sIdx);
+        shareService.shareDelete(num);
+    }
 }
