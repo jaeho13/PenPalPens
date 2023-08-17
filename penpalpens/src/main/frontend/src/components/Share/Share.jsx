@@ -71,15 +71,26 @@ const Share = () => {
                         </DateBind>
 
                         <DiaryList>
+                            <DailyDateExam>
+                                날짜
+                            </DailyDateExam>
+                            <DailyTitleExam>
+                                제목
+                            </DailyTitleExam>
+                            <DailyChangeExam>
+                                닉네임
+                            </DailyChangeExam>
+                        </DiaryList>
+
+                        <DiaryList>
                             <DailyDate>
                                 {formattedDate}
                             </DailyDate>
                             <DailyTitle onClick={goRead}>제목</DailyTitle>
                             <DailyChange>
-                                작성자 이름
+                                닉네임
                             </DailyChange>
                         </DiaryList>
-
                     </Main>
                 </Peel>
             </Background>
@@ -210,6 +221,8 @@ const Main = styled.div`
     margin: 0 auto;
     margin-top: 1rem;
     background-color: #fdf6e4;
+    overflow: auto; /* 스크롤 추가 */
+    overflow-x: hidden; /* 가로 스크롤 제거 */
 `
 
 const DateBind = styled.div`
@@ -259,11 +272,24 @@ const DiaryList = styled.div`
     border: 2px solid #3e5af5;
     border-radius: 1rem;
     margin: 0 auto;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
+    margin-bottom: 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+`
+
+const DailyDateExam = styled.div`
+    width: 20%;
+    height: 3rem;
+    border-radius: 1rem;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #797979;
+    /* background-color: #595959; */
 `
 
 const DailyDate = styled.div`
@@ -275,6 +301,20 @@ const DailyDate = styled.div`
     justify-content: center;
     align-items: center;
     /* background-color: #595959; */
+`
+
+const DailyTitleExam = styled.div`
+    width: 60%;
+    height: 3rem;
+    border: 2px dashed #3e5af5;
+    border-top: 0;
+    border-bottom: 0;
+    padding-left: 1rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #797979;
 `
 
 const DailyTitle = styled.div`
@@ -290,10 +330,24 @@ const DailyTitle = styled.div`
     cursor: pointer;
 `
 
+const DailyChangeExam = styled.div`
+    width: 20%;
+    height: 3rem;
+    border-radius: 3rem;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #797979;
+`
+
+
 const DailyChange = styled.div`
     width: 20%;
     height: 3rem;
     border-radius: 3rem;
+    font-size: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;

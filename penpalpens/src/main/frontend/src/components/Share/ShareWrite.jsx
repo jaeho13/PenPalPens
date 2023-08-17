@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
+import axios from "axios";
 
 const ShareWrite = () => {
 
@@ -27,6 +28,49 @@ const ShareWrite = () => {
     const formattedFull = `${formattedYear}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
+
+    const [sAnswer, setSAnswer] = useState("");
+    const [sComment, setSComment] = useState("");
+    const [sDate, setSDate] = useState("");
+
+    const handleAnswerChange = (e) => {
+        setSAnswer(e.target.value);
+    };
+
+    const handleCommentChange = (e) => {
+        setSComment(e.target.value);
+    };
+
+    const handleDateChange = (e) => {
+        setSDate(e.target.value);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!setSAnswer || !setSComment) {
+            alert("제목과 내용을 모두 입력해주세요.");
+            return;
+        }
+
+        axios({
+            url: "/share",
+            method: "post",
+            data: {
+                sAnswer,
+                sComment,
+                sDate,
+            },
+        })
+            .then((response) => {
+                console.log(response);
+                navigate("/share");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
 
     return (
         <>
@@ -62,14 +106,29 @@ const ShareWrite = () => {
                             </Day>
                             <Upload onClick={goshare} >글올리기</Upload>
                         </DateBind>
+
                         <TopicBind>
                             <Topic>오늘의 대답</Topic>
                             <Topic>오늘의 한 마디</Topic>
                         </TopicBind>
-                        <TopicAnswerBind>
-                            <TopicAnswer />
-                            <TopicAnswer />
-                        </TopicAnswerBind>
+
+                        <form onSubmit={handleSubmit}>
+                            <TopicAnswerBind>
+                                <TopicAnswer
+                                    type="text"
+                                    placeholder="*내용"
+                                    onChange={handleAnswerChange}
+                                    value={sAnswer}
+                                />
+                                <TopicAnswer
+                                    type="text"
+                                    placeholder="*내용"
+                                    onChange={handleCommentChange}
+                                    value={sComment}
+                                />
+                            </TopicAnswerBind>
+                        </form>
+
                     </Main>
                 </Peel>
                 <Leg></Leg>

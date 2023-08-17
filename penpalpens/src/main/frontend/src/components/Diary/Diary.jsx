@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
 import axios from "axios";
+
+const moveUpDown = keyframes`
+  0%, 100% {
+    transform: translateY(2rem);
+  }
+  50% {
+    transform: translateY(5rem);
+  }
+`
 
 const Diary = () => {
 
@@ -125,8 +134,6 @@ const Diary = () => {
                             </DailyDateExam>
                             <DailyTitleExam>제목</DailyTitleExam>
                             <DailyChange>
-                                {/* <FixExam>수정</FixExam>
-                                <DeleteExam>삭제</DeleteExam> */}
                             </DailyChange>
                         </DiaryList>
 
@@ -239,6 +246,8 @@ const DogImage = styled.img`
     height: 35rem;
     position: absolute;
     top: 40%;
+    animation: ${moveUpDown} 3s infinite ease-in-out alternate; /* Apply animation */
+
 `
 
 const RabbitImage = styled.img`
@@ -246,6 +255,8 @@ const RabbitImage = styled.img`
     height: 35rem;
     position: absolute;
     top: 15%; left: 74%;
+    animation: ${moveUpDown} 3s infinite ease-in-out alternate; /* Apply animation */
+
 `
 
 const Peel = styled.div`
@@ -369,11 +380,13 @@ const DailyTitle = styled.div`
     border: 2px dashed #3e5af5;
     border-top: 0;
     border-bottom: 0;
-    /* border-right: 0; */
     padding-left: 1rem;
     font-size: 2rem;
     display: flex;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     cursor: pointer;
 `
 
