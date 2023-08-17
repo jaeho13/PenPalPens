@@ -1,12 +1,15 @@
 package com.penpalpens.penpalpens.service;
 
+import com.penpalpens.penpalpens.entity.Question;
 import com.penpalpens.penpalpens.entity.Shared;
 import com.penpalpens.penpalpens.entity.UserInfo;
+import com.penpalpens.penpalpens.repository.QuestionRepository;
 import com.penpalpens.penpalpens.repository.ShareRepository;
 import com.penpalpens.penpalpens.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -17,6 +20,9 @@ public class ShareService {
 
     @Autowired
     ShareRepository shareRepository;
+
+    @Autowired
+    QuestionRepository questionRepository;
 
     public Map<String, Object> makeCode(UserInfo userInfo) {
         Random random = new Random();
@@ -90,9 +96,30 @@ public class ShareService {
         int num = userInfo.getURandom();
         List<Shared> list = shareRepository.findByShareDiary(num);
 
+        //int n = shareRepository.countQidx();
         map.put("List", list);
         map.put("question", "뉴진스 좋아하세요? 유진수씨요?");
 
         return map;
+    }
+
+    public void shareWrite(Map<String, Object> share, UserInfo userInfo) {
+        Shared s = new Shared();
+        UserInfo userVO = userRepository.findByuEmail(userInfo.getUEmail());
+        System.out.println(userVO+"일기 추가");
+        String qContent = (String)share.get("qContent");
+        String sContent = (String)share.get("sContent");
+
+        Question q = questionRepository.findByqIdx(1);
+
+        s.setQContent(qContent);
+        s.setSContent(sContent);
+        s.setUserInfoVO(userVO);
+        s.setSDate(LocalDateTime.now());
+        s.setQuestionVO(q);
+
+        shareRepository.save(s);
+        System.out.println(s+"저장완료");
+
     }
 }

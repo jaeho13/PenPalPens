@@ -7,13 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,12 +58,18 @@ public class ShareController {
         return link;
     }
 
-    @GetMapping("share")
+    @GetMapping("/share")
     public Map<String, Object> shareList(HttpServletRequest request) throws Exception {
         UserInfo userInfo = userSession(request);
         Map<String, Object> map = new HashMap<>();
 
         map = shareService.shareList(userInfo);
         return map;
+    }
+    @PostMapping("/share")
+    public void shareWrite(@RequestBody Map<String, Object>share, HttpServletRequest request) throws ParseException{
+        UserInfo userInfo = userSession(request);
+        Map<String, Object> map = new HashMap<>();
+        shareService.shareWrite(share, userInfo);
     }
 }

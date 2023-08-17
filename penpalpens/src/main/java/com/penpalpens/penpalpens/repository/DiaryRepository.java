@@ -8,10 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface DiaryRepository extends JpaRepository<Diary, Integer> {
 
-    @Query(value = "SELECT d FROM Diary d JOIN d.userInfoVO u WHERE u.uEmail = :uEmail ORDER BY d.dDate DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM Diary WHERE u_Email = :uEmail ORDER BY d_Date DESC", nativeQuery = true)
     List<Diary> findMyDiary(@Param("uEmail") String uEmail);
 
     @Query(value = "select * from Diary where d_Idx = :dIdx", nativeQuery = true)
