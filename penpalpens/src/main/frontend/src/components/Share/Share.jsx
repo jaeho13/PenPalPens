@@ -49,16 +49,18 @@ const Share = () => {
     };
 
     const [shareList, setShareList] = useState([]);
+    const [question, setQuestion] = useState("");
 
     useEffect(() => {
         const load = async () => {
             try {
                 const response = await axios.get("/share");
-                setShareList(response.data);
-                console.log("리스트 불러오기 성공")
-            } catch (error) {
+                setShareList(response.data.shareDiary);
+                setQuestion(response.data.question);
 
-                console.log("리스트 불러오기 실패")
+                console.log("리스트 불러오기 성공");
+            } catch (error) {
+                console.log("리스트 불러오기 실패", error);
             }
         };
 
@@ -71,8 +73,13 @@ const Share = () => {
 
     // 교환 (`/share/read${sIdx}`)
     // 교환 리드 (`/shareMy?sIdx=${sIdx}`)
+    // <Route path="/share/read:sIdx" element={<ShareRead />} />
+
+
     // 다이어리 (`/diary/read/${dIdx}`)
     // 다이어리 리드 (`/diary/read?dIdx=${dIdx}`);
+    // <Route path="/diary/read/:dIdx" element={<DiaryRead />} />
+
     return (
         <>
             <Background>
@@ -96,7 +103,7 @@ const Share = () => {
                     </HeaderBind>
                 </Header>
 
-                <Question>오늘의 질문 : </Question>
+                <Question>오늘의 질문 : {question}</Question>
 
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
                 <DogImage src="/images/dog.png" alt="곰" />
@@ -128,13 +135,13 @@ const Share = () => {
                         </DiaryList>
 
                         {shareList.length > 0 && shareList.map((item, index) => {
-                            const dDate = new Date(item.sDate);
-                            const year = dDate.getFullYear().toString().slice(-2);
-                            const month = dDate.getMonth() + 1;
-                            const date = dDate.getDate();
+                            const sDate = new Date(item.sdate);
+                            const year = sDate.getFullYear().toString().slice(-2);
+                            const month = sDate.getMonth() + 1;
+                            const date = sDate.getDate();
 
                             return (
-                                <DiaryList ket={item.sidx}>
+                                <DiaryList key={item.sidx}>
                                     <DailyDate>{`${year}년 ${month}월 ${date}일`}</DailyDate>
                                     <DailyTitle onClick={() => handleShareClick(item.sidx)}>{item.uquestion}</DailyTitle>
                                     <DailyChange>{item.userInfoVO.unick}</DailyChange>

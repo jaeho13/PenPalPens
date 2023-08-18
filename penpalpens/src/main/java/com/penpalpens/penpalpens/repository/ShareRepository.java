@@ -17,6 +17,6 @@ public interface ShareRepository extends JpaRepository<Shared, Integer> {
     @Query(value = "SELECT * FROM Shared WHERE we_Random = :weRandom ORDER BY s_Date DESC", nativeQuery = true)
     List<Shared> findByShareDiary(@Param(value = "weRandom") int weRandom);
 
-    @Query(value = "SELECT * FROM Shared WHERE sIdx = :sIdx", nativeQuery = true)
+    @Query(value = "SELECT * FROM Shared WHERE s_Idx = :sIdx", nativeQuery = true)
     Shared findByMyDiary(@Param(value = "sIdx") int sIdx);
 }
