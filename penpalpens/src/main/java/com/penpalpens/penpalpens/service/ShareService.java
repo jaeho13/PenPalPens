@@ -91,39 +91,92 @@ public class ShareService {
         return 0;
     }
 
-    public Map<String, Object> shareList(UserInfo userInfo) {
-        Map<String, Object> map = new HashMap<>();
-        int num = userInfo.getURandom();
-        List<Shared> list = shareRepository.findByShareDiary(num);
+    public List<Shared> shareList(UserInfo userInfo) {
+        System.out.println("글 리스트 호출");
+        // 글 검색하기
+        int uRandom = userInfo.getURandom();
+        System.out.println("uRandom" + uRandom);
+        String uEmail = userInfo.getUEmail();
+        List<Shared> list = shareRepository.findByShareDiary(uRandom);
 
-        //int n = shareRepository.countQidx();
-        map.put("List", list);
-        map.put("question", "뉴진스 좋아하세요? 유진수씨요?");
-
-        return map;
+        System.out.println("일기 가져오기 성공" + list);
+        return list;
     }
 
     public void shareWrite(Map<String, Object> share, UserInfo userInfo) {
         Shared s = new Shared();
+
         UserInfo userVO = userRepository.findByuEmail(userInfo.getUEmail());
+        UserInfo linkUser = new UserInfo();
+
         System.out.println(userVO+"일기 추가");
         String aContent = (String)share.get("aContent");
         String sContent = (String)share.get("sContent");
 
-        Question q = questionRepository.findByqIdx(1);
+        int num = userInfo.getURandom();
+        String user = userInfo.getUEmail();
 
         s.setAContent(aContent);
         s.setSContent(sContent);
         s.setUserInfoVO(userVO);
+        s.setWeRandom(num);
+
+        int qIdx = userInfo.getMyQIdx();
+        System.out.println("----1");
+        Question question = questionRepository.findByqIdx(qIdx);
+        System.out.println("====2");
+        String q = question.getQContent();
+        System.out.println("질문내용 : "+ q);
+        s.setUQuestion(q);
+
         s.setSDate(LocalDateTime.now());
-        s.setQuestionVO(q);
+
+        //질문에 대답 했다 > 1로 수정
+        userVO.setUStatus(1);
+
+
+        String linkEmail = userRepository.findLinkUser(num, user);
+        linkUser = userRepository.findByuEmail(linkEmail);
+        System.out.println("링크유저 " + linkUser);
+
+        if(userInfo.getUStatus() == 1 && linkUser.getUStatus() == 1){
+            //상태변화
+            userInfo.setUStatus(0);
+            linkUser.setUStatus(0);
+            //qIdx변화
+            userInfo.setMyQIdx(userInfo.getMyQIdx()+1);
+            linkUser.setMyQIdx(linkUser.getMyQIdx()+1);
+            userRepository.save(linkUser);
+        }
 
         shareRepository.save(s);
+        userRepository.save(userVO);
+
         System.out.println(s+"저장완료");
 
     }
 
     public void shareDelete(int num) {
         shareRepository.deleteById(num);
+    }
+
+    public Shared shareMyDiary(int num) {
+        Shared s = shareRepository.findByMyDiary(num);
+
+        return s;
+    }
+
+    public void ModifyShareDiary(Map<String, Object> share) {
+        int sIdx = Integer.parseInt((String) share.get("sIdx"));
+        String sContent = (String) share.get("sContent");
+        String aContent = (String) share.get("aContent");
+
+        Shared updateShare = shareRepository.findByMyDiary(sIdx);
+
+        System.out.println(updateShare+"수정 글 가져오기");
+        updateShare.setSContent(sContent);
+        updateShare.setAContent(aContent);
+        shareRepository.save(updateShare);
+        System.out.println("업데이트 성공!!");
     }
 }

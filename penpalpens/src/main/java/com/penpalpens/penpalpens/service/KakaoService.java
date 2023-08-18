@@ -3,6 +3,7 @@ package com.penpalpens.penpalpens.service;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.penpalpens.penpalpens.entity.Question;
 import com.penpalpens.penpalpens.entity.UserInfo;
 import com.penpalpens.penpalpens.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,6 +125,8 @@ public class KakaoService {
                 userInfo.setUNick(nick);
                 userInfo.setULink(0);
                 userInfo.setURandom(0);
+                userInfo.setUStatus(0);
+                userInfo.setMyQIdx(1);
 
                 userRepository.save(userInfo);
 
