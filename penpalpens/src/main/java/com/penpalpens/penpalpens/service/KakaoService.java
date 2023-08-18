@@ -112,7 +112,6 @@ public class KakaoService {
             String email = kakao_account.getAsJsonObject().get("email").getAsString();
             String nick = properties.getAsJsonObject().get("nickname").getAsString();
 
-
             userInfo = userRepository.findByuEmail(email);
 
             if (userInfo == null) {
@@ -133,11 +132,10 @@ public class KakaoService {
                 return userInfo;
             }
 
-
             userInfo.setUEmail(email);
             userInfo.setUNick(nick);
 
-            System.out.println("유저정보 "+ userInfo);
+            System.out.println("유저정보 " + userInfo);
 
         } catch (Exception e) {
             e.printStackTrace();

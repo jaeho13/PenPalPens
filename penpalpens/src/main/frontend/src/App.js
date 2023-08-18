@@ -38,6 +38,7 @@ const App = () => {
           <Route path="/kakaoinfo" element={<KakaoInfo />} />
           <Route path="/diary/read/:dIdx" element={<DiaryRead />} />
           <Route path="/diary/update/:dIdx" element={<DiaryFix />} />
+          <Route path="/share/read/:sIdx" element={<ShareRead />} />
 
         </Routes>
       </Router>
