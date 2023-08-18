@@ -39,11 +39,11 @@ const ShareFix = () => {
     const [sContent, setSContent] = useState("");
 
     const handleAnswerChange = (e) => {
-        setAContent(e.target.value); //입력 값으로 답변 수정
+        setAContent(e.target.value);
     };
 
     const handleContentChange = (e) => {
-        setSContent(e.target.value); //입력 값으로 내용 수정
+        setSContent(e.target.value);
     };
 
     useEffect(() => {
@@ -51,8 +51,8 @@ const ShareFix = () => {
             try {
                 const response = await axios.get(`/shareMy?sIdx=${sIdx}`);
                 setShare(response.data);
-                setAContent(response.data.aContent || "");
-                setSContent(response.data.sContent || "");
+                setAContent(response.data.acontent || "");
+                setSContent(response.data.scontent || "");
                 console.log("다이어리 정보 불러오기 성공", share);
             } catch (error) {
                 console.log("다이어리 정보 불러오기 실패", error);
@@ -67,15 +67,21 @@ const ShareFix = () => {
     const handleUpdateShare = async () => {
         try {
             await axios.put(`/share`, {
+                sIdx: sIdx,
                 aContent: aContent,
                 sContent: sContent,
             });
             console.log("다이어리 수정 완료");
-            goshareRead();
+            handleShareClick();
         } catch (error) {
             console.log("다이어리 수정 실패", error);
         }
     };
+
+    const handleShareClick = () => {
+        navigate(`/share/read/${sIdx}`); //sIdx에 해당하는 다이어리 읽기 페이지로 이동
+    };
+
 
     return (
         <>
@@ -84,7 +90,7 @@ const ShareFix = () => {
                 <Header>
                     <HeaderBind>
                         <Back>
-                            <BackImage onClick={gosharewrite}>
+                            <BackImage onClick={goshare}>
                                 <MdKeyboardDoubleArrowLeft />
                             </BackImage>
                         </Back>
@@ -101,7 +107,7 @@ const ShareFix = () => {
 
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
                 <DogImage src="/images/dog.png" alt="곰" />
-                <Question>오늘의 질문 : </Question>
+                <Question>오늘의 질문 : {share && share.uquestion}</Question>
                 <Peel>
                     <Main>
                         <DateBind>
@@ -116,12 +122,13 @@ const ShareFix = () => {
                             <Topic>오늘의 한 마디</Topic>
                         </TopicBind>
                         <TopicAnswerBind>
+
                             <TopicAnswer
-                                value={share && share.acontent}
+                                value={aContent}
                                 onChange={handleAnswerChange}
                             />
                             <TopicAnswer
-                                value={share && share.scontent}
+                                value={sContent}
                                 onChange={handleContentChange}
                             />
 
