@@ -23,7 +23,6 @@ import java.util.Map;
 @CrossOrigin(origins = "*")
 public class ShareController {
 
-
     public UserInfo userSession(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         UserInfo userInfo = (UserInfo) session.getAttribute("userInfo");
@@ -51,7 +50,7 @@ public class ShareController {
         return bool;
     }
 
-    @GetMapping("/share/sendCode") //교환일기 연결하기
+    @GetMapping("/share/sendCode") // 교환일기 연결하기
     public int sendCode(@RequestParam String code, HttpServletRequest request) throws Exception {
         int num = Integer.parseInt(String.valueOf(code));
         UserInfo userInfo = userSession(request);
@@ -69,32 +68,32 @@ public class ShareController {
     }
 
     @PostMapping("/share")
-    public void shareWrite(@RequestBody Map<String, Object>share, HttpServletRequest request) throws ParseException{
+    public void shareWrite(@RequestBody Map<String, Object> share, HttpServletRequest request) throws ParseException {
         UserInfo userInfo = userSession(request);
-        System.out.println("일기 호출"+share);
+        System.out.println("일기 호출" + share);
         Map<String, Object> map = new HashMap<>();
         shareService.shareWrite(share, userInfo);
     }
 
-    //삭제
+    // 삭제
     @DeleteMapping("/share")
-    public void shareDelete(@RequestParam String sIdx) throws ParseException{
+    public void shareDelete(@RequestParam String sIdx) throws ParseException {
         int num = Integer.parseInt(sIdx);
         shareService.shareDelete(num);
     }
 
-    //읽기와 수정 - 불러오기
+    // 읽기와 수정 - 불러오기
     @GetMapping("/shareMy")
     public Shared shareMyDiary(@RequestParam String sIdx) throws ParseException{
         System.out.println("이재호 글 왓을까");
         int num = Integer.parseInt(sIdx);
         Shared myDiary = shareService.shareMyDiary(num);
 
-        return myDiary;
     }
-    //수정 - 처리성공
+
+    // 수정 - 처리성공
     @PutMapping("/share")
-    public void ModifyMyDiary(@RequestBody Map<String, Object> share) throws ParseException{
+    public void ModifyMyDiary(@RequestBody Map<String, Object> share) throws ParseException {
         shareService.ModifyShareDiary(share);
     }
 }

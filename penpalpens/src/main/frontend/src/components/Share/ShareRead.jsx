@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
+import axios from "axios";
 
 const ShareRead = () => {
 
@@ -32,6 +33,25 @@ const ShareRead = () => {
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
 
+
+    const { sIdx } = useParams(); // URL 매개변수에서 sIdx 가져오기
+    const [share, setShare] = useState({});
+
+    useEffect(() => {
+        const loadShareDiary = async () => {
+            try {
+                console.log("dasdsad", sIdx)
+                const response = await axios.get(`/shareMy?sIdx=${sIdx}`)
+                setShare(response.data);
+                console.log("다이어리 정보 불러오기 성공", share)
+            } catch (error) {
+                console.log("다이어리 정보 불러오기 실패", error);
+            }
+        };
+
+        loadShareDiary();
+    }, [sIdx]);
+
     return (
         <>
             <Background>
@@ -56,30 +76,36 @@ const ShareRead = () => {
 
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
                 <DogImage src="/images/dog.png" alt="곰" />
+
                 <Question>오늘의 질문 : </Question>
+
                 <Peel>
                     <Main>
+
                         <DateBind>
                             <Cancle></Cancle>
                             <Day>
-                                {formattedFull}
+                                {`${share.sdate.slice(2, 4)}년 ${share.sdate.slice(5, 7)}월 ${share.sdate.slice(8, 10)}일`}
                             </Day>
                             <Upload onClick={gosharefix} >수정하기</Upload>
                         </DateBind>
+
                         <TopicBind>
                             <Topic>오늘의 대답</Topic>
                             <Topic>오늘의 한 마디</Topic>
                         </TopicBind>
                         <TopicAnswerBind>
-                            <TopicAnswer />
-                            <TopicAnswer />
+                            <TopicAnswer>{share.acontent}</TopicAnswer>
+                            <TopicAnswer>{share.scontent}</TopicAnswer>
                         </TopicAnswerBind>
                     </Main>
                 </Peel>
+
                 <Leg></Leg>
                 <Leg1></Leg1>
                 <Leg2></Leg2>
                 <Leg3></Leg3>
+
             </Background>
         </>
     );

@@ -39,7 +39,7 @@ const DiaryRead = () => {
             try {
                 const response = await axios.get(`/diary/read?dIdx=${dIdx}`);
                 setDiary(response.data);
-                console.log("ㅇㅁㄴㅇㅁㄴㅇㄴㅁ", diary)
+                console.log("다이어리 정보 불러오기 성공", diary)
             } catch (error) {
                 console.log("다이어리 정보 불러오기 실패", error);
             }

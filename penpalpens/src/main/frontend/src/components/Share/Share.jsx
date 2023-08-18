@@ -66,10 +66,13 @@ const Share = () => {
     }, []);
 
     const handleShareClick = (sIdx) => {
-        navigate(`/share/read${sIdx}`); //sIdx에 해당하는 다이어리 읽기 페이지로 이동
+        navigate(`/share/read/${sIdx}`); //sIdx에 해당하는 다이어리 읽기 페이지로 이동
     };
 
-
+    // 교환 (`/share/read${sIdx}`)
+    // 교환 리드 (`/shareMy?sIdx=${sIdx}`)
+    // 다이어리 (`/diary/read/${dIdx}`)
+    // 다이어리 리드 (`/diary/read?dIdx=${dIdx}`);
     return (
         <>
             <Background>
@@ -125,7 +128,7 @@ const Share = () => {
                         </DiaryList>
 
                         {shareList.length > 0 && shareList.map((item, index) => {
-                            const dDate = new Date(item.dDate);
+                            const dDate = new Date(item.sDate);
                             const year = dDate.getFullYear().toString().slice(-2);
                             const month = dDate.getMonth() + 1;
                             const date = dDate.getDate();
@@ -133,31 +136,12 @@ const Share = () => {
                             return (
                                 <DiaryList ket={item.sidx}>
                                     <DailyDate>{`${year}년 ${month}월 ${date}일`}</DailyDate>
-                                    {/* <DailyTitle onClick={() => handleShareClick(item.sidx)}>{item.}</DailyTitle> */} //오늘의질문 주소값
-                                    <DailyChange>ㅇㅁㄴㅇㅁㄴ</DailyChange>
+                                    <DailyTitle onClick={() => handleShareClick(item.sidx)}>{item.uquestion}</DailyTitle>
+                                    <DailyChange>{item.userInfoVO.unick}</DailyChange>
 
                                 </DiaryList>
                             );
                         })}
-                        {/* <DiaryList>
-                            <DailyDate>
-                                {formattedDate}
-                            </DailyDate>
-                            <DailyTitle onClick={goRead}>오늘 점심은?</DailyTitle>
-                            <DailyChange>
-                                김유리
-                            </DailyChange>
-                        </DiaryList>
-
-                        <DiaryList>
-                            <DailyDate>
-                                {formattedDate}
-                            </DailyDate>
-                            <DailyTitle onClick={goRead}>오늘 점심은?</DailyTitle>
-                            <DailyChange>
-                                훈이
-                            </DailyChange>
-                        </DiaryList> */}
 
                     </Main>
                 </Peel>
@@ -364,7 +348,7 @@ const DailyDate = styled.div`
     width: 20%;
     height: 3rem;
     border-radius: 1rem;
-    font-size: 2rem;
+    font-size: 1.7rem;
     display: flex;
     justify-content: center;
     align-items: center;
