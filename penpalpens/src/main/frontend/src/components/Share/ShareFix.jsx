@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { BiSolidLockOpenAlt } from "react-icons/bi";
+import axios from "axios";
 
 const ShareFix = () => {
 
@@ -16,7 +17,7 @@ const ShareFix = () => {
         navigate("/sharewrite");
     };
 
-    const goshareread = () => {
+    const goshareRead = () => {
         navigate("/shareread");
     };
 
@@ -31,6 +32,50 @@ const ShareFix = () => {
     const formattedFull = `${formattedYear}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
+
+    const { sIdx } = useParams();
+    const [share, setShare] = useState({});
+    const [aContent, setAContent] = useState("");
+    const [sContent, setSContent] = useState("");
+
+    const handleAnswerChange = (e) => {
+        setAContent(e.target.value); //입력 값으로 답변 수정
+    };
+
+    const handleContentChange = (e) => {
+        setSContent(e.target.value); //입력 값으로 내용 수정
+    };
+
+    useEffect(() => {
+        const fixShareDiary = async () => {
+            try {
+                const response = await axios.get(`/shareMy?sIdx=${sIdx}`);
+                setShare(response.data);
+                setAContent(response.data.aContent || "");
+                setSContent(response.data.sContent || "");
+                console.log("다이어리 정보 불러오기 성공", share);
+            } catch (error) {
+                console.log("다이어리 정보 불러오기 실패", error);
+            }
+        };
+
+        fixShareDiary();
+    }, [sIdx]);
+
+
+
+    const handleUpdateShare = async () => {
+        try {
+            await axios.put(`/share`, {
+                aContent: aContent,
+                sContent: sContent,
+            });
+            console.log("다이어리 수정 완료");
+            goshareRead();
+        } catch (error) {
+            console.log("다이어리 수정 실패", error);
+        }
+    };
 
     return (
         <>
@@ -60,19 +105,26 @@ const ShareFix = () => {
                 <Peel>
                     <Main>
                         <DateBind>
-                            <Cancle onClick={goshareread} >취소하기</Cancle>
+                            <Upload onClick={handleUpdateShare} >수정하기</Upload>
                             <Day>
                                 {formattedFull}
                             </Day>
-                            <Upload onClick={goshareread} >수정하기</Upload>
+                            <Cancle onClick={goshare} >취소하기</Cancle>
                         </DateBind>
                         <TopicBind>
                             <Topic>오늘의 대답</Topic>
                             <Topic>오늘의 한 마디</Topic>
                         </TopicBind>
                         <TopicAnswerBind>
-                            <TopicAnswer />
-                            <TopicAnswer />
+                            <TopicAnswer
+                                value={share && share.acontent}
+                                onChange={handleAnswerChange}
+                            />
+                            <TopicAnswer
+                                value={share && share.scontent}
+                                onChange={handleContentChange}
+                            />
+
                         </TopicAnswerBind>
                     </Main>
                 </Peel>
@@ -256,7 +308,7 @@ const Upload = styled.div`
     font-size: 2rem;
     color: #fdf6e4;
     margin-top: 1rem;
-    margin-right: 1.5rem;
+    margin-left: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -271,7 +323,7 @@ const Cancle = styled.div`
     font-size: 2rem;
     color: #fdf6e4;
     margin-top: 1rem;
-    margin-left: 1.5rem;
+    margin-right: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;

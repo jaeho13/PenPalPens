@@ -33,21 +33,6 @@ const Share = () => {
 
     const formattedDate = `${today.getMonth() + 1}월 ${today.getDate()}일`;
 
-    const onDelete = async (sidx) => {
-        if (window.confirm("정말 삭제하시겠습니까??")) {
-            try {
-                await axios.delete(`/share?sIdx=${sidx}`);
-                alert("삭제되었습니다.");
-                const response = await axios.get("/share");
-                setShareList(response.data);
-            } catch (error) {
-                console.log("삭제 실패", error);
-            }
-        } else {
-            alert("취소되었습니다.");
-        }
-    };
-
     const [shareList, setShareList] = useState([]);
     const [question, setQuestion] = useState("");
 
@@ -70,15 +55,6 @@ const Share = () => {
     const handleShareClick = (sIdx) => {
         navigate(`/share/read/${sIdx}`); //sIdx에 해당하는 다이어리 읽기 페이지로 이동
     };
-
-    // 교환 (`/share/read${sIdx}`)
-    // 교환 리드 (`/shareMy?sIdx=${sIdx}`)
-    // <Route path="/share/read:sIdx" element={<ShareRead />} />
-
-
-    // 다이어리 (`/diary/read/${dIdx}`)
-    // 다이어리 리드 (`/diary/read?dIdx=${dIdx}`);
-    // <Route path="/diary/read/:dIdx" element={<DiaryRead />} />
 
     return (
         <>

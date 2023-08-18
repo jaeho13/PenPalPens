@@ -52,7 +52,7 @@ const DiaryFix = () => {
                 setDiary(response.data);
                 setTitle(response.data.dtitle || "");
                 setBoard(response.data.dcontent || "");
-                console.log("ㅇㅁㄴㅇㅁㄴㅇㄴㅁ", diary)
+                console.log("다이어리 정보 불러오기 성공", diary)
             } catch (error) {
                 console.log("다이어리 정보 불러오기 실패", error);
             }
