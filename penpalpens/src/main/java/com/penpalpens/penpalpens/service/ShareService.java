@@ -28,7 +28,6 @@ public class ShareService {
         Random random = new Random();
         Map<String, Object> map = new HashMap<>();
 
-
         if (userInfo.getULink() != 0) {
             System.out.println("이미 다른 일기장과 연결된 회원");
 
@@ -37,7 +36,7 @@ public class ShareService {
 
             return map;
 
-        } else if (userInfo.getURandom() == 0) { //연결된 일기장이 없다면?
+        } else if (userInfo.getURandom() == 0) { // 연결된 일기장이 없다면?
             System.out.println("랜덤코드 생성 호출");
             int num;
 
@@ -48,7 +47,7 @@ public class ShareService {
 
             userInfo.setURandom(num);
         }
-        //유저 정보에
+        // 유저 정보에
         userRepository.save(userInfo); // 저장 위치 변경
 
         map.put("boolean", userInfo.getULink());
@@ -59,9 +58,6 @@ public class ShareService {
         return map;
     }
 
-
-
-
     public int shareCode(UserInfo userInfo) {
         int bool = userInfo.getULink();
         return bool;
@@ -69,19 +65,19 @@ public class ShareService {
 
     public int sendCode(int code, UserInfo userInfo) {
         UserInfo user = userRepository.checkUserCode(code);
-        if(user!=null){
+        if (user != null) {
             UserInfo linkUser = userRepository.checkUserCode(code);
             System.out.println("초대코드가 일치하는 회원 발견!");
 
-            //1. 연결 된 회원 0>1로 변경
+            // 1. 연결 된 회원 0>1로 변경
             linkUser.setULink(1);
             linkUser.setURandom(code);
 
-            //2. 요청 회원 0>1로 변경
+            // 2. 요청 회원 0>1로 변경
             userInfo.setULink(1);
             userInfo.setURandom(code);
 
-            //3. 저장하기
+            // 3. 저장하기
             userRepository.save(linkUser);
             userRepository.save(userInfo);
 
@@ -102,7 +98,7 @@ public class ShareService {
 
         System.out.println("일기 가져오기 성공" + list);
         String str = questionRepository.findByMy(userInfo.getMyQIdx());
-        map.put("shareDiary" ,list);
+        map.put("shareDiary", list);
         map.put("question", str);
         return map;
     }
@@ -113,9 +109,9 @@ public class ShareService {
         UserInfo userVO = userRepository.findByuEmail(userInfo.getUEmail());
         UserInfo linkUser = new UserInfo();
 
-        System.out.println(userVO+"일기 추가");
-        String aContent = (String)share.get("aContent");
-        String sContent = (String)share.get("sContent");
+        System.out.println(userVO + "일기 추가");
+        String aContent = (String) share.get("aContent");
+        String sContent = (String) share.get("sContent");
 
         int num = userInfo.getURandom();
         String user = userInfo.getUEmail();
@@ -130,12 +126,12 @@ public class ShareService {
         Question question = questionRepository.findByqIdx(qIdx);
         System.out.println("====2");
         String q = question.getQContent();
-        System.out.println("질문내용 : "+ q);
+        System.out.println("질문내용 : " + q);
         s.setUQuestion(q);
 
         s.setSDate(LocalDateTime.now());
 
-        //질문에 대답 했다 > 1로 수정
+        // 질문에 대답 했다 > 1로 수정
         userVO.setUStatus(1);
 
         userRepository.save(userVO);
@@ -144,27 +140,27 @@ public class ShareService {
         linkUser = userRepository.findByuEmail(linkEmail);
         System.out.println("링크유저 " + linkUser);
 
-        if(userVO.getUStatus() == 1 && linkUser.getUStatus() == 1){
-            //상태변화
+        if (userVO.getUStatus() == 1 && linkUser.getUStatus() == 1) {
+            // 상태변화
             userVO.setUStatus(0);
             linkUser.setUStatus(0);
 
-            //qIdx변화
+            // qIdx변화
             int num1 = userVO.getMyQIdx();
             int num2 = linkUser.getMyQIdx();
 
             System.out.println("=====김유리1" + num1);
             System.out.println("=====김유리2" + num2);
 
-            userVO.setMyQIdx((userVO.getMyQIdx())+1);
-            linkUser.setMyQIdx((linkUser.getMyQIdx())+1);
+            userVO.setMyQIdx((userVO.getMyQIdx()) + 1);
+            linkUser.setMyQIdx((linkUser.getMyQIdx()) + 1);
             userRepository.save(linkUser);
             userRepository.save(userVO);
         }
 
         shareRepository.save(s);
 
-        System.out.println(s+"저장완료");
+        System.out.println(s + "저장완료");
 
     }
 
@@ -185,7 +181,7 @@ public class ShareService {
 
         Shared updateShare = shareRepository.findByMyDiary(sIdx);
 
-        System.out.println(updateShare+"수정 글 가져오기");
+        System.out.println(updateShare + "수정 글 가져오기");
         updateShare.setSContent(sContent);
         updateShare.setAContent(aContent);
         shareRepository.save(updateShare);

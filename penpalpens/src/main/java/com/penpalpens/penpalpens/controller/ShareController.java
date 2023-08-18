@@ -84,11 +84,10 @@ public class ShareController {
 
     // 읽기와 수정 - 불러오기
     @GetMapping("/shareMy")
-    public Shared shareMyDiary(@RequestParam String sIdx) throws ParseException{
+    public Shared shareMyDiary(@RequestParam String sIdx) throws ParseException {
         System.out.println("이재호 글 왓을까");
         int num = Integer.parseInt(sIdx);
         Shared myDiary = shareService.shareMyDiary(num);
-
     }
 
     // 수정 - 처리성공

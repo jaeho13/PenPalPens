@@ -40,6 +40,7 @@ const App = () => {
           <Route path="/diary/update/:dIdx" element={<DiaryFix />} />
           <Route path="/share/read/:sIdx" element={<ShareRead />} />
 
+
         </Routes>
       </Router>
     </>

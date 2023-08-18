@@ -35,7 +35,7 @@ const ShareRead = () => {
 
 
     const { sIdx } = useParams(); // URL 매개변수에서 sIdx 가져오기
-    const [share, setShare] = useState({});
+    const [share, setShare] = useState();
 
     useEffect(() => {
         const loadShareDiary = async () => {
@@ -83,11 +83,15 @@ const ShareRead = () => {
                     <Main>
 
                         <DateBind>
-                            <Cancle></Cancle>
-                            <Day>
-                                {`${share.sdate.slice(2, 4)}년 ${share.sdate.slice(5, 7)}월 ${share.sdate.slice(8, 10)}일`}
-                            </Day>
-                            <Upload onClick={gosharefix} >수정하기</Upload>
+                            {share && share.sdate && (
+                                <>
+                                    <Cancle></Cancle>
+                                    <Day>
+                                        {`${share.sdate.slice(2, 4)}년 ${share.sdate.slice(5, 7)}월 ${share.sdate.slice(8, 10)}일`}
+                                    </Day>
+                                    <Upload onClick={gosharefix} >수정하기</Upload>
+                                </>
+                            )}
                         </DateBind>
 
                         <TopicBind>
@@ -95,8 +99,9 @@ const ShareRead = () => {
                             <Topic>오늘의 한 마디</Topic>
                         </TopicBind>
                         <TopicAnswerBind>
-                            <TopicAnswer>{share.acontent}</TopicAnswer>
-                            <TopicAnswer>{share.scontent}</TopicAnswer>
+                            <TopicAnswer>{share && share.acontent}</TopicAnswer>
+                            <TopicAnswer>{share && share.scontent}</TopicAnswer>
+
                         </TopicAnswerBind>
                     </Main>
                 </Peel>
