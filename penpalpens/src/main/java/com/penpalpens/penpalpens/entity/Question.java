@@ -23,6 +23,4 @@ public class Question {
     @Column(nullable = false, length = 300)
     private String qContent;
 
-
-
 }

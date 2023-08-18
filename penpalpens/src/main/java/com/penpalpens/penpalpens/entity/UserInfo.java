@@ -27,4 +27,10 @@ public class UserInfo {
     @Column(nullable = false)
     private int uRandom;
 
+    @Column
+    private int uStatus;
+
+    @Column
+    private int myQIdx;
+
 }

@@ -11,7 +11,7 @@ import java.util.List;
 public interface DiaryRepository extends JpaRepository<Diary, Integer> {
 
     @Query(value = "SELECT * FROM Diary WHERE u_Email = :uEmail ORDER BY d_Date DESC", nativeQuery = true)
-    List<Diary> findMyDiary(@Param("uEmail") String uEmail);
+    List<Diary> findMyDiary(@Param(value = "uEmail") String uEmail);
 
     @Query(value = "select * from Diary where d_Idx = :dIdx", nativeQuery = true)
     Diary findByDIdx(@Param(value = "dIdx") int dIdx);

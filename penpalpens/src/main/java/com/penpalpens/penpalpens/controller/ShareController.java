@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,12 +60,12 @@ public class ShareController {
     }
 
     @GetMapping("/share")
-    public Map<String, Object> shareList(HttpServletRequest request) throws Exception {
+    public List<Shared> shareList(HttpServletRequest request) throws Exception {
         UserInfo userInfo = userSession(request);
-        Map<String, Object> map = new HashMap<>();
+        List<Shared> list = new ArrayList<>();
 
-        map = shareService.shareList(userInfo);
-        return map;
+        list = shareService.shareList(userInfo);
+        return list;
     }
     @PostMapping("/share")
     public void shareWrite(@RequestBody Map<String, Object>share, HttpServletRequest request) throws ParseException{
@@ -79,5 +80,19 @@ public class ShareController {
     public void shareDelete(@RequestParam String sIdx) throws ParseException{
         int num = Integer.parseInt(sIdx);
         shareService.shareDelete(num);
+    }
+
+    //읽기와 수정 - 불러오기
+    @GetMapping("/shareMy")
+    public Shared shareMyDiary(@RequestParam String sIdx) throws ParseException{
+        int num = Integer.parseInt(sIdx);
+        Shared myDiary = shareService.shareMyDiary(num);
+
+        return myDiary;
+    }
+    //수정 - 처리성공
+    @PutMapping("/share")
+    public void ModifyMyDiary(@RequestBody Map<String, Object> share) throws ParseException{
+        shareService.ModifyShareDiary(share);
     }
 }

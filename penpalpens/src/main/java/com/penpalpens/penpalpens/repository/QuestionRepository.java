@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
-    @Query(value = "SELECT * FROM QUESTION WHERE q_Idx = :qIdx", nativeQuery = true)
+    @Query(value = "SELECT * FROM Question WHERE q_Idx = :qIdx", nativeQuery = true)
     Question findByqIdx(@Param("qIdx") int qIdx);
 
+    @Query(value ="SELECT q_Content FROM Question WHERE q_Idx = :qIdx",nativeQuery = true)
+    String findByMy(@Param("qIdx") int qIdx);
 }

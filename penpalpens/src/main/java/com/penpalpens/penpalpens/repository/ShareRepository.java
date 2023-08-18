@@ -14,7 +14,9 @@ import java.util.Map;
 @Repository
 public interface ShareRepository extends JpaRepository<Shared, Integer> {
 
-    @Query(value = "SELECT * FROM Shared WHERE u_Random = :uRandom ORDER BY s_Date DESC", nativeQuery = true)
-    List<Shared> findByShareDiary(@Param("uRandom") int uRandom);
+    @Query(value = "SELECT * FROM Shared WHERE we_Random = :weRandom ORDER BY s_Date DESC", nativeQuery = true)
+    List<Shared> findByShareDiary(@Param(value = "weRandom") int weRandom);
 
+    @Query(value = "SELECT * FROM Shared WHERE sIdx = :sIdx", nativeQuery = true)
+    Shared findByMyDiary(@Param(value = "sIdx") int sIdx);
 }

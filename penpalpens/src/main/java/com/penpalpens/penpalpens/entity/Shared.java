@@ -29,13 +29,19 @@ public class Shared {
     @Column(nullable = false, length = 3000)
     private String sContent;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="qIdx")
-    private Question questionVO;
+    @Column(length = 300)
+    private String uQuestion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uRandom")
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="qIdx")
+//    private Question questionVO;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "uEmail")
     private UserInfo userInfoVO;
+
+    @Column
+    private int weRandom;
 
     @CreatedDate
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
