@@ -91,16 +91,20 @@ public class ShareService {
         return 0;
     }
 
-    public List<Shared> shareList(UserInfo userInfo) {
+    public Map<String, Object> shareList(UserInfo userInfo) {
         System.out.println("글 리스트 호출");
         // 글 검색하기
+        Map<String, Object> map = new HashMap<>();
         int uRandom = userInfo.getURandom();
         System.out.println("uRandom" + uRandom);
         String uEmail = userInfo.getUEmail();
         List<Shared> list = shareRepository.findByShareDiary(uRandom);
 
         System.out.println("일기 가져오기 성공" + list);
-        return list;
+        String str = questionRepository.findByMy(userInfo.getMyQIdx());
+        map.put("shareDiary" ,list);
+        map.put("question", str);
+        return map;
     }
 
     public void shareWrite(Map<String, Object> share, UserInfo userInfo) {
@@ -134,23 +138,31 @@ public class ShareService {
         //질문에 대답 했다 > 1로 수정
         userVO.setUStatus(1);
 
+        userRepository.save(userVO);
 
         String linkEmail = userRepository.findLinkUser(num, user);
         linkUser = userRepository.findByuEmail(linkEmail);
         System.out.println("링크유저 " + linkUser);
 
-        if(userInfo.getUStatus() == 1 && linkUser.getUStatus() == 1){
+        if(userVO.getUStatus() == 1 && linkUser.getUStatus() == 1){
             //상태변화
-            userInfo.setUStatus(0);
+            userVO.setUStatus(0);
             linkUser.setUStatus(0);
+
             //qIdx변화
-            userInfo.setMyQIdx(userInfo.getMyQIdx()+1);
-            linkUser.setMyQIdx(linkUser.getMyQIdx()+1);
+            int num1 = userVO.getMyQIdx();
+            int num2 = linkUser.getMyQIdx();
+
+            System.out.println("=====김유리1" + num1);
+            System.out.println("=====김유리2" + num2);
+
+            userVO.setMyQIdx((userVO.getMyQIdx())+1);
+            linkUser.setMyQIdx((linkUser.getMyQIdx())+1);
             userRepository.save(linkUser);
+            userRepository.save(userVO);
         }
 
         shareRepository.save(s);
-        userRepository.save(userVO);
 
         System.out.println(s+"저장완료");
 

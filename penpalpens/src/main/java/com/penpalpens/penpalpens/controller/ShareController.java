@@ -59,12 +59,12 @@ public class ShareController {
     }
 
     @GetMapping("/share")
-    public List<Shared> shareList(HttpServletRequest request) throws Exception {
+    public Map<String, Object> shareList(HttpServletRequest request) throws Exception {
         UserInfo userInfo = userSession(request);
         List<Shared> list = new ArrayList<>();
 
-        list = shareService.shareList(userInfo);
-        return list;
+        Map<String, Object> map = shareService.shareList(userInfo);
+        return map;
     }
 
     @PostMapping("/share")
@@ -84,7 +84,8 @@ public class ShareController {
 
     // 읽기와 수정 - 불러오기
     @GetMapping("/shareMy")
-    public Shared shareMyDiary(@RequestParam String sIdx) throws ParseException {
+    public Shared shareMyDiary(@RequestParam String sIdx) throws ParseException{
+        System.out.println("이재호 글 왓을까");
         int num = Integer.parseInt(sIdx);
         Shared myDiary = shareService.shareMyDiary(num);
 
