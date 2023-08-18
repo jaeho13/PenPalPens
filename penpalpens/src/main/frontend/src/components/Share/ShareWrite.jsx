@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
@@ -34,6 +34,9 @@ const ShareWrite = () => {
     // const [sDate, setSDate] = useState("");
     const [aContent, setAContent] = useState("");
     const [sContent, setSContent] = useState("");
+
+    const [question, setQuestion] = useState("");
+
 
     // const handleAnswerChange = (e) => {
     //     setSAnswer(e.target.value);
@@ -81,6 +84,20 @@ const ShareWrite = () => {
             });
     };
 
+    useEffect(() => {
+        const makeQustion = async () => {
+            try {
+                const response = await axios.get("/share");
+                const questionData = response.data.question;
+                setQuestion(questionData);
+            } catch (error) {
+                console.error("Error fetching question:", error);
+            }
+        };
+
+        makeQustion();
+    }, []);
+
 
     return (
         <>
@@ -107,7 +124,7 @@ const ShareWrite = () => {
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
                 <DogImage src="/images/dog.png" alt="곰" />
 
-                <Question>오늘의 질문 : </Question>
+                <Question>오늘의 질문 : {question}</Question>
 
                 <Peel>
                     <Main>
@@ -115,11 +132,11 @@ const ShareWrite = () => {
                         <form onSubmit={handleSubmit}>
 
                             <DateBind>
-                                <Cancle onClick={goshare} >취소하기</Cancle>
+                                <Upload type="button" onClick={handleSubmit}>글올리기</Upload>
                                 <Day>
                                     {formattedFull}
                                 </Day>
-                                <Upload type="button" onClick={handleSubmit}>글올리기</Upload>
+                                <Cancle onClick={goshare} >취소하기</Cancle>
                             </DateBind>
 
                             <TopicBind>
@@ -327,7 +344,7 @@ const Upload = styled.div`
     font-size: 2rem;
     color: #fdf6e4;
     margin-top: 1rem;
-    margin-right: 1.5rem;
+    margin-left: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -342,7 +359,7 @@ const Cancle = styled.div`
     font-size: 2rem;
     color: #fdf6e4;
     margin-top: 1rem;
-    margin-left: 1.5rem;
+    margin-right: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;

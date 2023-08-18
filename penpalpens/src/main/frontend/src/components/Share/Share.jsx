@@ -42,7 +42,6 @@ const Share = () => {
                 const response = await axios.get("/share");
                 setShareList(response.data.shareDiary);
                 setQuestion(response.data.question);
-
                 console.log("리스트 불러오기 성공");
             } catch (error) {
                 console.log("리스트 불러오기 실패", error);
