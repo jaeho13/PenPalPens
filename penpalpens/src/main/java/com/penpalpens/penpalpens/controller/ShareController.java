@@ -88,6 +88,8 @@ public class ShareController {
         System.out.println("이재호 글 왓을까");
         int num = Integer.parseInt(sIdx);
         Shared myDiary = shareService.shareMyDiary(num);
+
+        return myDiary;
     }
 
     // 수정 - 처리성공

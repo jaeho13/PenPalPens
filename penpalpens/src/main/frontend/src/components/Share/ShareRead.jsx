@@ -40,7 +40,6 @@ const ShareRead = () => {
     useEffect(() => {
         const loadShareDiary = async () => {
             try {
-                console.log("dasdsad", sIdx)
                 const response = await axios.get(`/shareMy?sIdx=${sIdx}`)
                 setShare(response.data);
                 console.log("다이어리 정보 불러오기 성공", share)
@@ -51,6 +50,29 @@ const ShareRead = () => {
 
         loadShareDiary();
     }, [sIdx]);
+
+    const [shareList, setShareList] = useState([]);
+
+    const onDelete = async (sIdx) => {
+        if (window.confirm("정말 삭제하시겠습니까??")) {
+            try {
+                await axios.delete(`/share?sIdx=${sIdx}`);
+                alert("삭제되었습니다.");
+                const response = await axios.get("/share");
+                setShareList(response.data);
+            } catch (error) {
+                console.log("삭제 실패", error);
+            }
+        } else {
+            alert("취소되었습니다.");
+        }
+        navigate("/share")
+    };
+
+    const handleShareDiaryFixClick = () => {
+        navigate(`/share/update/${sIdx}`);
+    }
+
 
     return (
         <>
@@ -77,7 +99,8 @@ const ShareRead = () => {
                 <RabbitImage src="/images/rabbit.png" alt="토끼" />
                 <DogImage src="/images/dog.png" alt="곰" />
 
-                <Question>오늘의 질문 : </Question>
+
+                <Question>오늘의 질문 : {share && share.uquestion}</Question>
 
                 <Peel>
                     <Main>
@@ -85,11 +108,11 @@ const ShareRead = () => {
                         <DateBind>
                             {share && share.sdate && (
                                 <>
-                                    <Cancle></Cancle>
+                                    <Upload onClick={handleShareDiaryFixClick} >수정하기</Upload>
                                     <Day>
                                         {`${share.sdate.slice(2, 4)}년 ${share.sdate.slice(5, 7)}월 ${share.sdate.slice(8, 10)}일`}
                                     </Day>
-                                    <Upload onClick={gosharefix} >수정하기</Upload>
+                                    <Cancle onClick={() => onDelete(sIdx)}>삭제하기</Cancle>
                                 </>
                             )}
                         </DateBind>
@@ -261,7 +284,7 @@ const Day = styled.div`
     width: 20%;
     height: 3rem;
     border-radius: 1rem;
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: #fdf6e4;
     margin-top: 1rem;
     display: flex;
@@ -287,7 +310,7 @@ const Upload = styled.div`
     font-size: 2rem;
     color: #fdf6e4;
     margin-top: 1rem;
-    margin-right: 1.5rem;
+    margin-left: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -302,10 +325,12 @@ const Cancle = styled.div`
     font-size: 2rem;
     color: #fdf6e4;
     margin-top: 1rem;
-    margin-left: 1.5rem;
+    margin-right: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
+    cursor: pointer;
 `
 
 const TopicBind = styled.div`
