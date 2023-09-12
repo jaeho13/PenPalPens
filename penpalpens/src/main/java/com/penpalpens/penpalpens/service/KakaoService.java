@@ -113,7 +113,7 @@ public class KakaoService {
             String nick = properties.getAsJsonObject().get("nickname").getAsString();
 
             userInfo = userRepository.findByuEmail(email);
-
+//
             if (userInfo == null) {
                 System.out.println("등록된 회원 아님");
 
