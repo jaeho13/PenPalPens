@@ -32,7 +32,7 @@
 <br />
 
 ## 🚀 프로젝트 ERD
-### 사진 사진 사진
+<img width="1228" alt="스크린샷 2023-09-22 오전 12 16 37" src="https://github.com/jaeho13/PenPalPens/assets/108074336/2530518a-156a-4e9a-a4ea-0c62caf13bd8">
 <br />
 
 ## 🚀 프로젝트 결과
