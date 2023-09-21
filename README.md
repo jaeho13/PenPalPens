@@ -59,7 +59,7 @@
 
 ### 개인 일기 : 개인 일기를 작성하고 볼 수 있는 페이지이다.
 <img width="1200" alt="스크린샷 2023-09-22 오전 12 35 12" src="https://github.com/jaeho13/PenPalPens/assets/108074336/fdc41133-9329-4db9-951a-901caf3f50ce">
-<img width="1275" alt="스크린샷 2023-09-22 오전 12 25 16" src="https://github.com/jaeho13/PenPalPens/assets/108074336/0d0315c8-3b7c-4fc3-af89-4507572cca53">
+<img width="1200" alt="스크린샷 2023-09-22 오전 12 25 16" src="https://github.com/jaeho13/PenPalPens/assets/108074336/0d0315c8-3b7c-4fc3-af89-4507572cca53">
 
 
 <br />
