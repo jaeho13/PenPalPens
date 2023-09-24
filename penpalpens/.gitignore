@@ -38,3 +38,4 @@ out/
 *.java
 *.properties
 *.jsx
+*.env
