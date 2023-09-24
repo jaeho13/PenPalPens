@@ -28,7 +28,7 @@
 <br />
 
 ## 🚀 프로젝트 구상도
-![PenPal](https://github.com/jaeho13/PenPalPens/assets/111284065/9d13a467-1cbb-4be7-a7a4-8dc2e9bec7f0)
+![IMG_2020](https://github.com/jaeho13/PenPalPens/assets/108074336/d4f98f9d-640f-4b09-a8a4-ba9e3f134145)
 <br />
 
 ## 🚀 프로젝트 ERD
