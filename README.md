@@ -65,7 +65,6 @@
 <img width="1271" alt="스크린샷 2023-09-22 오전 12 35 12" src="https://github.com/jaeho13/PenPalPens/assets/108074336/b6543732-cfac-4356-b946-8092ca087c00">
 <img width="1275" alt="스크린샷 2023-09-22 오전 12 25 16" src="https://github.com/jaeho13/PenPalPens/assets/108074336/a2881b72-89e8-4a06-86d5-397e0fb51740">
 
-
 <br />
 
 ## 🚀 느낀점
