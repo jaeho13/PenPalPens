@@ -11,14 +11,15 @@
 <br />
 
 ## 🚀 프로젝트 목적
-### Front-end - React, Spring을 연동한 CRUD 구현 및 카카오 로그인 API 사용
-### Back-end - REST API 설계 및 카카오 로그인 API 사용 학습
+### Front-end
+#### RESTful API를 이용한 CRUD 구현
+#### 카카오 API를 활용한 로그인 구현
 <br />
 
 ## 🚀 프로젝트 기능
-### 카카오 API를 활용한 로그인 구현
-### RESTful API를 이용한 CRUD 구현
 ### 초대코드를 이용한 유저간 데이터 연결
+### 개인 일기장 작성
+### 교환 일기 질문에 친구와 답하며 공유일기 작성
 <br />
 
 ## 🚀 프로젝트 초안
